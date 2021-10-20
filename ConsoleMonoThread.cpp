@@ -12,9 +12,7 @@
 
 
 // User defined variables
-#define LINESPERFRAME                       1000            // Must be an even number, max value - 65535
 #define LINE_PERIOD							11.10			// Units - us
-#define EXPOSURE_TIME						1.32			// Max value = [LINE_PERIOD - 0.7] us | min value = 1.32 us
 #define PULSE_WIDTH							2.00			// Pulses above this value denotes a frame trigger, below this value denotes a line trigger
 
 // Fixed variables
@@ -25,7 +23,8 @@
 #define ENABLE_CONTEXTUAL_DATA              1                // 1 - ON | 0 - OFF
 #define NUM_OF_BUFFER                       30               // Number of buffers
 #define MAX_TIMEOUT_ACQ_IN_MS               120000           // Two minutes
-
+#define EXPOSURE_TIME                       1.32            // Max value = [LINE_PERIOD - 0.7] us | min value = 1.32 us
+#define LINESPERFRAME                       45000            // Must be an even number, max value - 65535
 
 // Local Exception class to manage errors
 class CMyException
@@ -85,13 +84,10 @@ int main(int argc, char * argv[])
 
         // Individual camera info
 		tCameraInfo CameraInfo;
-        ulIndex = 0;
+        unsigned long ulIndex = 0;
         nError = USB3_GetCameraInfo(ulIndex, &CameraInfo);
         if (nError == CAM_ERR_SUCCESS)
-        {
             printf("\tCamera ID: %s\n", CameraInfo.pcID);
-            break;
-        }
         else
         throw CMyException("USB3_GetCameraInfo", nError);
 		
@@ -151,6 +147,22 @@ int main(int argc, char * argv[])
             if (nError != CAM_ERR_SUCCESS)
                 throw CMyException("USB3_WriteRegister 0x4F000000", nError);
 
+
+            // Trigger Frame Line Number
+            ulAddress = 0x12128;
+            ulValue = LINESPERFRAME;
+            nError = USB3_WriteRegister(hCamera, ulAddress, &ulValue, &iSize);
+            if (nError != CAM_ERR_SUCCESS)
+                throw CMyException("USB3_WriteRegister 0x12128", nError);
+            
+            
+            // Exposure Time
+            ulAddress = 0x12108;
+            ulValue = EXPOSURE_TIME*100;
+            nError = USB3_WriteRegister(hCamera, ulAddress, &ulValue, &iSize);
+            if (nError != CAM_ERR_SUCCESS)
+                throw CMyException("USB3_WriteRegister 0x12108", nError);
+            
             
             // Registers affected by user defined variables
             
@@ -163,28 +175,13 @@ int main(int argc, char * argv[])
 				throw CMyException("USB3_WriteRegister 0x12100", nError);
 
 
-			// Exposure Time
-			ulAddress = 0x12108;	
-			ulValue = EXPOSURE_TIME*100;
-			nError = USB3_WriteRegister(hCamera, ulAddress, &ulValue, &iSize);
-			if (nError != CAM_ERR_SUCCESS)
-				throw CMyException("USB3_WriteRegister 0x12108", nError);
-
-
 			// Pulse Width
 			ulAddress = 0x1211C;
 			ulValue = PULSE_WIDTH*100;
 			nError = USB3_WriteRegister(hCamera, ulAddress, &ulValue, &iSize);
 			if (nError != CAM_ERR_SUCCESS)
 				throw CMyException("USB3_WriteRegister 0x1211C", nError);
-            
 
-			// Trigger Frame Line Number
-			ulAddress = 0x12128;		
-			ulValue = LINESPERFRAME;
-			nError = USB3_WriteRegister(hCamera, ulAddress, &ulValue, &iSize);
-			if (nError != CAM_ERR_SUCCESS)
-				throw CMyException("USB3_WriteRegister 0x12128", nError);
 
             
             // *******************************************************************
@@ -243,7 +240,6 @@ int main(int argc, char * argv[])
                     
                     // Copying buffer to 2D Matrix1
                     unsigned short pixelValues;
-                    printf("\nCopying camera buffer into %u x %u matrix...\n", LINESPERFRAME, WIDTH);
                     for (int row = 0; row < LINESPERFRAME; row++) {
                         for (int col = 0; col < WIDTH; col++) {
 
@@ -277,6 +273,11 @@ int main(int argc, char * argv[])
                     }
                 }
             }
+            catch (CMyException e) // catch own CMyException
+            {
+                // Print Usb3 error reason
+                e.ShowReason();
+            }
             
             
             // *******************************************************************
@@ -294,25 +295,30 @@ int main(int argc, char * argv[])
 				throw CMyException("USB3_FlushBuffers", nError);
 
 		}
+        catch (CMyException e) // catch own CMyException
+        {
+            // Print Usb3 error reason
+            e.ShowReason();
+        }
+        catch (...) // Catch all other exceptions which are not caused by CMyException
+        {
+            // User application exception
+            printf("Unknown User application exception !!!\n");
+        }
 
+        
+        // Close camera
 		printf("USB3_CloseCamera\n");
 		nError = USB3_CloseCamera(hCamera);
 		if (nError != CAM_ERR_SUCCESS)
 			throw CMyException("USB3_CloseCamera", nError);
-
 	}
-    
 	catch (CMyException e) // catch own CMyException
 	{
 		// Print Usb3 error reason
 		e.ShowReason();
 	}
     
-    catch (...) // Catch all other exceptions which are not caused by CMyException
-    {
-        // User application exception
-        printf("Unknown User application exception !!!\n");
-    }
 
 	// Terminate Library
 	printf("USB3_TerminateLibrary\n");
