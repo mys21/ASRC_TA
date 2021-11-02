@@ -14,7 +14,7 @@
 
 // User defined variables
 #define LINE_PERIOD                         11.10            // Units - us
-#define PULSE_WIDTH                         2.00             // Pulses above this value denotes a frame trigger, below this value denotes a line trigger
+#define PULSE_WIDTH                         0.80             // Pulses above this value denotes a frame trigger, below this value denotes a line trigger
 
 // Fixed variables
 #define WIDTH                               2048             // Line width (in pixels)
@@ -25,13 +25,15 @@
 #define NUM_OF_BUFFER                       30               // Number of buffers
 #define MAX_TIMEOUT_ACQ_IN_MS               120000           // 120 seconds
 #define EXPOSURE_TIME                       1.32             // Max value = [LINE_PERIOD - 0.7] us | min value = 1.32 us
-#define LINESPERFRAME                       45000            // Must be an even number, max value - 65535 | 45000 = 90000/2
+#define LINESPERFRAME                       50000            // Must be an even number, max value - 65535 | 45000 = 90000/2
 
 
 // Prototype functions
-void InitializeRegisters(unsigned long ulAddress, unsigned long ulValue, CAM_HANDLE hCamera);
+void InitializeRegisters(unsigned long ulAddress, unsigned long ulValue);
 void * CopyBuffer(unsigned short ** Matrix, tImageInfos ImageInfos);
 
+// Global Variable
+CAM_HANDLE hCamera = NULL;
 
 int main(int argc, char * argv[])
 {
@@ -40,8 +42,6 @@ int main(int argc, char * argv[])
 	unsigned long ulIndex = 0;
 	tCameraInfo CameraInfo;
 	tImageInfos ImageInfos;
-
-	CAM_HANDLE hCamera = NULL;
 
 	unsigned short ** Matrix = 0;
 
@@ -53,17 +53,17 @@ int main(int argc, char * argv[])
 
 
 	//Fixed Registers
-	InitializeRegisters(0x1210C, TRIGGER_MODE, hCamera);
-	InitializeRegisters(0x4F000018, CIRCULAR_BUFFER, hCamera);
-	InitializeRegisters(0x4F000010, MAX_BULK_QUEUE_NUM, hCamera);
-	InitializeRegisters(0x4F000000, ENABLE_CONTEXTUAL_DATA, hCamera);
-	InitializeRegisters(0x12128, LINESPERFRAME, hCamera);
-	InitializeRegisters(0x12108, EXPOSURE_TIME * 100, hCamera);
+	InitializeRegisters(0x1210C, TRIGGER_MODE);
+	InitializeRegisters(0x4F000018, CIRCULAR_BUFFER);
+	InitializeRegisters(0x4F000010, MAX_BULK_QUEUE_NUM);
+	InitializeRegisters(0x4F000000, ENABLE_CONTEXTUAL_DATA);
+	InitializeRegisters(0x12128, LINESPERFRAME);
+	InitializeRegisters(0x12108, EXPOSURE_TIME * 100);
 
 
 	//Variable Registers
-	InitializeRegisters(0x12100, LINE_PERIOD * 100, hCamera);
-	InitializeRegisters(0x1211C, PULSE_WIDTH * 100, hCamera);
+	InitializeRegisters(0x12100, LINE_PERIOD * 100);
+	InitializeRegisters(0x1211C, PULSE_WIDTH * 100);
 
 	size_t iImageHeight = LINESPERFRAME;
 	size_t iNbOfBuffer = NUM_OF_BUFFER;
@@ -92,7 +92,7 @@ int main(int argc, char * argv[])
 }
 
 
-void InitializeRegisters(unsigned long ulAddress, unsigned long ulValue, CAM_HANDLE hCamera) {
+void InitializeRegisters(unsigned long ulAddress, unsigned long ulValue) {
 	size_t iSize = sizeof(ulValue);
 	USB3_WriteRegister(hCamera, ulAddress, &ulValue, &iSize);
 }
