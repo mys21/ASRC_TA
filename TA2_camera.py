@@ -1,51 +1,94 @@
-import ctypes as ct
+from ctypes import *
 import numpy as np
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 
-class stresing(QObject):
+class tCameraInfo(Structure):
+	_fields_ = [("pcID", c_char*260)]
+
+class octoplus(QObject):
     def __init__(self):
         super(QObject,self).__init__()        
         #self.dll = ct.WinDLL(r"E:\Installation files\CD copy - InGaAs photodiode arrays\ESLSCDLL\Release\ESLSCDLL.dll")
-        self.dll = ct.WinDLL(r"C:\Users\jaxxon_admin\Documents\DLL 310518\ESLSCDLL_64\ESLSCDLL_64\Win32\2 Cam\ESLSCDLL.dll")
-        self.board_number = 1 #Use 1 for PCI board
-        self.zadr = 1 #Not needed, only if in addressed mode
-        self.fft_lines = 0 #for most sensors, is number of lines for binning if FFT sensor
-        self.pixels = 600 #including dummy pixels
-        self.num_pixels = 512
-        self.first_pixel = 16
-        self.fkt = 1 #1 for standard read, others are possible
-        self.sym = 0 #for FIFO, depends on sensor
-        self.burst = 1 #for FIFO, depends on sensor
-        self.waits = 3 #depends on sensor, sets the pixel read frequency
-        self.flag816 = 1 #1 if AD resolution 12 is 16bit, =2 if 8bit
-        self.pportadr = 378 #address if parallel port is used
-        self.pclk = 2 #pixelclock, not used here
-        self.xckdelay = 3 #depends on sensor, sets a delay after xck goes high, -7 for sony sensors
-        self.freq = 0 #read frequency in Haz, should be 0 if exposure time is given
-        self.threadp = 10 #priority of thread, 31 is highest
-        self.clear_cnt = 8 #Number of reads to clear the sensor, depends on sensor
-        self.release_ms = -1 #Less than zero don't release
-        self.exttrig = 1 #1 is use external trigger
-        self.block_trigger = 0 #true (not 0) if one external trigger starts block of nos scans which run with internal timer
-        self.adrdelay = 3 #not sure...  
-        self.startoffset = 1000 #offset value added to the GPX time delay to improve noise (somehow)
+        self.dll = ct.WinDLL(r"C:\Users\mysfe\OneDrive\Desktop\ASRC_TA\CamCmosOctUsb3.dll")
+        self.pixels = 2048 #including dummy pixels
+        self.num_pixels = 2048
+        self.first_pixel = 0
+        self.enable_contextual_data = 1
+		self.circular_buffer = 0
+		self.trigger_mode = 4
+		self.exposure_time = 132 # units of 10 ns 
+		self.max_bulk_queue_number = 16
+
+		
         
     #Combined Methods to Call Camera Easily
-    def Initialize(self,number_of_scans=100,exposure_time_us=1,use_ir_gain=True):
-        self.number_of_scans = number_of_scans
-        self.exposure_time_us = exposure_time_us
-        self.CCDDrvInit()
-        self.RsTOREG()
-        self.InitBoard()
-        self.InitGPX()
-        self.WriteL(100,52)
-        self.SetISPDA(1)
-        if use_ir_gain is True:
-            self.Von()
-        else:
-            self.Voff()
-        self.FFRS()
-        self.Cal16bit()
+    def Initialize(self,lines_per_frame=100):
+        self.lines_per_frame = lines_per_frame
+        USB3_InitializeLibrary()
+
+
+        ulNbCameras= c_ulong()
+        #c_lib.USB3_UpdateCameraList.restype = c_ulong
+        c_lib.USB3_UpdateCameraList(byref(ulNbCameras))
+        #print('Number of Cameras: ',ulNbCameras.value)	#Works
+ 
+        ulIndex= c_ulong(0) 
+        CameraInfo = tCameraInfo()
+        c_lib.USB3_GetCameraInfo.restype = c_char*260 #this variable type should actually be tCameraInfo.... - char array type? #changed output to c_char*260 instead of tCameraInfo, this change allowed us to make changes to the camera register.
+        USB3_GetCameraInfo(ulIndex,byref(CameraInfo))  #'CameraInfo = ' removed
+        #print("Camera ID: ", CameraInfo.pcID)	#prints memory location, try to print the values of the char array
+
+        hCamera=c_void_p()
+        c_lib.USB3_OpenCamera.restype = c_void_p
+        c_lib.USB3_OpenCamera(byref(CameraInfo), byref(hCamera))  #byref(hCamera.pointer)
+
+        c_lib.USB3_WriteRegister.restype = c_size_t
+        ulAddress= c_ulong(0x4F000000) 
+        ulValue = c_ulong(1)  #contextual data on or off
+        iSize = c_size_t(ulValue.__sizeof__())
+        WriteRegister = c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+        print('Enable contextual data: ', ulValue.value)
+
+        ulAddress= c_ulong(0x4F000018) 
+        ulValue = c_ulong(0)  #circular buffer on or off
+        c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+        print('Circular buffer: ', ulValue.value)
+
+	    ulAddress= c_ulong(0x1210C) 
+        ulValue = c_ulong(4)  #trigger mode
+        c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+        print('Trigger mode: ', ulValue.value)
+
+        ulAddress= c_ulong(0x12108) 
+        ulValue = c_ulong(132)  #exposure time
+        c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+        print('Exposure time: ', ulValue.value)
+
+        ulAddress= c_ulong(0x4F000010) 
+        ulValue = c_ulong(16)  #max bulk queue number
+        c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+        print('Max bulk queue number: ', ulValue.value)
+
+        ulAddress= c_ulong(0x12128) 
+        ulValue = c_ulong(45000)  #lines per frame
+        c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+        print('Lines per frame: ', ulValue.value)
+
+        ulAddress= c_ulong(0x12100) 
+        ulValue = c_ulong(1111)  #line period x 10^(-8) seconds
+        c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+        print('Line period: ', ulValue.value)
+
+        ulAddress= c_ulong(0x1211C) 
+        ulValue = c_ulong(80)  #pulse width discriminator x 10^(-8) seconds
+        c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+        print('Pulse width: ', ulValue.value)
+
+        iImageHeight = c_size_t(45000)
+        iNbOfBuffer = c_size_t(30)
+
+        #c_lib.USB3_SetImageParameters.restype = None
+        c_lib.USB3_SetImageParameters(hCamera, iImageHeight, iNbOfBuffer)
         self.array = np.zeros((self.number_of_scans+10,self.pixels*2),dtype=np.dtype(np.int16))
         self.data = self.array[10:]
         self.Wait(300000)
@@ -108,7 +151,23 @@ class stresing(QObject):
     ###########################################################################
     ###########################################################################
     #Library methods from DLL (Do not Edit)
+
+	def USB3_InitializeLibrary(self):
+	    self.dll.USB3_InitializeLibrary.restype = None
+	    self.dll.USB3_InitializeLibrary()
+
+	def USB3_UpdateCameraList(self, pulNbCameras)):
+	    self.dll.USB3_UpdateCameraList.restype = c_ulong
+		self.dll.USB3_UpdateCameraList(pulNbCameras)
+
+	def USB3_GetCameraInfo(self, ulIndex, pCameraInfo):
+	    self.dll.USB3_GetCameraInfo.restype = c_char*260
+		self.dll.USB3_GetCameraInfo(ulIndex,pCameraInfo)
+
         
+
+
+
     def AboutDrv(self):
         self.dll.DLLAboutDrv(ct.c_uint32(self.board_number))
         
