@@ -10,7 +10,7 @@ class Editor(QtWidgets.QMainWindow):
         self.ui=Ui_MainWindow()
         self.ui.setupUi(self)
         self.show()
-        self.line_period = 9
+        self.line_period = 1111
 
         #connects buttons to functions
         self.ui.initializeButton.clicked.connect(self.exec_initialize_btn)
@@ -39,8 +39,8 @@ class Editor(QtWidgets.QMainWindow):
         '''execute on pushed button - initializes camera'''
         self.append_history("button pushed")
         self.camera= camera1()
-        self.camera.Initialize(number_of_scans=100, line_period=self.line_period)
-        self.cameraLog = self.camera.log
+        self.camera.Initialize(line_period=self.line_period, number_of_scans=45000 )
+        self.cameraLog = "\n".join(self.camera.log)
         self.append_history(self.cameraLog)
         return
 
