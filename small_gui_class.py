@@ -20,18 +20,22 @@ class Ui_MainWindow(object):
         self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
         self.graphicsView.setGeometry(QtCore.QRect(180, 141, 371, 281))
         self.graphicsView.setObjectName("graphicsView")
-        self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(210, 210, 113, 21))
-        self.lineEdit.setObjectName("lineEdit")
+        self.linePeriod = QtWidgets.QLineEdit(self.centralwidget)
+        self.linePeriod.setGeometry(QtCore.QRect(200, 200, 113, 21))
+        self.linePeriod.setText("")
+        self.linePeriod.setObjectName("linePeriod")
         self.History = QtWidgets.QTextBrowser(self.centralwidget)
         self.History.setGeometry(QtCore.QRect(335, 170, 211, 241))
         self.History.setObjectName("History")
         self.initializeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.initializeButton.setGeometry(QtCore.QRect(190, 170, 151, 32))
+        self.initializeButton.setGeometry(QtCore.QRect(180, 240, 151, 32))
         self.initializeButton.setObjectName("initializeButton")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(410, 150, 60, 16))
         self.label.setObjectName("label")
+        self.linePeriodLabel = QtWidgets.QLabel(self.centralwidget)
+        self.linePeriodLabel.setGeometry(QtCore.QRect(200, 180, 71, 16))
+        self.linePeriodLabel.setObjectName("linePeriodLabel")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 24))
@@ -47,9 +51,9 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.lineEdit.setText(_translate("MainWindow", "type something"))
         self.initializeButton.setText(_translate("MainWindow", "Click to Initialize"))
         self.label.setText(_translate("MainWindow", "History:"))
+        self.linePeriodLabel.setText(_translate("MainWindow", "Line period:"))
 
 
 if __name__ == "__main__":
