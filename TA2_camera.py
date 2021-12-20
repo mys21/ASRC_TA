@@ -132,7 +132,7 @@ class octoplus(QObject):
         
     def Construct_Data_Vec(self):
         # dtype of self.data is uint32
-        hiloArray = self.data.view(np.uint16)[:,0:self.pixels*2]  # temp = shots x (2*pixels)
+        self.probe = self.data.view(np.uint16)[:,0:self.pixels*2]  # temp = shots x (2*pixels)
         # either:        
         #d = hiloArray.shape;
         #self.probe     = hiloArray[:,0:(d[-1]/2)]
