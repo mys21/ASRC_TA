@@ -14,18 +14,18 @@ class octoplus(QObject):
         self.num_pixels = 2048
         self.first_pixel = 0
         self.enable_contextual_data = 1
-		self.circular_buffer = 0
+		self.circular_buffer = 1
 		self.trigger_mode = 4
 		self.exposure_time = 132 # units of 10 ns 
 		self.max_bulk_queue_number = 16
-
-		
+		self.timeout = c_ulong(3000)
+		self.iNbOfBuffer = c_size_t(30)
+		self.ulNbCameras = c_ulong()
         
     #Combined Methods to Call Camera Easily
-    def Initialize(self,lines_per_frame=100):
+    def Initialize(self,lines_per_frame=45000):
         self.lines_per_frame = lines_per_frame
-        USB3_InitializeLibrary()
-
+        InitializeLibrary()
 
         ulNbCameras= c_ulong()
         #c_lib.USB3_UpdateCameraList.restype = c_ulong
@@ -152,19 +152,57 @@ class octoplus(QObject):
     ###########################################################################
     #Library methods from DLL (Do not Edit)
 
-	def USB3_InitializeLibrary(self):
+	def InitializeLibrary(self):
 	    self.dll.USB3_InitializeLibrary.restype = None
 	    self.dll.USB3_InitializeLibrary()
 
-	def USB3_UpdateCameraList(self, pulNbCameras)):
+	def UpdateCameraList(self, pulNbCameras)):
 	    self.dll.USB3_UpdateCameraList.restype = c_ulong
 		self.dll.USB3_UpdateCameraList(pulNbCameras)
 
-	def USB3_GetCameraInfo(self, ulIndex, pCameraInfo):
+	def GetCameraInfo(self, ulIndex, pCameraInfo):
 	    self.dll.USB3_GetCameraInfo.restype = c_char*260
 		self.dll.USB3_GetCameraInfo(ulIndex,pCameraInfo)
 
+    def OpenCamera(self, CameraInfo, hCamera):
+        self.dll.USB3_OpenCamera.restype = c_void_p
+        self.dll.USB3_OpenCamera(byref(CameraInfo), byref(hCamera))
         
+    def WriteRegister(self, hCamera, ulAddress, ulValue, piSize):
+        self.dll.USB3_WriteRegister.restype = c_size_t
+        self.dll.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+
+    def SetImageParameters(self, hCamera, iImageHeight, iNbOfBuffer):
+        self.dll.USB3_SetImageParameters.restype = None
+        self.dll.USB3_SetImageParameters(hCamera, iImageHeight, iNbOfBuffer)
+
+    def StartAcquisition(self, hCamera):
+        self.dll.USB3_StartAcquisition.restype = None
+        self.dll.USB3_StartAcquisition(hCamera)
+
+    def GetBuffer(self, hCamera, ImageInfos, timeout):
+        self.dll.GetBuffer.restype = tImageInfos
+        self.dll.USB3_GetBuffers(hCamera, byref(ImageInfos), timeout)
+
+    def RequeueBuffer(self, hCamera, iImageHeight, iNbOfBuffer):
+        self.dll.USB3_RequeueBuffer.restype = None
+        self.dll.USB3_RequeueBuffer(hCamera, ImageInfos.hBuffer)
+
+    def StopAcquisition(self, hCamera):
+        self.dll.USB3_StopAcquisition.restype = None
+        self.dll.USB3_StopAcquisition(hCamera)
+
+    def FlushBuffers(self, hCamera):
+        self.dll.USB3_FlushBuffers.restype = None
+        self.dll.USB3_FlushBuffers(hCamera)
+
+    def CloseCamera(self, hCamera):
+        self.dll.USB3_CloseCamera.restype = None
+        self.dll.USB3_CloseCamera(hCamera)
+
+    def TerminateLibrary(self):
+        self.dll.USB3_TerminateLibrary.restype = None
+        self.dll.USB3_TerminateLibrary()
 
 
 
