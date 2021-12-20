@@ -113,45 +113,48 @@ if __name__ == "__main__":
 
     ImageInfos = tImageInfos()
     timeout = c_ulong(3000) #timeout in 30000 ms
-    c_lib.USB3_GetBuffer.restype = POINTER(tImageInfos) #POINTER() needed for setting the return type to that specified by structure
+    c_lib.USB3_GetBuffer.restype = POINTER(tImageInfos)
     c_lib.USB3_GetBuffer(hCamera, byref(ImageInfos), timeout)
     print('Buffer Size: ', ImageInfos.iBufferSize)
 
     #self.pixels
     pixels = 2048
 	#self.data = ...
-    data = np.empty((lines_per_frame,pixels),dtype=np.dtype(np.uint16))
+    probe = np.empty((lines_per_frame,pixels), dtype = np.dtype(np.uint16))
+    reference = np.ones((lines_per_frame, pixels), dtype = np.dtype(np.uint16))
 
 	#ReadFFLoop
 	##############################################################################
-    def CopyBuffer(ImageInfos,data):
+    def CopyBuffer(ImageInfos, probe):
         raw_data = cast(ImageInfos.pDatas, POINTER(c_ushort))
         for row in range(lines_per_frame):
 	        for col in range(pixels):
-	            data[row][col] = raw_data[row*pixels+col]
-        print("Values", data)
-        print("Max val: ", np.max(data))
+	            probe[row][col] = raw_data[row*pixels+col]
+        print("Values", probe)
+        print("Max val: ", np.max(probe))
         #index = np.where(data==np.max(data))
         #print('Coordinates of max value: ')
         #coordinates = list(zip(index[0], index[1]))    # zip the 2 arrays to get the exact coordinates
         # travese over the list of cordinates
         #for cord in coordinates:
             #print(cord)
-        print("Min val: ", np.min(data))
-        print("Average val: ", np.average(data))
+        print("Min val: ", np.min(probe))
+        print("Average val: ", np.average(probe))
         return
 
 	#Acquire readable data in matrix form
-    CopyBuffer(ImageInfos,data)
+    CopyBuffer(ImageInfos, probe)
 
 	#Construct_Data - how will this change the data from the 2d array?
 	##############################################################################
 
-    def Construct_Data_Vec(data):
-        # dtype of self.data is uint32
-        hiloArray = data.view(np.uint16)[:,0:pixels*2]  # temp = shots x (2*pixels)
+    
 
-        print (hiloArray.shape)
+    #def Construct_Data_Vec(data):
+        # dtype of self.data is uint32
+        #hiloArray = data.view(np.uint16)[:,0:pixels*2]  # temp = shots x (2*pixels)
+
+        #print (hiloArray.shape)
         # either:        
         #d = hiloArray.shape;
         #self.probe     = hiloArray[:,0:(d[-1]/2)]
@@ -162,8 +165,42 @@ if __name__ == "__main__":
         #print("Reference: ", reference)
         #reference = hiloArray[:,1,:]
 
+    first_pixel = 0
+    num_pixels = 2048
 
-    Construct_Data_Vec(data)
+    untrimmed_probe_array = np.array(probe,dtype=int)
+    probe_array = np.array(probe,dtype=float)[:,first_pixel:num_pixels+first_pixel]
+    reference_array = np.array(reference,dtype=float)[:,first_pixel:num_pixels+first_pixel]
+    raw_probe_array = np.array(probe,dtype=float)[:,first_pixel:num_pixels+first_pixel]
+    raw_reference_array = np.array(reference,dtype=float)[:,first_pixel:num_pixels+first_pixel]
+    first_pixel = first_pixel
+    num_pixels = num_pixels
+
+     #   '''separates on and off shots in the probe and reference arrays, note that
+      #     when the tau flip is passed as true (long time shots where the delay was 
+       #    offset by 1ms) the trigger is rolled over by one value to compensate. 
+       #    Should get rid of tau flip'''
+    high_std = False
+    tau_flip_request=False
+    if tau_flip_request is True:
+        probe_on_array = probe_array[::2,:]
+        probe_off_array = probe_array[1::2,:]
+        reference_on_array = reference_array[::2,:]
+        reference_off_array = reference_array[1::2,:]
+    else:
+        probe_on_array = probe_array[1::2,:]
+        probe_off_array = probe_array[::2,:]
+        reference_on_array = reference_array[1::2,:]
+        reference_off_array = reference_array[::2,:]
+
+    probe_on = probe_on_array.mean(axis=0)
+    probe_off = probe_off_array.mean(axis=0)
+    reference_on = reference_on_array.mean(axis=0)
+    reference_off = reference_off_array.mean(axis=0)
+    
+    print ("Pump", probe_on)
+    print ("Probe", probe_off)
+    #Construct_Data_Vec(data)
 	#Stop connection
 	##############################################################################
 
