@@ -37,7 +37,6 @@ class tImageInfos(Structure):
 class octoplus(QObject):
     def __init__(self):
         super(QObject,self).__init__()        
-        #self.dll = ct.WinDLL(r"E:\Installation files\CD copy - InGaAs photodiode arrays\ESLSCDLL\Release\ESLSCDLL.dll")
         self.dll = ct.WinDLL(r"C:\Users\mysfe\OneDrive\Desktop\ASRC_TA\CamCmosOctUsb3.dll")
         self.pixels = 2048 #including dummy pixels
         self.num_pixels = 2048
@@ -123,9 +122,8 @@ class octoplus(QObject):
         raw_data = cast(ImageInfos.pDatas, POINTER(c_ushort))
         for row in range(lines_per_frame):
 	        for col in range(pixels):
-				#probe data
 	            self.probe[row][col] = raw_data[row*pixels+col]
-		#reference data - there is no reference data from octoplus, this is filled with ones (dummy data)
+	#reference data - there is no reference data from octoplus, this is filled with ones (dummy data)
         self.reference = np.ones(lines_per_frame, pixels, dtype = uint16)
     
     _exit = pyqtSignal()
