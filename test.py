@@ -105,11 +105,14 @@ if __name__ == "__main__":
 
     c_lib.USB3_SetImageParameters(hCamera, iImageHeight, iNbOfBuffer)
 
-	#Start Acquisition - def Acquire
+	#Start Acquisition - "def Acquire"
 	##############################################################################
 	##############################################################################
 
     c_lib.USB3_StartAcquisition(hCamera)
+
+	#"ReadFFLoop"
+	##############################################################################
 
     ImageInfos = tImageInfos()
     timeout = c_ulong(3000) #timeout in 30000 ms
@@ -117,14 +120,16 @@ if __name__ == "__main__":
     c_lib.USB3_GetBuffer(hCamera, byref(ImageInfos), timeout)
     print('Buffer Size: ', ImageInfos.iBufferSize)
 
+	#"Construct_Data_Vec"
+	##############################################################################
+	
     #self.pixels
     pixels = 2048
-	#self.data = ...
+	
+    #self.data - 
     probe = np.empty((lines_per_frame,pixels), dtype = np.dtype(np.uint16))
     reference = np.ones((lines_per_frame, pixels), dtype = np.dtype(np.uint16))
-
-	#ReadFFLoop
-	##############################################################################
+	
     def CopyBuffer(ImageInfos, probe):
         raw_data = cast(ImageInfos.pDatas, POINTER(c_ushort))
         for row in range(lines_per_frame):
@@ -165,6 +170,13 @@ if __name__ == "__main__":
         #print("Reference: ", reference)
         #reference = hiloArray[:,1,:]
 
+	#"class ta_processing_data"
+	##############################################################################
+	##############################################################################
+	
+	#"def __init__"
+	##############################################################################
+	
     first_pixel = 0
     num_pixels = 2048
 
@@ -173,15 +185,18 @@ if __name__ == "__main__":
     reference_array = np.array(reference,dtype=float)[:,first_pixel:num_pixels+first_pixel]
     raw_probe_array = np.array(probe,dtype=float)[:,first_pixel:num_pixels+first_pixel]
     raw_reference_array = np.array(reference,dtype=float)[:,first_pixel:num_pixels+first_pixel]
-    first_pixel = first_pixel
-    num_pixels = num_pixels
+
+	#"def seperate_on_off"
+	##############################################################################
 
      #   '''separates on and off shots in the probe and reference arrays, note that
-      #     when the tau flip is passed as true (long time shots where the delay was 
-       #    offset by 1ms) the trigger is rolled over by one value to compensate. 
-       #    Should get rid of tau flip'''
+     #     when the tau flip is passed as true (long time shots where the delay was 
+     #    offset by 1ms) the trigger is rolled over by one value to compensate. 
+     #    Should get rid of tau flip'''
+
     high_std = False
-    tau_flip_request=False
+    tau_flip_request = True
+	
     if tau_flip_request is True:
         probe_on_array = probe_array[::2,:]
         probe_off_array = probe_array[1::2,:]
@@ -193,6 +208,9 @@ if __name__ == "__main__":
         reference_on_array = reference_array[1::2,:]
         reference_off_array = reference_array[::2,:]
 
+	#"def average_shots"
+	##############################################################################
+	
     probe_on = probe_on_array.mean(axis=0)
     probe_off = probe_off_array.mean(axis=0)
     reference_on = reference_on_array.mean(axis=0)
@@ -200,8 +218,9 @@ if __name__ == "__main__":
     
     print ("Pump", probe_on)
     print ("Probe", probe_off)
-    #Construct_Data_Vec(data)
+	
 	#Stop connection
+	##############################################################################
 	##############################################################################
 
     c_lib.USB3_RequeueBuffer.argtypes = [c_void_p, c_void_p]
@@ -217,7 +236,6 @@ if __name__ == "__main__":
     c_lib.USB3_TerminateLibrary()
 
     print("Complete")
-
 
 
 else:
