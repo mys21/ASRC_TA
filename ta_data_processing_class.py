@@ -46,24 +46,12 @@ class ta_data_processing:
         self.reference_array = self.reference_array/linear_corr[1]
         return
         
-    def separate_on_off(self,threshold,tau_flip_request=False):
+    def separate_on_off(self, tau_flip_request = True):
         '''separates on and off shots in the probe and reference arrays, note that
            when the tau flip is passed as true (long time shots where the delay was 
            offset by 1ms) the trigger is rolled over by one value to compensate. 
            Should get rid of tau flip'''
-        high_std = False
-        pixel = threshold[0]
-        thresh_value = threshold[1]
-        self.trigger = []
-        for shot in self.untrimmed_probe_array:
-            self.trigger.append(shot[pixel])
-        self.trigger = np.array(self.trigger)
-        if np.abs(self.trigger-self.trigger.mean()).std() > 20:
-            print('high std '+str(datetime.datetime.now()))
-            high_std = True
         if tau_flip_request is True:
-            self.trigger = np.roll(self.trigger,1)
-        if self.untrimmed_probe_array[0,pixel] >= thresh_value:
             self.probe_on_array = self.probe_array[::2,:]
             self.probe_off_array = self.probe_array[1::2,:]
             self.reference_on_array = self.reference_array[::2,:]
@@ -73,7 +61,7 @@ class ta_data_processing:
             self.probe_off_array = self.probe_array[::2,:]
             self.reference_on_array = self.reference_array[1::2,:]
             self.reference_off_array = self.reference_array[::2,:]
-        return high_std
+        return
         
     def average_shots(self):
         '''simple enough - averages shots'''
