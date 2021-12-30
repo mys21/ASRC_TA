@@ -24,7 +24,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="linePeriod">
+   <widget class="QLineEdit" name="linesPerFrame">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -73,7 +73,7 @@
      <string>History:</string>
     </property>
    </widget>
-   <widget class="QLabel" name="linePeriodLabel">
+   <widget class="QLabel" name="linesPerFrameLabel">
     <property name="geometry">
      <rect>
       <x>200</x>
@@ -83,7 +83,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Line period:</string>
+     <string>Lines per frame:</string>
     </property>
    </widget>
    <widget class="QGraphicsView" name="pumpsOnPlot">
