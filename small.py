@@ -56,10 +56,10 @@ class Editor(QtWidgets.QMainWindow):
 
     def processing(self):
         self.ta = ta_data_processing(self.camera.probe, self.camera.reference, self.camera.first_pixel, self.camera.num_pixels)
-    	self.ta.separate_on_off()
-    	self.ta.average_shots() #NOTE: average shots can only be called after separate_on_off
+        self.ta.separate_on_off()
+        self.ta.average_shots() #NOTE: average shots can only be called after separate_on_off
         #self.append_history("Pump on: ", self.ta.probe_on) #not sure if this is good to append cause entire array
-    	#self.append_history("Pump off: ", self.ta.probe_off)
+        #self.append_history("Pump off: ", self.ta.probe_off)
         return
 
     #--start of plotting functions---
