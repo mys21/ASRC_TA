@@ -16,7 +16,7 @@ class Editor(QtWidgets.QMainWindow):
 
         #connects buttons to functions
         self.ui.initializeButton.clicked.connect(self.exec_initialize_btn)
-        self.ui.linePeriod.textChanged.connect(self.update_lines_per_frame)
+        self.ui.linesPerFrame.textChanged.connect(self.update_lines_per_frame)
 
         #sets variables
         self.ui.History.setText(" ")
@@ -29,7 +29,7 @@ class Editor(QtWidgets.QMainWindow):
         '''execute on text typed - updates line period'''
 
         try:
-            self.lines_per_frame= int(self.ui.linePeriod.text())
+            self.lines_per_frame= int(self.ui.linesPerFrame.text())
             self.append_history("changed line period to: " + str(self.lines_per_frame))
         except:
             self.append_history("that is not an integer, try again")
