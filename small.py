@@ -2,6 +2,7 @@ from PyQt5 import QtGui, QtCore,QtWidgets
 from small_gui_class import Ui_MainWindow
 import sys
 from small_camera import camera1
+from TA2_camera import * #octoplus
 
 class Editor(QtWidgets.QMainWindow):
 
@@ -10,7 +11,7 @@ class Editor(QtWidgets.QMainWindow):
         self.ui=Ui_MainWindow()
         self.ui.setupUi(self)
         self.show()
-        self.line_period = 1111
+        self.lines_per_frame = 1000
 
         #connects buttons to functions
         self.ui.initializeButton.clicked.connect(self.exec_initialize_btn)
@@ -27,7 +28,7 @@ class Editor(QtWidgets.QMainWindow):
         '''execute on text typed - updates line period'''
 
         try:
-            self.line_period= int(self.ui.linePeriod.text())
+            self.lines_per_frame= int(self.ui.linePeriod.text())
             self.append_history("changed line period to: " + str(self.line_period))
         except:
             self.append_history("that is not an integer, try again")
@@ -38,13 +39,20 @@ class Editor(QtWidgets.QMainWindow):
     def exec_initialize_btn(self):
         '''execute on pushed button - initializes camera'''
         self.append_history("button pushed")
-        self.camera= camera1()
-        self.camera.Initialize( line_period=self.line_period, number_of_scans=45000)
-        self.cameraLog = "\n".join(self.camera.log)
-        self.append_history(self.cameraLog)
+        self.camera= octolpus()
+        self.camera.Initialize( lines_per_frame=self.lines_per_frame)
+        #self.cameraLog = "\n".join(self.camera.log)
+        self.append_history("camera initialized")
+        self.camera.Acquire()
+        self.append_history("data acquired")
+        plotting()
+        self.append_history("plots created")
         return
 
+    def plotting(self):
 
+        pass
+        return
 def main():
     app = QtWidgets.QApplication(sys.argv)
     ex = Editor()
