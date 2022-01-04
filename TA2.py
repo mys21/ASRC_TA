@@ -47,7 +47,7 @@ class Editor(QtGui.QMainWindow):
         self.ui.short_t0.valueChanged.connect(self.update_short_t0)
         self.ui.long_t0.valueChanged.connect(self.update_long_t0)
         self.ui.disco_t0.valueChanged.connect(self.update_disco_t0)
-        self.ui.num_shots.valueChanged.connect(self.update_num_shots)
+        self.ui.num_shots.valueChanged.connect(self.update_num_shots)   #num_shots is equivalent to linesPerFrame?
         self.ui.num_sweeps.valueChanged.connect(self.update_num_sweeps)
         self.ui.delay_type_list.currentIndexChanged.connect(self.update_delay_type)
         self.ui.delay_type_list.addItem('Short')
@@ -101,7 +101,7 @@ class Editor(QtGui.QMainWindow):
         self.ui.d_display_mode.addItem('Average')
         self.ui.d_display_mode.addItem('Raw')
         self.ui.d_display_mode_spectra.addItem('Probe')
-        self.ui.d_display_mode_spectra.addItem('Reference')
+        self.ui.d_display_mode_spectra.addItem('[Reference]')
         self.ui.d_time.valueChanged.connect(self.update_d_time)
         self.ui.d_move_to_time_btn.clicked.connect(self.exec_d_move_to_time)
         self.ui.d_threshold_pixel.valueChanged.connect(self.update_threshold)
@@ -1006,7 +1006,7 @@ class Editor(QtGui.QMainWindow):
         
         if self.ui.test_run_btn.isChecked() is False:
             #self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
-            self.camera.Initialize(lines_per_frame = self.ui.lines_per_frame)
+            self.camera.Initialize(lines_per_frame = self.num_shots)
             self.message_block()
             self.append_history('Taking Background')
             self.acquire_bgd()
@@ -1020,7 +1020,7 @@ class Editor(QtGui.QMainWindow):
         
         self.camera.data_ready.disconnect(self.post_acquire_bgd)
         self.camera.data_ready.connect(self.post_acquire)
-        self.camera.Initialize(lines_per_frame = self.ui.lines_per_frame)
+        self.camera.Initialize(lines_per_frame = self.num_shots)
         #self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
         
         self.append_history('Starting Sweep '+str(self.current_sweep.sweep_index+1))
@@ -1233,7 +1233,7 @@ class Editor(QtGui.QMainWindow):
         self.camera.start_acquire.connect(self.camera.Acquire)
         self.camera.data_ready.connect(self.d_post_acquire_bgd)
         
-        self.camera.Initialize(lines_per_frame = self.ui.lines_per_frame)
+        self.camera.Initialize(lines_per_frame = self.num_shots)
         #self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
         self.message_block()
         self.append_history('Taking Background')
@@ -1244,7 +1244,7 @@ class Editor(QtGui.QMainWindow):
         
         self.camera.data_ready.disconnect(self.d_post_acquire_bgd)
         self.camera.data_ready.connect(self.d_post_acquire)
-        self.camera.Initialize(lines_per_frame = self.ui.lines_per_frame)
+        self.camera.Initialize(lines_per_frame = self.num_shots)
         #self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
 
         self.d_acquire()
