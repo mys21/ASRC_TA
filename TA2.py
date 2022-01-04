@@ -9,7 +9,7 @@ pg.setConfigOption('background', 'w')
 pg.setConfigOption('foreground', 'k')
 import numpy as np
 
-from TA2_camera import stresing
+from TA2_camera import octoplus
 from ta_data_processing_class import ta_data_processing
 from sweep_processing_class import sweep_processing
 
@@ -126,7 +126,7 @@ class Editor(QtGui.QMainWindow):
         self.times = np.array([0,1,2,3,4,5])
 #        self.bin_length = 0.1
 #        self.disco_times = np.linspace(min(self.times),max(self.times),((max(self.times)-min(self.times))/self.bin_length)+1)
-        self.num_pixels = 500
+        self.num_pixels = 2048
         self.ui.filename.setText(r'E:/default_datafile')
         self.idle = True
         self.ui.use_calib.toggle()
@@ -135,7 +135,7 @@ class Editor(QtGui.QMainWindow):
         self.ui.plot_log_t.toggle()
         self.ui.plot_timescale.toggle()
         self.ui.d_use_linear_corr.setChecked(False)
-        self.ui.d_use_reference.setChecked(True)
+        self.ui.d_use_reference.setChecked(False)
         self.ui.d_use_ir_gain.setChecked(False)
         
         if preloaded is False:
@@ -998,14 +998,15 @@ class Editor(QtGui.QMainWindow):
         self.acquire_thread = QtCore.QThread()
         self.acquire_thread.start()
         
-        self.camera = stresing()
+        self.camera = octoplus()
         self.num_pixels = self.camera.num_pixels
         self.camera.moveToThread(self.acquire_thread)
         self.camera.start_acquire.connect(self.camera.Acquire)
         self.camera.data_ready.connect(self.post_acquire_bgd)
         
         if self.ui.test_run_btn.isChecked() is False:
-            self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+            #self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+            self.camera.Initialize(lines_per_frame = self.ui.lines_per_frame)
             self.message_block()
             self.append_history('Taking Background')
             self.acquire_bgd()
@@ -1019,7 +1020,8 @@ class Editor(QtGui.QMainWindow):
         
         self.camera.data_ready.disconnect(self.post_acquire_bgd)
         self.camera.data_ready.connect(self.post_acquire)
-        self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+        self.camera.Initialize(lines_per_frame = self.ui.lines_per_frame)
+        #self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
         
         self.append_history('Starting Sweep '+str(self.current_sweep.sweep_index+1))
         self.ui.sweep_display.display(self.current_sweep.sweep_index+1)
@@ -1169,7 +1171,7 @@ class Editor(QtGui.QMainWindow):
         self.camera.start_acquire.emit()
         return
         
-    def d_post_acquire_bgd(self,probe,reference,first_pixel,num_pixels):      
+    def d_post_acquire_bgd(self,probe,reference,first_pixel,num_pixels):
         '''process background data'''
         self.bgd = ta_data_processing(probe,
                                       reference,
@@ -1225,13 +1227,14 @@ class Editor(QtGui.QMainWindow):
         self.acquire_thread = QtCore.QThread()
         self.acquire_thread.start()
         
-        self.camera = stresing()
+        self.camera = octoplus()
         self.num_pixels = self.camera.num_pixels
         self.camera.moveToThread(self.acquire_thread)
         self.camera.start_acquire.connect(self.camera.Acquire)
         self.camera.data_ready.connect(self.d_post_acquire_bgd)
         
-        self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+        self.camera.Initialize(lines_per_frame = self.ui.lines_per_frame)
+        #self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
         self.message_block()
         self.append_history('Taking Background')
         self.d_acquire_bgd()
@@ -1241,7 +1244,8 @@ class Editor(QtGui.QMainWindow):
         
         self.camera.data_ready.disconnect(self.d_post_acquire_bgd)
         self.camera.data_ready.connect(self.d_post_acquire)
-        self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+        self.camera.Initialize(lines_per_frame = self.ui.lines_per_frame)
+        #self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
 
         self.d_acquire()
         
