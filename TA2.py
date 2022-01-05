@@ -751,46 +751,46 @@ class Editor(QtWidgets.QMainWindow):
     # Section 5: Messages
         
     def message_block(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Block Probe and Reference")
         msg.setInformativeText("Just press once (be patient)")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
         
     def message_unblock(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Unblock Probe and Reference")
         msg.setInformativeText("Just press once (be patient)")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
         
     def message_time_points(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("One or more time point exceeds limit!")
         msg.setInformativeText("Don't be greedy...")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
         
     def message_error_saving(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Error Saving File")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
     
     def message_pause(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Measurement Paused")
         msg.setInformativeText("Just press Ok once to resume (be patient)")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
     
@@ -1132,7 +1132,7 @@ class Editor(QtWidgets.QMainWindow):
                 self.current_data.linear_pixel_correlation(self.linear_corr)
             except:
                 self.append_history('Error using linear pixel correction')
-        self.current_data.separate_on_off(self.threshold,self.tau_flip_request)
+        self.current_data.separate_on_off(self.tau_flip_request)
         if self.ui.test_run_btn.isChecked() is False:
             self.current_data.sub_bgd(self.bgd)
         if self.ui.d_use_ref_manip.isChecked() is True:
@@ -1182,7 +1182,7 @@ class Editor(QtWidgets.QMainWindow):
                 self.bgd.linear_pixel_correlation(self.linear_corr)
             except:
                 self.append_history('Error using linear pixel correction')
-        self.bgd.separate_on_off(self.threshold)
+        self.bgd.separate_on_off(self.tau_flip_request)
         self.bgd.average_shots() 
         self.camera.Exit()
         self.d_run()          

@@ -632,7 +632,7 @@ class Ui_TA_GUI(object):
         self.label_37.setObjectName("label_37")
         self.d_num_shots = QtWidgets.QSpinBox(self.d_acquire_options_box)
         self.d_num_shots.setGeometry(QtCore.QRect(170, 100, 71, 22))
-        self.d_num_shots.setMaximum(2000)
+        self.d_num_shots.setMaximum(65535)
         self.d_num_shots.setObjectName("d_num_shots")
         self.d_display_mode = QtWidgets.QComboBox(self.d_acquire_options_box)
         self.d_display_mode.setGeometry(QtCore.QRect(10, 130, 69, 22))

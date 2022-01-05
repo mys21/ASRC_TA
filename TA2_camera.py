@@ -92,7 +92,7 @@ class octoplus(QObject):
         raw_data = cast(self.ImageInfos.pDatas, POINTER(c_ushort))
         for row in range(self.lines_per_frame):
 	        for col in range(self.pixels):
-	            self.probe[row][col] = raw_data[row*self.pixels+col] + 100
+	            self.probe[row][col] = raw_data[row*self.pixels+col] + 10
         self.reference = np.ones((self.lines_per_frame, self.pixels), dtype = np.uint16)	#no reference data from octoplus, this is filled with ones (dummy data)
     
     _exit = pyqtSignal()																					
