@@ -2,7 +2,7 @@ import sys
 import os
 import subprocess
 
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from ta_gui_class import Ui_TA_GUI
 import pyqtgraph as pg
 pg.setConfigOption('background', 'w')
@@ -13,9 +13,9 @@ from TA2_camera import octoplus
 from ta_data_processing_class import ta_data_processing
 from sweep_processing_class import sweep_processing
 
-from delay_class import newport_delay_stage, pink_laser_delay, disco_laser_delay
+from delay_class import esp301_delay_stage, pink_laser_delay, disco_laser_delay
 
-class Editor(QtGui.QMainWindow):
+class Editor(QtWidgets.QMainWindow):
     def __init__(self,lif,pl=np.zeros((50,1)),preloaded=False):        
         super(Editor, self).__init__()
         self.ui=Ui_TA_GUI()
@@ -47,7 +47,7 @@ class Editor(QtGui.QMainWindow):
         self.ui.short_t0.valueChanged.connect(self.update_short_t0)
         self.ui.long_t0.valueChanged.connect(self.update_long_t0)
         self.ui.disco_t0.valueChanged.connect(self.update_disco_t0)
-        self.ui.num_shots.valueChanged.connect(self.update_num_shots)   #num_shots is equivalent to linesPerFrame?
+        self.ui.num_shots.valueChanged.connect(self.update_num_shots)  
         self.ui.num_sweeps.valueChanged.connect(self.update_num_sweeps)
         self.ui.delay_type_list.currentIndexChanged.connect(self.update_delay_type)
         self.ui.delay_type_list.addItem('Short')
@@ -865,7 +865,7 @@ class Editor(QtGui.QMainWindow):
                 self.current_data.linear_pixel_correlation(self.linear_corr)
             except:
                 self.append_history('Error using linear pixel correction')
-        self.high_trig_std = self.current_data.separate_on_off(self.threshold,self.tau_flip_request)
+        self.high_trig_std = self.current_data.separate_on_off(self.tau_flip_request)
         if self.ui.test_run_btn.isChecked() is False:
             self.current_data.sub_bgd(self.bgd)
         if self.ui.d_use_ref_manip.isChecked() is True:
@@ -975,7 +975,7 @@ class Editor(QtGui.QMainWindow):
         
         if self.delay_type == 0:
             self.append_history('Connecting to delay stage')
-            self.delay = newport_delay_stage(self.short_t0)
+            self.delay = esp301_delay_stage(self.short_t0)
         if self.delay_type == 1:
             self.append_history('Connecting to delay generator')
             self.delay = pink_laser_delay(self.long_t0)
@@ -1202,7 +1202,7 @@ class Editor(QtGui.QMainWindow):
         
         if self.delay_type == 0:
             self.append_history('Connecting to delay stage')
-            self.delay = newport_delay_stage(self.short_t0)
+            self.delay = esp301_delay_stage(self.short_t0)
         if self.delay_type == 1:
             self.append_history('Connecting to delay generator')
             self.delay = pink_laser_delay(self.long_t0)
@@ -1288,7 +1288,7 @@ class Editor(QtGui.QMainWindow):
     # Section 7: launches gui and creates plots
         
 def main():
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     last_instance_filename = r'C:\Users\Public\Documents\Python Scripts\PyTA\last_instance_values.txt'
     try:
         last_instance_values = np.genfromtxt(last_instance_filename)

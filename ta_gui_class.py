@@ -198,7 +198,7 @@ class Ui_TA_GUI(object):
         self.long_t0.setObjectName("long_t0")
         self.num_shots = QtWidgets.QSpinBox(self.acquire_options_box)
         self.num_shots.setGeometry(QtCore.QRect(10, 90, 71, 22))
-        self.num_shots.setMaximum(2000)
+        self.num_shots.setMaximum(65535)
         self.num_shots.setObjectName("num_shots")
         self.label_5 = QtWidgets.QLabel(self.acquire_options_box)
         self.label_5.setGeometry(QtCore.QRect(90, 20, 91, 21))

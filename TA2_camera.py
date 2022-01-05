@@ -2,7 +2,7 @@ from ctypes import *
 import os
 import numpy as np
 from enum import IntEnum
-#from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot														#Qt code
+from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot														
 
 class tCameraInfo(Structure):
 	_fields_ = [("pcID", c_char*260)]
@@ -34,9 +34,9 @@ class tImageInfos(Structure):
 				("iFrameTriggerNbValidLines", c_ulonglong),
 				("iCounterBufferStarvation", c_ulonglong)]
 
-class octoplus(): #(QObject):																				#Qt code
+class octoplus(QObject):																				
     def __init__(self):
-        #super(QObject,self).__init__()   																	#Qt code
+        super(QObject,self).__init__()   																	
         libname= os.path.abspath('CamCmosOctUsb3.dll')
         self.dll = WinDLL(libname)
         self.pixels = 2048 # including dummy pixels
@@ -59,7 +59,7 @@ class octoplus(): #(QObject):																				#Qt code
         self.lines_per_frame = 1
         
     # Combined methods to call camera
-    def Initialize(self, lines_per_frame = 1000):	#Initialize takes in variable register: lines_per_frame
+    def Initialize(self, lines_per_frame = 1000):
         self.lines_per_frame = lines_per_frame
         self.InitializeLibrary()
         self.UpdateCameraList() 
@@ -77,26 +77,26 @@ class octoplus(): #(QObject):																				#Qt code
         self.probe = np.empty((self.lines_per_frame, self.pixels),dtype = np.dtype(np.uint16))
         return         
     
-    #start_acquire = pyqtSignal()																			#Qt code
-    #data_ready = pyqtSignal(np.ndarray,np.ndarray,int,int)													#Qt code
-    #@pyqtSlot()																							#Qt code
+    start_acquire = pyqtSignal()																			
+    data_ready = pyqtSignal(np.ndarray,np.ndarray,int,int)													
+    @pyqtSlot()																							
 
     def Acquire(self):
         self.StartAcquisition()
         self.GetBuffer()
         self.Construct_Data_Vec()
-        #self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)					#Qt code
+        self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)					
         return         
 
     def Construct_Data_Vec(self):
         raw_data = cast(self.ImageInfos.pDatas, POINTER(c_ushort))
         for row in range(self.lines_per_frame):
 	        for col in range(self.pixels):
-	            self.probe[row][col] = raw_data[row*self.pixels+col]
+	            self.probe[row][col] = raw_data[row*self.pixels+col] + 100
         self.reference = np.ones((self.lines_per_frame, self.pixels), dtype = np.uint16)	#no reference data from octoplus, this is filled with ones (dummy data)
     
-    #_exit = pyqtSignal()																					#Qt code
-    #@pyqtSlot()																							#Qt code
+    _exit = pyqtSignal()																					
+    @pyqtSlot()																						
 
     def Exit(self):
         self.RequeueBuffer()
