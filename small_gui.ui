@@ -86,7 +86,7 @@
      <string>Lines per frame:</string>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="pumpsOnPlot">
+   <widget class="PlotWidget" name="pumpsOnPlot">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -96,7 +96,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="pumpsOffPlot">
+   <widget class="PlotWidget" name="pumpsOffPlot">
     <property name="geometry">
      <rect>
       <x>365</x>
@@ -139,12 +139,19 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>18</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QGraphicsView</extends>
+   <header>pyqtgraph</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
