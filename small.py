@@ -4,6 +4,9 @@ import sys
 from small_camera import camera1
 from TA2_camera import *
 from ta_data_processing_class import *
+#import pyqtgraph as pg
+#from pyqtgraph import ImageView, PlotWidget #in class ui
+
 
 class Editor(QtWidgets.QMainWindow):
 
@@ -74,26 +77,27 @@ class Editor(QtWidgets.QMainWindow):
 
     def pump_off_plot(self):
         '''pump off plot'''
+        #if doesn't work, remove the .plotItem
         try:
-            self.ui.plotPumpOff.plotItem.plot(self.plot_waves,self.ta.probe_off,pen='g',clear=True)
+            self.ui.pumpsOffPlot.plotItem.plot(self.plot_waves,self.ta.probe_off,pen='g',clear=True)
         except:
             self.append_history('Error Plotting pump off Plot')
 
-        self.ui.plotPumpOff.plotItem.setLabels(left='dtt',bottom='Wavelength / Pixel')
-        self.ui.plotPumpOff.plotItem.showAxis('top',show=True)
-        self.ui.plotPumpOff.plotItem.showAxis('right',show=True)
+        self.ui.pumpsOffPlot.plotItem.setLabels(left='dtt',bottom='Wavelength / Pixel')
+        self.ui.pumpsOffPlot.plotItem.showAxis('top',show=True)
+        self.ui.pumpsOffPlot.plotItem.showAxis('right',show=True)
         return
 
     def pump_on_plot(self):
         '''pump off plot'''
         try:
-            self.ui.plotPumpOn.plotItem.plot(self.plot_waves,self.ta.probe_on,pen='g',clear=True)
+            self.ui.pumpsOnPlot.plotItem.plot(self.plot_waves,self.ta.probe_on,pen='g',clear=True)
         except:
             self.append_history('Error Plotting pump on Plot')
 
-        self.ui.plotPumpOn.plotItem.setLabels(left='dtt',bottom='Wavelength / Pixel')
-        self.ui.plotPumpOn.plotItem.showAxis('top',show=True)
-        self.ui.plotPumpOn.plotItem.showAxis('right',show=True)
+        self.ui.pumpsOnPlot.plotItem.setLabels(left='dtt',bottom='Wavelength / Pixel')
+        self.ui.pumpsOnPlot.plotItem.showAxis('top',show=True)
+        self.ui.pumpsOnPlot.plotItem.showAxis('right',show=True)
         return
 
 def main():
