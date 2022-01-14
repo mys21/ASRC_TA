@@ -2,20 +2,20 @@ import sys
 import os
 import subprocess
 
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from ta_gui_class import Ui_TA_GUI
 import pyqtgraph as pg
 pg.setConfigOption('background', 'w')
 pg.setConfigOption('foreground', 'k')
 import numpy as np
 
-from TA2_camera import stresing
+from TA2_camera import octoplus
 from ta_data_processing_class import ta_data_processing
 from sweep_processing_class import sweep_processing
 
-from delay_class import newport_delay_stage, pink_laser_delay, disco_laser_delay
+from delay_class import esp301_delay_stage, pink_laser_delay, disco_laser_delay
 
-class Editor(QtGui.QMainWindow):
+class Editor(QtWidgets.QMainWindow):
     def __init__(self,lif,pl=np.zeros((50,1)),preloaded=False):        
         super(Editor, self).__init__()
         self.ui=Ui_TA_GUI()
@@ -47,7 +47,7 @@ class Editor(QtGui.QMainWindow):
         self.ui.short_t0.valueChanged.connect(self.update_short_t0)
         self.ui.long_t0.valueChanged.connect(self.update_long_t0)
         self.ui.disco_t0.valueChanged.connect(self.update_disco_t0)
-        self.ui.num_shots.valueChanged.connect(self.update_num_shots)
+        self.ui.num_shots.valueChanged.connect(self.update_num_shots)  
         self.ui.num_sweeps.valueChanged.connect(self.update_num_sweeps)
         self.ui.delay_type_list.currentIndexChanged.connect(self.update_delay_type)
         self.ui.delay_type_list.addItem('Short')
@@ -101,7 +101,7 @@ class Editor(QtGui.QMainWindow):
         self.ui.d_display_mode.addItem('Average')
         self.ui.d_display_mode.addItem('Raw')
         self.ui.d_display_mode_spectra.addItem('Probe')
-        self.ui.d_display_mode_spectra.addItem('Reference')
+        self.ui.d_display_mode_spectra.addItem('[Reference]')
         self.ui.d_time.valueChanged.connect(self.update_d_time)
         self.ui.d_move_to_time_btn.clicked.connect(self.exec_d_move_to_time)
         self.ui.d_threshold_pixel.valueChanged.connect(self.update_threshold)
@@ -126,7 +126,7 @@ class Editor(QtGui.QMainWindow):
         self.times = np.array([0,1,2,3,4,5])
 #        self.bin_length = 0.1
 #        self.disco_times = np.linspace(min(self.times),max(self.times),((max(self.times)-min(self.times))/self.bin_length)+1)
-        self.num_pixels = 500
+        self.num_pixels = 2048
         self.ui.filename.setText(r'E:/default_datafile')
         self.idle = True
         self.ui.use_calib.toggle()
@@ -135,7 +135,7 @@ class Editor(QtGui.QMainWindow):
         self.ui.plot_log_t.toggle()
         self.ui.plot_timescale.toggle()
         self.ui.d_use_linear_corr.setChecked(False)
-        self.ui.d_use_reference.setChecked(True)
+        self.ui.d_use_reference.setChecked(False)
         self.ui.d_use_ir_gain.setChecked(False)
         
         if preloaded is False:
@@ -751,46 +751,46 @@ class Editor(QtGui.QMainWindow):
     # Section 5: Messages
         
     def message_block(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Block Probe and Reference")
         msg.setInformativeText("Just press once (be patient)")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
         
     def message_unblock(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Unblock Probe and Reference")
         msg.setInformativeText("Just press once (be patient)")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
         
     def message_time_points(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("One or more time point exceeds limit!")
         msg.setInformativeText("Don't be greedy...")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
         
     def message_error_saving(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Error Saving File")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
     
     def message_pause(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Measurement Paused")
         msg.setInformativeText("Just press Ok once to resume (be patient)")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
     
@@ -865,7 +865,7 @@ class Editor(QtGui.QMainWindow):
                 self.current_data.linear_pixel_correlation(self.linear_corr)
             except:
                 self.append_history('Error using linear pixel correction')
-        self.high_trig_std = self.current_data.separate_on_off(self.threshold,self.tau_flip_request)
+        self.high_trig_std = self.current_data.separate_on_off(self.tau_flip_request)
         if self.ui.test_run_btn.isChecked() is False:
             self.current_data.sub_bgd(self.bgd)
         if self.ui.d_use_ref_manip.isChecked() is True:
@@ -975,7 +975,7 @@ class Editor(QtGui.QMainWindow):
         
         if self.delay_type == 0:
             self.append_history('Connecting to delay stage')
-            self.delay = newport_delay_stage(self.short_t0)
+            self.delay = esp301_delay_stage(self.short_t0)
         if self.delay_type == 1:
             self.append_history('Connecting to delay generator')
             self.delay = pink_laser_delay(self.long_t0)
@@ -998,14 +998,15 @@ class Editor(QtGui.QMainWindow):
         self.acquire_thread = QtCore.QThread()
         self.acquire_thread.start()
         
-        self.camera = stresing()
+        self.camera = octoplus()
         self.num_pixels = self.camera.num_pixels
         self.camera.moveToThread(self.acquire_thread)
         self.camera.start_acquire.connect(self.camera.Acquire)
         self.camera.data_ready.connect(self.post_acquire_bgd)
         
         if self.ui.test_run_btn.isChecked() is False:
-            self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+            #self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+            self.camera.Initialize(lines_per_frame = self.num_shots)
             self.message_block()
             self.append_history('Taking Background')
             self.acquire_bgd()
@@ -1019,7 +1020,8 @@ class Editor(QtGui.QMainWindow):
         
         self.camera.data_ready.disconnect(self.post_acquire_bgd)
         self.camera.data_ready.connect(self.post_acquire)
-        self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+        self.camera.Initialize(lines_per_frame = self.num_shots)
+        #self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
         
         self.append_history('Starting Sweep '+str(self.current_sweep.sweep_index+1))
         self.ui.sweep_display.display(self.current_sweep.sweep_index+1)
@@ -1130,7 +1132,7 @@ class Editor(QtGui.QMainWindow):
                 self.current_data.linear_pixel_correlation(self.linear_corr)
             except:
                 self.append_history('Error using linear pixel correction')
-        self.current_data.separate_on_off(self.threshold,self.tau_flip_request)
+        self.current_data.separate_on_off(self.tau_flip_request)
         if self.ui.test_run_btn.isChecked() is False:
             self.current_data.sub_bgd(self.bgd)
         if self.ui.d_use_ref_manip.isChecked() is True:
@@ -1169,7 +1171,7 @@ class Editor(QtGui.QMainWindow):
         self.camera.start_acquire.emit()
         return
         
-    def d_post_acquire_bgd(self,probe,reference,first_pixel,num_pixels):      
+    def d_post_acquire_bgd(self,probe,reference,first_pixel,num_pixels):
         '''process background data'''
         self.bgd = ta_data_processing(probe,
                                       reference,
@@ -1180,7 +1182,7 @@ class Editor(QtGui.QMainWindow):
                 self.bgd.linear_pixel_correlation(self.linear_corr)
             except:
                 self.append_history('Error using linear pixel correction')
-        self.bgd.separate_on_off(self.threshold)
+        self.bgd.separate_on_off(self.tau_flip_request)
         self.bgd.average_shots() 
         self.camera.Exit()
         self.d_run()          
@@ -1200,7 +1202,7 @@ class Editor(QtGui.QMainWindow):
         
         if self.delay_type == 0:
             self.append_history('Connecting to delay stage')
-            self.delay = newport_delay_stage(self.short_t0)
+            self.delay = esp301_delay_stage(self.short_t0)
         if self.delay_type == 1:
             self.append_history('Connecting to delay generator')
             self.delay = pink_laser_delay(self.long_t0)
@@ -1225,13 +1227,14 @@ class Editor(QtGui.QMainWindow):
         self.acquire_thread = QtCore.QThread()
         self.acquire_thread.start()
         
-        self.camera = stresing()
+        self.camera = octoplus()
         self.num_pixels = self.camera.num_pixels
         self.camera.moveToThread(self.acquire_thread)
         self.camera.start_acquire.connect(self.camera.Acquire)
         self.camera.data_ready.connect(self.d_post_acquire_bgd)
         
-        self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+        self.camera.Initialize(lines_per_frame = self.num_shots)
+        #self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
         self.message_block()
         self.append_history('Taking Background')
         self.d_acquire_bgd()
@@ -1241,7 +1244,8 @@ class Editor(QtGui.QMainWindow):
         
         self.camera.data_ready.disconnect(self.d_post_acquire_bgd)
         self.camera.data_ready.connect(self.d_post_acquire)
-        self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+        self.camera.Initialize(lines_per_frame = self.num_shots)
+        #self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
 
         self.d_acquire()
         
@@ -1284,7 +1288,7 @@ class Editor(QtGui.QMainWindow):
     # Section 7: launches gui and creates plots
         
 def main():
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     last_instance_filename = r'C:\Users\Public\Documents\Python Scripts\PyTA\last_instance_values.txt'
     try:
         last_instance_values = np.genfromtxt(last_instance_filename)
