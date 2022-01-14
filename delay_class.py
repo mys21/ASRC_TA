@@ -1,9 +1,21 @@
-from PyAPT import APTMotor
-from XPS_C8_drivers import XPS
-import visa
-import serial
+#from PyAPT import APTMotor
+#from XPS_C8_drivers import XPS
+#import visa
+#import serial
 import time as pytime
-
+# Add ESP301 specific code
+import sys
+# requires pythonnet module for C# dll (tested with 2.5?)
+import clr
+import System
+from System import UInt32, Int32
+from System import Double
+import scipy.constants as spc
+#here or above?
+sys.path.append(r'C:\Windows\Microsoft.NET\assembly\GAC_64\Newport.ESP301.CommandInterface\v4.0_2.0.0.3__9f994642f5b48132')
+clr.AddReference("Newport.ESP301.CommandInterface")
+from CommandInterfaceESP301 import *
+        
 class thorlabs_delay_stage:
     def __init__(self,t0):
         self.stage = APTMotor(94862873,HWTYPE=44)
@@ -42,7 +54,93 @@ class thorlabs_delay_stage:
         if (pos>300) or (pos<0):
             on_stage = False
         return on_stage
-        
+
+class esp301_delay_stage:
+    def __init__(self,t0):
+        self.t0 = t0
+        self.passes = 2
+        self.axis = Int32(1)
+        self.instrument="COM4"
+        self.BAUDRATE=921600
+
+        # create an ESP301 instance
+        # add print statement for intialization!!!
+        self.stage = ESP301()
+        ret = self.stage.OpenInstrument(self.instrument, self.BAUDRATE); 
+        if ret == 0:
+            self.initialized=True
+            print("Delay Stage Initialized")
+        else:
+            print("Delay Stage Error!")
+            self.initialized=False
+        # Get positive software limit
+        result, rlimit, errString = self.stage.SR_Get(self.axis,Double(0.),"")
+        self.plimit = rlimit
+        # Get negative software limit
+        result, llimit, errString = self.stage.SL_Get(self.axis,Double(0.),"")
+        self.nlimit = llimit
+
+    def home(self):
+        result, errString = self.stage.OR(self.axis,Int32(0),"")
+        response = 0
+        while response == 0:
+            pytime.sleep(.5)
+            result2, response, errString2 = self.stage.MD(self.axis,Int32(1),"")
+        return
+   
+    def move_to(self,time_point_ps):
+        # why is this self.t0-time_point_ps --> front of the stage is max travel, so moving to smaller positions?
+        #new_pos_mm = self.convert_ps_to_mm(float(self.t0-time_point_ps))
+        # I think our stage is the other way (front is lower limit) --> need to double check
+        new_pos_mm = self.convert_ps_to_mm(float(self.t0+time_point_ps))
+        result, errString = self.stage.PA_Set(self.axis, Double(new_pos_mm),"")
+        response = 0
+        while response == 0:
+            pytime.sleep(.1)
+            result2, response, errString2 = self.stage.MD(self.axis,Int32(1),"")
+        print([errString, result2])
+        result, currentPosition, errString = self.stage.TP(self.axis, Double(0.), "")
+        print([errString, currentPosition])
+        return
+
+    def convert_ps_to_mm(self,time_ps):
+        # account for 2 pass configuration
+        # stage is referenced to middle
+        pos_mm = self.nlimit + 0.29979*time_ps/(2*self.passes)
+        return pos_mm
+
+    def close(self):
+        self.stage.CloseInstrument(); 
+
+    def check_times(self,times):
+        all_on_stage = True
+        # change to read stage limits
+        # original code limits differ from check_time
+        for time in times:
+            #pos = self.convert_ps_to_mm(float(self.t0-time))
+            pos = self.convert_ps_to_mm(float(self.t0+time))
+            if (pos>self.plimit) or (pos<self.nlimit):
+                all_on_stage = False
+        return all_on_stage
+
+    def check_time(self,time):
+        on_stage = True
+        #pos = self.convert_ps_to_mm(float(self.t0-time))
+        pos = self.convert_ps_to_mm(float(self.t0+time))
+        print(pos)
+        # change to read stage limits
+        if (pos>self.plimit) or (pos<self.nlimit):
+            on_stage = False
+        return on_stage
+
+    def get_posmm(self):
+        result, currentPosition, errString = self.stage.TP(self.axis, Double(0.), "")
+        if result == 0 :
+            print('position=>', currentPosition)
+        else:
+            print('Error=>',errString)
+        return currentPosition
+
 class newport_delay_stage:
     def __init__(self,t0):
         self.t0 = t0
