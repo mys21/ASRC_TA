@@ -44,7 +44,7 @@ class octoplus(QObject):
         self.first_pixel = 0
         self.enable_contextual_data = 1
         self.circular_buffer = 1
-        self.trigger_mode = 1					#IMPORTANT: trigger_mode is set to 4 during experiments | for testing code trigger_mode is set to 1 (due to limited access to laser)
+        self.trigger_mode = 4					#IMPORTANT: trigger_mode is set to 4 during experiments | for testing code trigger_mode is set to 1 (due to limited access to laser)
         self.exposure_time = 132 # units of 10 ns 
         self.max_bulk_queue_number = 128
         self.line_period = 1111  # units of 10 ns
@@ -74,7 +74,6 @@ class octoplus(QObject):
         self.WriteRegister(0x12100, self.line_period)
         self.WriteRegister(0x1211C, self.pulse_width)
         self.SetImageParameters()
-        self.probe = np.empty((self.lines_per_frame, self.pixels),dtype = np.dtype(np.uint16))
         return         
     
     start_acquire = pyqtSignal()																			
@@ -90,9 +89,7 @@ class octoplus(QObject):
 
     def Construct_Data_Vec(self):
         raw_data = cast(self.ImageInfos.pDatas, POINTER(c_ushort))
-        for row in range(self.lines_per_frame):
-	        for col in range(self.pixels):
-	            self.probe[row][col] = raw_data[row*self.pixels+col] + 10
+        self.probe = np.ctypeslib.as_array(raw_data, shape = (self.lines_per_frame, self.pixels))
         self.reference = np.ones((self.lines_per_frame, self.pixels), dtype = np.uint16)	#no reference data from octoplus, this is filled with ones (dummy data)
     
     _exit = pyqtSignal()																					
