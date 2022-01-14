@@ -4,6 +4,10 @@ import sys
 from small_camera import camera1
 from TA2_camera import *
 from ta_data_processing_class import *
+import time
+#import pyqtgraph as pg
+#from pyqtgraph import ImageView, PlotWidget #in class ui
+
 
 class Editor(QtWidgets.QMainWindow):
 
@@ -44,9 +48,12 @@ class Editor(QtWidgets.QMainWindow):
         #self.cameraLog = "\n".join(self.camera.log)
         self.append_history("camera initialized")
         self.append_history("Number of Cameras: "+ str(self.camera.ulNbCameras.value))
+        start=time.time()
         self.camera.Acquire()
-        self.append_history("data acquired")
-        self.append_history("Buffer Size: "+ str(oc.ImageInfos.iBufferSize))
+        end=time.time()
+        self.append_history("data acquired"+ " timer: "+ str(end-start))
+        self.append_history("Buffer Size: "+ str(self.camera.ImageInfos.iBufferSize))
+
         self.processing()
         self.append_history("data processed")
         self.create_plots()
@@ -55,45 +62,51 @@ class Editor(QtWidgets.QMainWindow):
         return
 
     def processing(self):
+        start=time.time()
         self.ta = ta_data_processing(self.camera.probe, self.camera.reference, self.camera.first_pixel, self.camera.num_pixels)
         self.ta.separate_on_off()
         self.ta.average_shots() #NOTE: average shots can only be called after separate_on_off
+        end=time.time()
+        self.append_history("processing took: "+ str(end-start)+ " seconds")
         #self.append_history("Pump on: ", self.ta.probe_on) #not sure if this is good to append cause entire array
         #self.append_history("Pump off: ", self.ta.probe_off)
         return
 
     #--start of plotting functions---
-    def create_plots(self):
-        #in self.ui.plotPumpOn, plot self.ta.probe_on because thats not confusing at all...
-    	#in self.ui.plotPumpOff, plot self.ta.probe_off because thats not confusing at all...
-        self.num_pixels= self.camera.num_pixels
-        self.plot_waves = np.linspace(0,self.num_pixels-1,self.num_pixels)
-        pump_off_plot()
-        pump_on_plot()
-        return
+
 
     def pump_off_plot(self):
         '''pump off plot'''
+        #if doesn't work, remove the .plotItem
         try:
-            self.ui.plotPumpOff.plotItem.plot(self.plot_waves,self.ta.probe_off,pen='g',clear=True)
+            self.ui.pumpsOffPlot.plotItem.plot(self.plot_waves,self.ta.probe_off,pen='g',clear=True)
         except:
             self.append_history('Error Plotting pump off Plot')
 
-        self.ui.plotPumpOff.plotItem.setLabels(left='dtt',bottom='Wavelength / Pixel')
-        self.ui.plotPumpOff.plotItem.showAxis('top',show=True)
-        self.ui.plotPumpOff.plotItem.showAxis('right',show=True)
+        self.ui.pumpsOffPlot.plotItem.setLabels(left='dtt',bottom='Wavelength / Pixel')
+        self.ui.pumpsOffPlot.plotItem.showAxis('top',show=True)
+        self.ui.pumpsOffPlot.plotItem.showAxis('right',show=True)
         return
 
     def pump_on_plot(self):
         '''pump off plot'''
         try:
-            self.ui.plotPumpOn.plotItem.plot(self.plot_waves,self.ta.probe_on,pen='g',clear=True)
+            self.ui.pumpsOnPlot.plotItem.plot(self.plot_waves,self.ta.probe_on,pen='g',clear=True)
         except:
             self.append_history('Error Plotting pump on Plot')
 
-        self.ui.plotPumpOn.plotItem.setLabels(left='dtt',bottom='Wavelength / Pixel')
-        self.ui.plotPumpOn.plotItem.showAxis('top',show=True)
-        self.ui.plotPumpOn.plotItem.showAxis('right',show=True)
+        self.ui.pumpsOnPlot.plotItem.setLabels(left='dtt',bottom='Wavelength / Pixel')
+        self.ui.pumpsOnPlot.plotItem.showAxis('top',show=True)
+        self.ui.pumpsOnPlot.plotItem.showAxis('right',show=True)
+        return
+
+    def create_plots(self):
+		#in self.ui.plotPumpOn, plot self.ta.probe_on because thats not confusing at all...
+		#in self.ui.plotPumpOff, plot self.ta.probe_off because thats not confusing at all...
+        self.num_pixels= self.camera.num_pixels
+        self.plot_waves = np.linspace(0,self.num_pixels-1,self.num_pixels)
+        self.pump_off_plot()
+        self.pump_on_plot()
         return
 
 def main():

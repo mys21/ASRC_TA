@@ -123,9 +123,9 @@ class ta_data_processing:
                 self.dtt_array = (self.refd_probe_on_array-self.refd_probe_off_array)/self.refd_probe_off_array
         if use_reference is False:
             if use_avg_off_shots is True:
-                self.dtt_array = (self.probe_on_array-self.probe_off_array)/self.probe_off
+                self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off + 10)
             if use_avg_off_shots is False:
-                self.dtt_array = (self.probe_on_array-self.probe_off_array)/self.probe_off_array
+                self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off_array + 10)
         self.dtt = self.dtt_array.mean(axis=0)
         fin_dtt = self.dtt[np.isfinite(self.dtt)]
         if np.abs(fin_dtt[cutoff[0]:cutoff[1]]).max() > max_dtt:

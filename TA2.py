@@ -2,7 +2,7 @@ import sys
 import os
 import subprocess
 
-from PyQt5 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore, QtWidgets
 from ta_gui_class import Ui_TA_GUI
 import pyqtgraph as pg
 pg.setConfigOption('background', 'w')
@@ -13,9 +13,9 @@ from TA2_camera import octoplus
 from ta_data_processing_class import ta_data_processing
 from sweep_processing_class import sweep_processing
 
-from delay_class import newport_delay_stage, pink_laser_delay, disco_laser_delay
+from delay_class import esp301_delay_stage, pink_laser_delay, disco_laser_delay
 
-class Editor(QtGui.QMainWindow):
+class Editor(QtWidgets.QMainWindow):
     def __init__(self,lif,pl=np.zeros((50,1)),preloaded=False):        
         super(Editor, self).__init__()
         self.ui=Ui_TA_GUI()
@@ -46,13 +46,13 @@ class Editor(QtGui.QMainWindow):
         
         self.ui.short_t0.valueChanged.connect(self.update_short_t0)
         self.ui.long_t0.valueChanged.connect(self.update_long_t0)
-        self.ui.disco_t0.valueChanged.connect(self.update_disco_t0)
-        self.ui.num_shots.valueChanged.connect(self.update_num_shots)   #num_shots is equivalent to linesPerFrame?
+        #self.ui.disco_t0.valueChanged.connect(self.update_disco_t0)
+        self.ui.num_shots.valueChanged.connect(self.update_num_shots)  
         self.ui.num_sweeps.valueChanged.connect(self.update_num_sweeps)
         self.ui.delay_type_list.currentIndexChanged.connect(self.update_delay_type)
         self.ui.delay_type_list.addItem('Short')
         self.ui.delay_type_list.addItem('Long')
-        self.ui.delay_type_list.addItem('Disco')
+        #self.ui.delay_type_list.addItem('Disco')
         
         self.ui.use_calib.toggled.connect(self.update_use_calib)
         self.ui.calib_pixel_low.valueChanged.connect(self.update_calib)
@@ -92,21 +92,21 @@ class Editor(QtGui.QMainWindow):
         
         self.ui.d_short_t0.valueChanged.connect(self.update_d_short_t0)
         self.ui.d_long_t0.valueChanged.connect(self.update_d_long_t0)
-        self.ui.d_disco_t0.valueChanged.connect(self.update_d_disco_t0)
+        #self.ui.d_disco_t0.valueChanged.connect(self.update_d_disco_t0)
         self.ui.d_num_shots.valueChanged.connect(self.update_d_num_shots)
         self.ui.d_delay_type_list.currentIndexChanged.connect(self.update_d_delay_type)
         self.ui.d_delay_type_list.addItem('Short')
         self.ui.d_delay_type_list.addItem('Long')
-        self.ui.d_delay_type_list.addItem('Disco')
+        #self.ui.d_delay_type_list.addItem('Disco')
         self.ui.d_display_mode.addItem('Average')
         self.ui.d_display_mode.addItem('Raw')
         self.ui.d_display_mode_spectra.addItem('Probe')
         self.ui.d_display_mode_spectra.addItem('[Reference]')
         self.ui.d_time.valueChanged.connect(self.update_d_time)
         self.ui.d_move_to_time_btn.clicked.connect(self.exec_d_move_to_time)
-        self.ui.d_threshold_pixel.valueChanged.connect(self.update_threshold)
-        self.ui.d_threshold_value.valueChanged.connect(self.update_threshold)
-        self.ui.d_set_linear_corr_btn.clicked.connect(self.exec_d_set_linear_corr_btn)
+        #self.ui.d_threshold_pixel.valueChanged.connect(self.update_threshold)
+        #self.ui.d_threshold_value.valueChanged.connect(self.update_threshold)
+        #self.ui.d_set_linear_corr_btn.clicked.connect(self.exec_d_set_linear_corr_btn)
         
         self.ui.d_run_btn.clicked.connect(self.exec_d_run_btn)
         self.ui.d_stop_btn.clicked.connect(self.exec_d_stop_btn)
@@ -134,18 +134,18 @@ class Editor(QtGui.QMainWindow):
         self.ui.plot_log_t.toggle()
         self.ui.plot_log_t.toggle()
         self.ui.plot_timescale.toggle()
-        self.ui.d_use_linear_corr.setChecked(False)
+        #self.ui.d_use_linear_corr.setChecked(False)
         self.ui.d_use_reference.setChecked(False)
-        self.ui.d_use_ir_gain.setChecked(False)
+        #self.ui.d_use_ir_gain.setChecked(False)
         
         if preloaded is False:
-            self.ui.cutoff_pixel_low.setValue(100)
-            self.ui.cutoff_pixel_high.setValue(400)
+            self.ui.cutoff_pixel_low.setValue(0)
+            self.ui.cutoff_pixel_high.setValue(2048)
             self.ui.calib_pixel_low.setValue(100)
             self.ui.calib_pixel_high.setValue(400)
             self.ui.calib_wave_low.setValue(500)
             self.ui.calib_wave_high.setValue(800)
-            self.ui.num_shots.setValue(200)
+            self.ui.num_shots.setValue(1000)
             self.ui.num_sweeps.setValue(500)
             self.ui.kinetic_pixel.setValue(100)
             self.ui.spectra_timestep.setValue(4)
@@ -154,7 +154,7 @@ class Editor(QtGui.QMainWindow):
             self.ui.d_display_mode_spectra.setCurrentIndex(0)
             self.ui.short_t0.setValue(1800)
             self.ui.long_t0.setValue(999995)
-            self.ui.disco_t0.setValue(10000)
+            #self.ui.disco_t0.setValue(10000)
             self.ui.kinetic_pixel.setValue(0)
             self.ui.spectra_timestep.setValue(0)
             self.ui.d_refman_horiz_offset.setValue(0)
@@ -162,9 +162,9 @@ class Editor(QtGui.QMainWindow):
             self.ui.d_refman_scale_factor.setValue(1)
             self.ui.d_refman_vertical_offset.setValue(0)
             self.ui.d_refman_vertrical_stretch.setValue(1)
-            self.ui.d_use_linear_corr.setChecked(1)
-            self.ui.d_threshold_pixel.setValue(554)
-            self.ui.d_threshold_value.setValue(15000)
+            #self.ui.d_use_linear_corr.setChecked(1)
+            #self.ui.d_threshold_pixel.setValue(554)
+            #self.ui.d_threshold_value.setValue(15000)
             self.ui.d_time.setValue(1)
         else:
             self.ui.cutoff_pixel_low.setValue(pl[0])
@@ -182,7 +182,7 @@ class Editor(QtGui.QMainWindow):
             self.ui.d_display_mode_spectra.setCurrentIndex(pl[12])
             self.ui.short_t0.setValue(pl[13])
             self.ui.long_t0.setValue(pl[14])
-            self.ui.disco_t0.setValue(pl[25])
+            #self.ui.disco_t0.setValue(pl[25])
             self.ui.kinetic_pixel.setValue(0)
             self.ui.spectra_timestep.setValue(0)
             self.ui.d_refman_horiz_offset.setValue(pl[17])
@@ -190,8 +190,8 @@ class Editor(QtGui.QMainWindow):
             self.ui.d_refman_scale_factor.setValue(pl[19])
             self.ui.d_refman_vertical_offset.setValue(pl[20])
             self.ui.d_refman_vertrical_stretch.setValue(pl[21])
-            self.ui.d_threshold_pixel.setValue(pl[22])
-            self.ui.d_threshold_value.setValue(pl[23])
+            #self.ui.d_threshold_pixel.setValue(pl[22])
+            #self.ui.d_threshold_value.setValue(pl[23])
             self.ui.d_time.setValue(1)
 
         
@@ -223,10 +223,10 @@ class Editor(QtGui.QMainWindow):
                         self.ui.d_refman_scale_factor.value(),
                         self.ui.d_refman_vertical_offset.value(),
                         self.ui.d_refman_vertrical_stretch.value(),
-                        self.ui.d_threshold_pixel.value(),
-                        self.ui.d_threshold_value.value(),
-                        self.ui.d_time.value(),
-                        self.ui.disco_t0.value()])
+                        #self.ui.d_threshold_pixel.value(),
+                        #self.ui.d_threshold_value.value(),
+                        self.ui.d_time.value()])
+                        #self.ui.disco_t0.value()])
         np.savetxt(self.lif,output,newline='\r\n')
 
         
@@ -257,9 +257,9 @@ class Editor(QtGui.QMainWindow):
         if self.delay_type == 1:
             self.metadata['delay type'] = 'Long'
             self.metadata['time zero'] = self.long_t0
-        if self.delay_type == 2:
-            self.metadata['delay type'] = 'Disco'
-            self.metadata['timezero'] = self.disco_t0
+        #if self.delay_type == 2:
+            #self.metadata['delay type'] = 'Disco'
+            #self.metadata['timezero'] = self.disco_t0
         self.metadata['num shots'] = self.num_shots
         self.metadata['calib pixel low'] = self.calib[0]
         self.metadata['calib pixel high'] = self.calib[1]
@@ -751,46 +751,46 @@ class Editor(QtGui.QMainWindow):
     # Section 5: Messages
         
     def message_block(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Block Probe and Reference")
         msg.setInformativeText("Just press once (be patient)")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
         
     def message_unblock(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Unblock Probe and Reference")
         msg.setInformativeText("Just press once (be patient)")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
         
     def message_time_points(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("One or more time point exceeds limit!")
         msg.setInformativeText("Don't be greedy...")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
         
     def message_error_saving(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Error Saving File")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
     
     def message_pause(self):
-        msg = QtGui.QMessageBox()
-        msg.setIcon(QtGui.QMessageBox.Information)
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Information)
         msg.setText("Measurement Paused")
         msg.setInformativeText("Just press Ok once to resume (be patient)")
-        msg.setStandardButtons(QtGui.QMessageBox.Ok)
+        msg.setStandardButtons(QtWidgets.QMessageBox.Ok)
         retval = msg.exec_()
         return retval
     
@@ -815,7 +815,7 @@ class Editor(QtGui.QMainWindow):
         self.ui.timefile_box.setDisabled(True)
         self.ui.acquire_options_box.setDisabled(True)
         self.ui.calib_box.setDisabled(True)
-        self.ui.d_set_linear_corr_btn.setDisabled(True)
+        #self.ui.d_set_linear_corr_btn.setDisabled(True)
         if self.diagnostics_on is False:
             self.ui.d_time_box.setDisabled(True)
             self.ui.d_other_box.setDisabled(True)
@@ -839,7 +839,7 @@ class Editor(QtGui.QMainWindow):
         self.ui.d_other_box.setDisabled(False)
         self.ui.d_calib_box.setDisabled(False)
         self.ui.d_time_box.setDisabled(False)
-        self.ui.d_set_linear_corr_btn.setDisabled(False)
+        #self.ui.d_set_linear_corr_btn.setDisabled(False)
         return
         
     def acquire(self):
@@ -860,12 +860,12 @@ class Editor(QtGui.QMainWindow):
                                                     reference,
                                                     first_pixel,
                                                     num_pixels)
-        if self.ui.d_use_linear_corr.isChecked():
-            try:
-                self.current_data.linear_pixel_correlation(self.linear_corr)
-            except:
-                self.append_history('Error using linear pixel correction')
-        self.high_trig_std = self.current_data.separate_on_off(self.threshold,self.tau_flip_request)
+        #if self.ui.d_use_linear_corr.isChecked():
+        #    try:
+        #        self.current_data.linear_pixel_correlation(self.linear_corr)
+        #    except:
+        #        self.append_history('Error using linear pixel correction')
+        self.high_trig_std = self.current_data.separate_on_off(self.tau_flip_request)
         if self.ui.test_run_btn.isChecked() is False:
             self.current_data.sub_bgd(self.bgd)
         if self.ui.d_use_ref_manip.isChecked() is True:
@@ -914,7 +914,7 @@ class Editor(QtGui.QMainWindow):
         if self.ui.diagnos_tab.isVisible() is True:
             self.d_ls_plot()
             self.d_error_plot()
-            self.d_trigger_plot()
+            #self.d_trigger_plot()
             self.d_probe_ref_plot()        
             
         if self.stop_request is True:
@@ -948,12 +948,12 @@ class Editor(QtGui.QMainWindow):
                                       reference,
                                       first_pixel,
                                       num_pixels)
-        if self.ui.d_use_linear_corr.isChecked():
-            try:
-                self.bgd_data.linear_pixel_correlation(self.linear_corr)
-            except:
-                self.append_history('Error using linear pixel correction')
-        self.bgd.separate_on_off(self.threshold)
+        #if self.ui.d_use_linear_corr.isChecked():
+        #    try:
+        #        self.bgd_data.linear_pixel_correlation(self.linear_corr)
+        #    except:
+        #        self.append_history('Error using linear pixel correction')
+        #self.bgd.separate_on_off(self.threshold)
         self.bgd.average_shots() 
         self.camera.Exit()
         self.run()          
@@ -975,13 +975,13 @@ class Editor(QtGui.QMainWindow):
         
         if self.delay_type == 0:
             self.append_history('Connecting to delay stage')
-            self.delay = newport_delay_stage(self.short_t0)
+            self.delay = esp301_delay_stage(self.short_t0)
         if self.delay_type == 1:
             self.append_history('Connecting to delay generator')
             self.delay = pink_laser_delay(self.long_t0)
-        if self.delay_type == 2:
-            self.append_history('Connecting to delay generator')
-            self.delay = disco_laser_delay(self.disco_t0,"COM3",38400)
+        #if self.delay_type == 2:
+            #self.append_history('Connecting to delay generator')
+            #self.delay = disco_laser_delay(self.disco_t0,"COM3",38400)
             
         if self.delay.initialized is False:
             self.append_history('Stage Not Initialized Correctly')
@@ -1127,12 +1127,12 @@ class Editor(QtGui.QMainWindow):
                                                     reference,
                                                     first_pixel,
                                                     num_pixels)
-        if self.ui.d_use_linear_corr.isChecked():
-            try:
-                self.current_data.linear_pixel_correlation(self.linear_corr)
-            except:
-                self.append_history('Error using linear pixel correction')
-        self.current_data.separate_on_off(self.threshold,self.tau_flip_request)
+        #if self.ui.d_use_linear_corr.isChecked():
+        #    try:
+        #        self.current_data.linear_pixel_correlation(self.linear_corr)
+        #    except:
+        #        self.append_history('Error using linear pixel correction')
+        self.current_data.separate_on_off(self.tau_flip_request)
         if self.ui.test_run_btn.isChecked() is False:
             self.current_data.sub_bgd(self.bgd)
         if self.ui.d_use_ref_manip.isChecked() is True:
@@ -1150,7 +1150,7 @@ class Editor(QtGui.QMainWindow):
         self.create_plot_waves_and_times()
         self.d_ls_plot()
         self.d_error_plot()
-        self.d_trigger_plot()
+        #self.d_trigger_plot()
         self.d_probe_ref_plot()
         
         if self.pause_request is True:
@@ -1177,12 +1177,12 @@ class Editor(QtGui.QMainWindow):
                                       reference,
                                       first_pixel,
                                       num_pixels)
-        if self.ui.d_use_linear_corr.isChecked():
-            try:
-                self.bgd.linear_pixel_correlation(self.linear_corr)
-            except:
-                self.append_history('Error using linear pixel correction')
-        self.bgd.separate_on_off(self.threshold)
+        #if self.ui.d_use_linear_corr.isChecked():
+        #    try:
+        #        self.bgd.linear_pixel_correlation(self.linear_corr)
+        #    except:
+        #        self.append_history('Error using linear pixel correction')
+        self.bgd.separate_on_off(self.tau_flip_request)
         self.bgd.average_shots() 
         self.camera.Exit()
         self.d_run()          
@@ -1202,13 +1202,13 @@ class Editor(QtGui.QMainWindow):
         
         if self.delay_type == 0:
             self.append_history('Connecting to delay stage')
-            self.delay = newport_delay_stage(self.short_t0)
+            self.delay = esp301_delay_stage(self.short_t0)
         if self.delay_type == 1:
             self.append_history('Connecting to delay generator')
             self.delay = pink_laser_delay(self.long_t0)
-        if self.delay_type == 2:
-            self.append_history('Connecting to delay generator')
-            self.delay = disco_laser_delay(self.disco_t0,"COM3",38400)
+        #if self.delay_type == 2:
+            #self.append_history('Connecting to delay generator')
+            #self.delay = disco_laser_delay(self.disco_t0,"COM3",38400)
         
         if self.delay.initialized is False:
             self.append_history('Stage/DG Not Initialized Correctly')
@@ -1288,7 +1288,7 @@ class Editor(QtGui.QMainWindow):
     # Section 7: launches gui and creates plots
         
 def main():
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     last_instance_filename = r'C:\Users\Public\Documents\Python Scripts\PyTA\last_instance_values.txt'
     try:
         last_instance_values = np.genfromtxt(last_instance_filename)

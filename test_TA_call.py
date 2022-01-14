@@ -11,16 +11,16 @@ if __name__ == "__main__":
 	print("Camera ID: ", oc.CameraInfo.pcID)
 
 	oc.Acquire()
-	print("Buffer Size: ", oc.ImageInfos.iBufferSize)
-	print(oc.probe)
-	print("Max val: ", np.max(oc.probe))
-	print("Min val: ", np.min(oc.probe))
-	print("Average val: ", np.average(oc.probe))
+	#print("Buffer Size: ", oc.ImageInfos.iBufferSize)
+	#print(oc.probe)
+	#print("Max val: ", np.max(oc.probe))
+	#print("Min val: ", np.min(oc.probe))
+	#print("Average val: ", np.average(oc.probe))
 
 	ta = ta_data_processing(oc.probe, oc.reference, oc.first_pixel, oc.num_pixels)
 	ta.separate_on_off()
 	ta.average_shots()
-	print("Pump on: ", ta.probe_on)
-	print("Pump off: ", ta.probe_off)
+	#print("Pump on: ", ta.probe_on)
+	#print("Pump off: ", ta.probe_off)
 	oc.Exit()
  

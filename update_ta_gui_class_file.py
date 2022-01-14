@@ -7,4 +7,4 @@
 import PyQt5.uic
 
 with open('ta_gui_class.py','w') as file:
-    PyQt5.uic.compileUi(r"C:\Users\Public\Documents\Git_Clone\TA2\TA_GUI\ta_gui.ui",file)
+    PyQt5.uic.compileUi(r"C:\Users\mysfe\OneDrive\Desktop\ASRC_TA\TA_GUI\ta_gui.ui",file)
