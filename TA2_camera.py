@@ -84,6 +84,7 @@ class octoplus(QObject):
         self.StartAcquisition()
         self.GetBuffer()
         self.Construct_Data_Vec()
+        self.RequeueBuffer()
         self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)					
         return         
 
@@ -96,7 +97,6 @@ class octoplus(QObject):
     @pyqtSlot()																						
 
     def Exit(self):
-        self.RequeueBuffer()
         self.StopAcquisition()
         self.FlushBuffers()
         self.CloseCamera()
