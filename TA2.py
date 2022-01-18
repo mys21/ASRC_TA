@@ -586,9 +586,9 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.d_error_graph.plotItem.showAxis('top',show=True)
         self.ui.d_error_graph.plotItem.showAxis('right',show=True)
         
-        self.ui.d_trigger_graph.plotItem.setLabels(left='Trigger Signal',bottom='Shot')
-        self.ui.d_trigger_graph.plotItem.showAxis('top',show=True)
-        self.ui.d_trigger_graph.plotItem.showAxis('right',show=True)
+        #self.ui.d_trigger_graph.plotItem.setLabels(left='Trigger Signal',bottom='Shot')
+        #self.ui.d_trigger_graph.plotItem.showAxis('top',show=True)
+        #self.ui.d_trigger_graph.plotItem.showAxis('right',show=True)
         
         self.ui.d_probe_ref_graph.plotItem.setLabels(left='Counts',bottom='Wavelength / Pixel')
         self.ui.d_probe_ref_graph.plotItem.showAxis('top',show=True)
@@ -914,7 +914,7 @@ class Editor(QtWidgets.QMainWindow):
         if self.ui.diagnos_tab.isVisible() is True:
             self.d_ls_plot()
             self.d_error_plot()
-            self.d_trigger_plot()
+            #self.d_trigger_plot()
             self.d_probe_ref_plot()        
             
         if self.stop_request is True:
@@ -937,7 +937,7 @@ class Editor(QtWidgets.QMainWindow):
    
     def acquire_bgd(self):
         '''acquire data from camera for background - increases shots by 10x'''
-        self.append_history('Acquiring '+str(self.num_shots*10)+' shots')
+        self.append_history('Acquiring '+str(self.num_shots)+' shots')
         self.camera.start_acquire.emit()
         return
         
@@ -1150,7 +1150,7 @@ class Editor(QtWidgets.QMainWindow):
         self.create_plot_waves_and_times()
         self.d_ls_plot()
         self.d_error_plot()
-        self.d_trigger_plot()
+        #self.d_trigger_plot()
         self.d_probe_ref_plot()
         
         if self.pause_request is True:
@@ -1167,7 +1167,7 @@ class Editor(QtWidgets.QMainWindow):
         
     def d_acquire_bgd(self):
         '''acquire data from camera for background - increases shots by 10x'''
-        self.append_history('Acquiring '+str(self.num_shots*10)+' shots')
+        self.append_history('Acquiring '+str(self.num_shots)+' shots')
         self.camera.start_acquire.emit()
         return
         
@@ -1289,7 +1289,7 @@ class Editor(QtWidgets.QMainWindow):
         
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    last_instance_filename = r'C:\Users\Public\Documents\Python Scripts\PyTA\last_instance_values.txt'
+    last_instance_filename = r'C:\Users\mysfe\OneDrive\Desktop\ASRC_TA\last_instance_values.txt'
     try:
         last_instance_values = np.genfromtxt(last_instance_filename)
         ex = Editor(last_instance_filename,pl=last_instance_values,preloaded=True)

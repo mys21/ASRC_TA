@@ -49,7 +49,7 @@ class octoplus(QObject):
         self.max_bulk_queue_number = 128
         self.line_period = 1111  # units of 10 ns
         self.pulse_width = 80  # units of 10 ns
-        self.timeout = c_ulong(5000)	# 5 s
+        self.timeout = c_ulong(120000)	# 120 s
         self.iNbOfBuffer = c_size_t(30)
         self.ulNbCameras = c_ulong()
         self.ulIndex = c_ulong(0)

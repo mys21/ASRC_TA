@@ -49,7 +49,7 @@ class Editor(QtWidgets.QMainWindow):
         self.append_history("Number of Cameras: "+ str(self.camera.ulNbCameras.value))
         self.camera.Acquire()
         self.append_history("data acquired")
-        self.append_history("Buffer Size: "+ str(oc.ImageInfos.iBufferSize))
+        self.append_history("Buffer Size: "+ str(self.camera.ImageInfos.iBufferSize))
         self.processing()
         self.append_history("data processed")
         self.create_plots()
@@ -71,8 +71,8 @@ class Editor(QtWidgets.QMainWindow):
     	#in self.ui.plotPumpOff, plot self.ta.probe_off because thats not confusing at all...
         self.num_pixels= self.camera.num_pixels
         self.plot_waves = np.linspace(0,self.num_pixels-1,self.num_pixels)
-        pump_off_plot()
-        pump_on_plot()
+        self.pump_off_plot()
+        self.pump_on_plot()
         return
 
     def pump_off_plot(self):

@@ -51,7 +51,7 @@ class ta_data_processing:
            when the tau flip is passed as true (long time shots where the delay was 
            offset by 1ms) the trigger is rolled over by one value to compensate. 
            Should get rid of tau flip'''
-        if tau_flip_request is True:
+        if tau_flip_request is False:
             self.probe_on_array = self.probe_array[::2,:]
             self.probe_off_array = self.probe_array[1::2,:]
             self.reference_on_array = self.reference_array[::2,:]
@@ -118,14 +118,14 @@ class ta_data_processing:
         high_dtt = False
         if use_reference is True:
             if use_avg_off_shots is True:
-                self.dtt_array = (self.refd_probe_on_array-self.refd_probe_off_array)/self.refd_probe_off
+                self.dtt_array = (self.refd_probe_on_array-self.refd_probe_off_array)/(self.refd_probe_off +10)
             if use_avg_off_shots is False:
-                self.dtt_array = (self.refd_probe_on_array-self.refd_probe_off_array)/self.refd_probe_off_array
+                self.dtt_array = (self.refd_probe_on_array-self.refd_probe_off_array)/(self.refd_probe_off_array +10)
         if use_reference is False:
             if use_avg_off_shots is True:
-                self.dtt_array = (self.probe_on_array-self.probe_off_array)/self.probe_off
+                self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off +10)
             if use_avg_off_shots is False:
-                self.dtt_array = (self.probe_on_array-self.probe_off_array)/self.probe_off_array
+                self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off_array +10)
         self.dtt = self.dtt_array.mean(axis=0)
         fin_dtt = self.dtt[np.isfinite(self.dtt)]
         if np.abs(fin_dtt[cutoff[0]:cutoff[1]]).max() > max_dtt:
