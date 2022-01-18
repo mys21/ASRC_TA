@@ -930,7 +930,7 @@ class Ui_TA_GUI(object):
         TA_GUI.setStatusBar(self.statusBar)
 
         self.retranslateUi(TA_GUI)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(TA_GUI)
 
     def retranslateUi(self, TA_GUI):
