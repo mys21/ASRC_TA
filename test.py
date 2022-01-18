@@ -32,7 +32,8 @@ class tImageInfos(Structure):
 				("iNbLineLost", c_ulonglong),
 				("iNbImageAcquired", c_ulonglong),
 				("iFrameTriggerNbValidLines", c_ulonglong),
-				("iCounterBufferStarvation", c_ulonglong),]
+				("iCounterBufferStarvation", c_ulonglong)]
+
 
 
 if __name__ == "__main__":
@@ -64,22 +65,31 @@ if __name__ == "__main__":
 	#Fixed Registers
 	##############################################################################
 
+
+    ulAddress= c_ulong(0x4F000010) 
+    ulValue = c_ulong(8)  #max bulk queue number
+    iSize = c_size_t(ulValue.__sizeof__())
+    c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+    print('Max bulk queue number: ', ulValue.value)
+
     c_lib.USB3_WriteRegister.restype = c_size_t
     ulAddress= c_ulong(0x1210C) 
     ulValue = c_ulong(1)  #trigger mode
     iSize = c_size_t(ulValue.__sizeof__())
     c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
     print('Trigger mode: ', ulValue.value)
+		
+    #ulAddress= c_ulong(0x4F00000C) 
+    #ulValue = c_ulong(1500)  #image height | only used for trigger modes outside of (4)
+    #iSize = c_size_t(ulValue.__sizeof__())
+    #c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
+    #print('Image height: ', ulValue.value)
 
     ulAddress= c_ulong(0x12108) 
     ulValue = c_ulong(132)  #exposure time
+    iSize = c_size_t(ulValue.__sizeof__())
     c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
     print('Exposure time: ', ulValue.value)
-
-    ulAddress= c_ulong(0x4F000010) 
-    ulValue = c_ulong(128)  #max bulk queue number
-    c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
-    print('Max bulk queue number: ', ulValue.value)
 
     ulAddress= c_ulong(0x12100) 
     ulValue = c_ulong(1111)  #line period x 10^(-8) seconds
@@ -100,10 +110,10 @@ if __name__ == "__main__":
     c_lib.USB3_WriteRegister(hCamera, ulAddress, byref(ulValue), byref(iSize))
     print('Lines per frame: ', ulValue.value)
 
-    iImageHeight = c_size_t(lines_per_frame)
+    ImageInfos = tImageInfos()
     iNbOfBuffer = c_size_t(30)
 
-    c_lib.USB3_SetImageParameters(hCamera, iImageHeight, iNbOfBuffer)
+    c_lib.USB3_SetImageParameters(hCamera, ImageInfos.iImageHeight, iNbOfBuffer)
 
 	#Start Acquisition - "def Acquire"
 	##############################################################################
@@ -114,7 +124,7 @@ if __name__ == "__main__":
 	#"ReadFFLoop"
 	##############################################################################
 
-    ImageInfos = tImageInfos()
+    #ImageInfos = tImageInfos()
     timeout = c_ulong(3000) #timeout in 30000 ms
     c_lib.USB3_GetBuffer.restype = POINTER(tImageInfos)
     c_lib.USB3_GetBuffer(hCamera, byref(ImageInfos), timeout)
@@ -241,3 +251,7 @@ if __name__ == "__main__":
 else:
     print("Error")
 	
+
+
+
+

@@ -8,7 +8,6 @@ import time
 #import pyqtgraph as pg
 #from pyqtgraph import ImageView, PlotWidget #in class ui
 
-
 class Editor(QtWidgets.QMainWindow):
 
     def __init__(self):
@@ -48,6 +47,7 @@ class Editor(QtWidgets.QMainWindow):
         #self.cameraLog = "\n".join(self.camera.log)
         self.append_history("camera initialized")
         self.append_history("Number of Cameras: "+ str(self.camera.ulNbCameras.value))
+
         start=time.time()
         self.camera.Acquire()
         end=time.time()
@@ -73,7 +73,6 @@ class Editor(QtWidgets.QMainWindow):
         return
 
     #--start of plotting functions---
-
 
     def pump_off_plot(self):
         '''pump off plot'''
