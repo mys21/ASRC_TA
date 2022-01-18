@@ -61,7 +61,7 @@
      </palette>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="acquire_tab">
      <attribute name="title">
@@ -1518,6 +1518,15 @@ Run</string>
             </color>
            </brush>
           </colorrole>
+          <colorrole role="PlaceholderText">
+           <brush brushstyle="NoBrush">
+            <color alpha="128">
+             <red>255</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
          </active>
          <inactive>
           <colorrole role="WindowText">
@@ -1649,6 +1658,15 @@ Run</string>
           <colorrole role="ToolTipText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
+             <red>255</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="PlaceholderText">
+           <brush brushstyle="NoBrush">
+            <color alpha="128">
              <red>255</red>
              <green>0</green>
              <blue>0</blue>
@@ -1792,6 +1810,15 @@ Run</string>
             </color>
            </brush>
           </colorrole>
+          <colorrole role="PlaceholderText">
+           <brush brushstyle="NoBrush">
+            <color alpha="128">
+             <red>255</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
          </disabled>
         </palette>
        </property>
@@ -1808,159 +1835,6 @@ Run</string>
      <attribute name="title">
       <string>Diagnostics</string>
      </attribute>
-     <widget class="QGroupBox" name="d_refmanip_box">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>341</width>
-        <height>151</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>Reference Manipulation</string>
-      </property>
-      <widget class="QDoubleSpinBox" name="d_refman_vertrical_stretch">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>40</y>
-         <width>71</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="d_use_ref_manip">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>101</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Use Manipulation</string>
-       </property>
-       <property name="autoExclusive">
-        <bool>false</bool>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_42">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>40</y>
-         <width>101</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Vertical Stretch</string>
-       </property>
-      </widget>
-      <widget class="QDoubleSpinBox" name="d_refman_vertical_offset">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>60</y>
-         <width>71</width>
-         <height>22</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QDoubleSpinBox" name="d_refman_horiz_offset">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>80</y>
-         <width>71</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="minimum">
-        <double>-50.000000000000000</double>
-       </property>
-      </widget>
-      <widget class="QDoubleSpinBox" name="d_refman_scale_center">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>100</y>
-         <width>71</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="maximum">
-        <double>1200.000000000000000</double>
-       </property>
-      </widget>
-      <widget class="QDoubleSpinBox" name="d_refman_scale_factor">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>120</y>
-         <width>71</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="decimals">
-        <number>3</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_43">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>60</y>
-         <width>101</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Vertical Offset</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_44">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>80</y>
-         <width>101</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Horizontal Offset</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_45">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>100</y>
-         <width>101</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Scale Center</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_46">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>120</y>
-         <width>101</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Scale Factor</string>
-       </property>
-      </widget>
-     </widget>
      <widget class="QGroupBox" name="d_calib_box">
       <property name="geometry">
        <rect>
@@ -2128,22 +2002,6 @@ Run</string>
         <double>100000.000000000000000</double>
        </property>
       </widget>
-      <widget class="QDoubleSpinBox" name="d_long_t0">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>40</y>
-         <width>71</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhDigitsOnly</set>
-       </property>
-       <property name="maximum">
-        <double>1000000.000000000000000</double>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_35">
        <property name="geometry">
         <rect>
@@ -2155,19 +2013,6 @@ Run</string>
        </property>
        <property name="text">
         <string>Short Time Zero</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_36">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>40</y>
-         <width>91</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Long Time Zero</string>
        </property>
       </widget>
       <widget class="QComboBox" name="d_delay_type_list">
@@ -2216,7 +2061,7 @@ Run</string>
         </rect>
        </property>
        <property name="maximum">
-        <number>2000</number>
+        <number>65535</number>
        </property>
       </widget>
       <widget class="QComboBox" name="d_display_mode">
@@ -2263,48 +2108,6 @@ Run</string>
        </property>
        <property name="text">
         <string>Display Mode Spectra</string>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="d_use_ir_gain">
-       <property name="geometry">
-        <rect>
-         <x>210</x>
-         <y>20</y>
-         <width>111</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>IR Gain</string>
-       </property>
-      </widget>
-      <widget class="QDoubleSpinBox" name="d_disco_t0">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>60</y>
-         <width>71</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="inputMethodHints">
-        <set>Qt::ImhDigitsOnly</set>
-       </property>
-       <property name="maximum">
-        <double>1000000.000000000000000</double>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_38">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>60</y>
-         <width>91</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Disco Time Zero</string>
        </property>
       </widget>
      </widget>
@@ -2488,84 +2291,6 @@ Run</string>
       <property name="title">
        <string>Other</string>
       </property>
-      <widget class="QCheckBox" name="d_use_linear_corr">
-       <property name="geometry">
-        <rect>
-         <x>60</x>
-         <y>20</y>
-         <width>161</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Use Linear Pixel Correction</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="d_threshold_pixel">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>70</y>
-         <width>71</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="maximum">
-        <number>1200</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_51">
-       <property name="geometry">
-        <rect>
-         <x>90</x>
-         <y>70</y>
-         <width>81</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Threshold Pixel</string>
-       </property>
-      </widget>
-      <widget class="QSpinBox" name="d_threshold_value">
-       <property name="geometry">
-        <rect>
-         <x>180</x>
-         <y>70</y>
-         <width>71</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="maximum">
-        <number>100000</number>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_52">
-       <property name="geometry">
-        <rect>
-         <x>260</x>
-         <y>70</y>
-         <width>81</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Threshold Value</string>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="d_use_reference">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>20</y>
-         <width>101</width>
-         <height>17</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Use Reference</string>
-       </property>
-      </widget>
       <widget class="QPushButton" name="d_set_linear_corr_btn">
        <property name="geometry">
         <rect>
@@ -2582,8 +2307,8 @@ Run</string>
       <widget class="QCheckBox" name="d_use_avg_off_shots">
        <property name="geometry">
         <rect>
-         <x>220</x>
-         <y>40</y>
+         <x>200</x>
+         <y>50</y>
          <width>121</width>
          <height>17</height>
         </rect>
@@ -2644,16 +2369,6 @@ Run</string>
         <x>360</x>
         <y>410</y>
         <width>701</width>
-        <height>391</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="PlotWidget" name="d_trigger_graph">
-      <property name="geometry">
-       <rect>
-        <x>1060</x>
-        <y>20</y>
-        <width>511</width>
         <height>391</height>
        </rect>
       </property>
@@ -2755,7 +2470,7 @@ Run</string>
         </rect>
        </property>
        <property name="maximum">
-        <number>1200</number>
+        <number>2048</number>
        </property>
       </widget>
       <widget class="QSpinBox" name="d_cutoff_pixel_low">
@@ -2918,6 +2633,15 @@ Run</string>
             </color>
            </brush>
           </colorrole>
+          <colorrole role="PlaceholderText">
+           <brush brushstyle="NoBrush">
+            <color alpha="128">
+             <red>255</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
          </active>
          <inactive>
           <colorrole role="WindowText">
@@ -3055,6 +2779,15 @@ Run</string>
             </color>
            </brush>
           </colorrole>
+          <colorrole role="PlaceholderText">
+           <brush brushstyle="NoBrush">
+            <color alpha="128">
+             <red>255</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
          </inactive>
          <disabled>
           <colorrole role="WindowText">
@@ -3186,6 +2919,15 @@ Run</string>
           <colorrole role="ToolTipText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
+             <red>255</red>
+             <green>0</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+          <colorrole role="PlaceholderText">
+           <brush brushstyle="NoBrush">
+            <color alpha="128">
              <red>255</red>
              <green>0</green>
              <blue>0</blue>
@@ -3393,7 +3135,7 @@ background-color: rgb(255, 255, 255);</string>
      <x>0</x>
      <y>0</y>
      <width>1800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
