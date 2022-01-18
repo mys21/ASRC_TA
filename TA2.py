@@ -74,11 +74,11 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.plot_log_t.toggled.connect(self.update_plot_log_t)
         self.ui.plot_timescale.toggled.connect(self.update_plot_timescale)
         
-        self.ui.d_refman_vertrical_stretch.valueChanged.connect(self.update_refman)
-        self.ui.d_refman_vertical_offset.valueChanged.connect(self.update_refman)
-        self.ui.d_refman_horiz_offset.valueChanged.connect(self.update_refman)
-        self.ui.d_refman_scale_center.valueChanged.connect(self.update_refman)
-        self.ui.d_refman_scale_factor.valueChanged.connect(self.update_refman)
+        #self.ui.d_refman_vertrical_stretch.valueChanged.connect(self.update_refman)
+        #self.ui.d_refman_vertical_offset.valueChanged.connect(self.update_refman)
+        #self.ui.d_refman_horiz_offset.valueChanged.connect(self.update_refman)
+        #self.ui.d_refman_scale_center.valueChanged.connect(self.update_refman)
+        #self.ui.d_refman_scale_factor.valueChanged.connect(self.update_refman)
         
         self.ui.d_use_calib.toggled.connect(self.update_d_use_calib)
         self.ui.d_calib_pixel_low.valueChanged.connect(self.update_d_calib)
@@ -101,7 +101,7 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.d_display_mode.addItem('Average')
         self.ui.d_display_mode.addItem('Raw')
         self.ui.d_display_mode_spectra.addItem('Probe')
-        self.ui.d_display_mode_spectra.addItem('[Reference]')
+        #self.ui.d_display_mode_spectra.addItem('[Reference]')
         self.ui.d_time.valueChanged.connect(self.update_d_time)
         self.ui.d_move_to_time_btn.clicked.connect(self.exec_d_move_to_time)
         #self.ui.d_threshold_pixel.valueChanged.connect(self.update_threshold)
@@ -139,8 +139,8 @@ class Editor(QtWidgets.QMainWindow):
         #self.ui.d_use_ir_gain.setChecked(False)
         
         if preloaded is False:
-            self.ui.cutoff_pixel_low.setValue(100)
-            self.ui.cutoff_pixel_high.setValue(400)
+            self.ui.cutoff_pixel_low.setValue(0)
+            self.ui.cutoff_pixel_high.setValue(2048)
             self.ui.calib_pixel_low.setValue(100)
             self.ui.calib_pixel_high.setValue(400)
             self.ui.calib_wave_low.setValue(500)
@@ -157,11 +157,11 @@ class Editor(QtWidgets.QMainWindow):
             #self.ui.disco_t0.setValue(10000)
             self.ui.kinetic_pixel.setValue(0)
             self.ui.spectra_timestep.setValue(0)
-            self.ui.d_refman_horiz_offset.setValue(0)
-            self.ui.d_refman_scale_center.setValue(250)
-            self.ui.d_refman_scale_factor.setValue(1)
-            self.ui.d_refman_vertical_offset.setValue(0)
-            self.ui.d_refman_vertrical_stretch.setValue(1)
+            #self.ui.d_refman_horiz_offset.setValue(0)
+            #self.ui.d_refman_scale_center.setValue(250)
+            #self.ui.d_refman_scale_factor.setValue(1)
+            #self.ui.d_refman_vertical_offset.setValue(0)
+            #self.ui.d_refman_vertrical_stretch.setValue(1)
             #self.ui.d_use_linear_corr.setChecked(1)
             #self.ui.d_threshold_pixel.setValue(554)
             #self.ui.d_threshold_value.setValue(15000)
@@ -185,11 +185,11 @@ class Editor(QtWidgets.QMainWindow):
             #self.ui.disco_t0.setValue(pl[25])
             self.ui.kinetic_pixel.setValue(0)
             self.ui.spectra_timestep.setValue(0)
-            self.ui.d_refman_horiz_offset.setValue(pl[17])
-            self.ui.d_refman_scale_center.setValue(pl[18])
-            self.ui.d_refman_scale_factor.setValue(pl[19])
-            self.ui.d_refman_vertical_offset.setValue(pl[20])
-            self.ui.d_refman_vertrical_stretch.setValue(pl[21])
+            #self.ui.d_refman_horiz_offset.setValue(pl[17])
+            #self.ui.d_refman_scale_center.setValue(pl[18])
+            #self.ui.d_refman_scale_factor.setValue(pl[19])
+            #self.ui.d_refman_vertical_offset.setValue(pl[20])
+            #self.ui.d_refman_vertrical_stretch.setValue(pl[21])
             #self.ui.d_threshold_pixel.setValue(pl[22])
             #self.ui.d_threshold_value.setValue(pl[23])
             self.ui.d_time.setValue(1)
@@ -218,14 +218,14 @@ class Editor(QtWidgets.QMainWindow):
                         #self.ui.long_t0.value(),
                         self.ui.kinetic_pixel.value(),
                         self.ui.spectra_timestep.value(),
-                        self.ui.d_refman_horiz_offset.value(),
-                        self.ui.d_refman_scale_center.value(),
-                        self.ui.d_refman_scale_factor.value(),
-                        self.ui.d_refman_vertical_offset.value(),
-                        self.ui.d_refman_vertrical_stretch.value(),
+                        #self.ui.d_refman_horiz_offset.value(),
+                        #self.ui.d_refman_scale_center.value(),
+                        #self.ui.d_refman_scale_factor.value(),
+                        #self.ui.d_refman_vertical_offset.value(),
+                        #self.ui.d_refman_vertrical_stretch.value(),
                         #self.ui.d_threshold_pixel.value(),
                         #self.ui.d_threshold_value.value(),
-                        self.ui.d_time.value(),
+                        self.ui.d_time.value()])
                         #self.ui.disco_t0.value()])
         np.savetxt(self.lif,output,newline='\r\n')
 
@@ -876,9 +876,9 @@ class Editor(QtWidgets.QMainWindow):
         #    self.current_data.average_refd_shots()
         #    self.high_dtt = self.current_data.calculate_dtt(use_reference=True,cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked(),max_dtt=np.abs(self.ui.d_max_dtt.value()))
         #    self.current_data.calculate_dtt_error(use_reference=True,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
-        else:
-            self.high_dtt = self.current_data.calculate_dtt(cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked(),max_dtt=np.abs(self.ui.d_max_dtt.value()))
-            self.current_data.calculate_dtt_error(use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
+        #else:
+        self.high_dtt = self.current_data.calculate_dtt(cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked(),max_dtt=np.abs(self.ui.d_max_dtt.value()))
+        self.current_data.calculate_dtt_error(use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
         
 # =============================================================================
 #         if self.delay_type == 2:
@@ -1143,9 +1143,9 @@ class Editor(QtWidgets.QMainWindow):
         #    self.current_data.average_refd_shots()
         #    self.current_data.calculate_dtt(use_reference=True,cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
         #    self.current_data.calculate_dtt_error(use_reference=True,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
-        else:
-            self.current_data.calculate_dtt(cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
-            self.current_data.calculate_dtt_error(use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
+        #else:
+        self.current_data.calculate_dtt(cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
+        self.current_data.calculate_dtt_error(use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
 
         self.create_plot_waves_and_times()
         self.d_ls_plot()
@@ -1289,7 +1289,7 @@ class Editor(QtWidgets.QMainWindow):
         
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    last_instance_filename = r'/Users/siedahhall/Desktop/ASRC_TA-Development/last_instance_values.txt'
+    last_instance_filename = r'C:\Users\mysfe\OneDrive\Desktop\ASRC_TA\last_instance_values.txt'
     try:
         last_instance_values = np.genfromtxt(last_instance_filename)
         ex = Editor(last_instance_filename,pl=last_instance_values,preloaded=True)

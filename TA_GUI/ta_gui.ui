@@ -61,7 +61,7 @@
      </palette>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="acquire_tab">
      <attribute name="title">
@@ -962,6 +962,9 @@
        </property>
       </widget>
       <widget class="QCheckBox" name="use_calib">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -1355,7 +1358,7 @@ Run</string>
         </rect>
        </property>
        <property name="maximum">
-        <number>1200</number>
+        <number>2048</number>
        </property>
       </widget>
       <widget class="QSpinBox" name="cutoff_pixel_low">
@@ -1368,7 +1371,7 @@ Run</string>
         </rect>
        </property>
        <property name="maximum">
-        <number>1200</number>
+        <number>2048</number>
        </property>
       </widget>
       <widget class="QLabel" name="label_50">
@@ -2483,7 +2486,7 @@ Run</string>
         </rect>
        </property>
        <property name="maximum">
-        <number>1200</number>
+        <number>2048</number>
        </property>
       </widget>
       <widget class="QLabel" name="label_49">

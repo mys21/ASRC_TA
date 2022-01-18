@@ -133,7 +133,7 @@ class ta_data_processing:
             print('High dtt! '+str(datetime.datetime.now()))
         return high_dtt
         
-    def calculate_dtt_error(self,use_reference=True,use_avg_off_shots=True):
+    def calculate_dtt_error(self,use_reference=False,use_avg_off_shots=True):
         '''calculates standard deviation of the dtt array'''
         if use_reference is True:
             if use_avg_off_shots is True:
