@@ -13,7 +13,7 @@ from TA2_camera import octoplus
 from ta_data_processing_class import ta_data_processing
 from sweep_processing_class import sweep_processing
 
-from delay_class import esp301_delay_stage, pink_laser_delay, disco_laser_delay
+from delay_class import esp301_delay_stage
 
 class Editor(QtWidgets.QMainWindow):
     def __init__(self,lif,pl=np.zeros((50,1)),preloaded=False):        
@@ -45,13 +45,13 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.timefile_new_params_btn.clicked.connect(self.exec_timefile_new_params_btn)
         
         self.ui.short_t0.valueChanged.connect(self.update_short_t0)
-        self.ui.long_t0.valueChanged.connect(self.update_long_t0)
+        #self.ui.long_t0.valueChanged.connect(self.update_long_t0)
         #self.ui.disco_t0.valueChanged.connect(self.update_disco_t0)
         self.ui.num_shots.valueChanged.connect(self.update_num_shots)  
         self.ui.num_sweeps.valueChanged.connect(self.update_num_sweeps)
         self.ui.delay_type_list.currentIndexChanged.connect(self.update_delay_type)
         self.ui.delay_type_list.addItem('Short')
-        self.ui.delay_type_list.addItem('Long')
+        #self.ui.delay_type_list.addItem('Long')
         #self.ui.delay_type_list.addItem('Disco')
         
         self.ui.use_calib.toggled.connect(self.update_use_calib)
@@ -91,12 +91,12 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.d_cutoff_pixel_high.valueChanged.connect(self.update_d_cutoff)
         
         self.ui.d_short_t0.valueChanged.connect(self.update_d_short_t0)
-        self.ui.d_long_t0.valueChanged.connect(self.update_d_long_t0)
+        #self.ui.d_long_t0.valueChanged.connect(self.update_d_long_t0)
         #self.ui.d_disco_t0.valueChanged.connect(self.update_d_disco_t0)
         self.ui.d_num_shots.valueChanged.connect(self.update_d_num_shots)
         self.ui.d_delay_type_list.currentIndexChanged.connect(self.update_d_delay_type)
         self.ui.d_delay_type_list.addItem('Short')
-        self.ui.d_delay_type_list.addItem('Long')
+        #self.ui.d_delay_type_list.addItem('Long')
         #self.ui.d_delay_type_list.addItem('Disco')
         self.ui.d_display_mode.addItem('Average')
         self.ui.d_display_mode.addItem('Raw')
@@ -135,17 +135,17 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.plot_log_t.toggle()
         self.ui.plot_timescale.toggle()
         #self.ui.d_use_linear_corr.setChecked(False)
-        self.ui.d_use_reference.setChecked(False)
+        #self.ui.d_use_reference.setChecked(False)
         #self.ui.d_use_ir_gain.setChecked(False)
         
         if preloaded is False:
-            self.ui.cutoff_pixel_low.setValue(0)
-            self.ui.cutoff_pixel_high.setValue(2048)
+            self.ui.cutoff_pixel_low.setValue(100)
+            self.ui.cutoff_pixel_high.setValue(400)
             self.ui.calib_pixel_low.setValue(100)
             self.ui.calib_pixel_high.setValue(400)
             self.ui.calib_wave_low.setValue(500)
             self.ui.calib_wave_high.setValue(800)
-            self.ui.num_shots.setValue(1000)
+            self.ui.num_shots.setValue(200)
             self.ui.num_sweeps.setValue(500)
             self.ui.kinetic_pixel.setValue(100)
             self.ui.spectra_timestep.setValue(4)
@@ -153,7 +153,7 @@ class Editor(QtWidgets.QMainWindow):
             self.ui.d_display_mode.setCurrentIndex(0)
             self.ui.d_display_mode_spectra.setCurrentIndex(0)
             self.ui.short_t0.setValue(1800)
-            self.ui.long_t0.setValue(999995)
+            #self.ui.long_t0.setValue(999995)
             #self.ui.disco_t0.setValue(10000)
             self.ui.kinetic_pixel.setValue(0)
             self.ui.spectra_timestep.setValue(0)
@@ -181,7 +181,7 @@ class Editor(QtWidgets.QMainWindow):
             self.ui.d_display_mode.setCurrentIndex(pl[11])
             self.ui.d_display_mode_spectra.setCurrentIndex(pl[12])
             self.ui.short_t0.setValue(pl[13])
-            self.ui.long_t0.setValue(pl[14])
+            #self.ui.long_t0.setValue(pl[14])
             #self.ui.disco_t0.setValue(pl[25])
             self.ui.kinetic_pixel.setValue(0)
             self.ui.spectra_timestep.setValue(0)
@@ -215,7 +215,7 @@ class Editor(QtWidgets.QMainWindow):
                         self.ui.d_display_mode.currentIndex(),
                         self.ui.d_display_mode_spectra.currentIndex(),
                         self.ui.short_t0.value(),
-                        self.ui.long_t0.value(),
+                        #self.ui.long_t0.value(),
                         self.ui.kinetic_pixel.value(),
                         self.ui.spectra_timestep.value(),
                         self.ui.d_refman_horiz_offset.value(),
@@ -225,7 +225,7 @@ class Editor(QtWidgets.QMainWindow):
                         self.ui.d_refman_vertrical_stretch.value(),
                         #self.ui.d_threshold_pixel.value(),
                         #self.ui.d_threshold_value.value(),
-                        self.ui.d_time.value()])
+                        self.ui.d_time.value(),
                         #self.ui.disco_t0.value()])
         np.savetxt(self.lif,output,newline='\r\n')
 
@@ -254,9 +254,9 @@ class Editor(QtWidgets.QMainWindow):
         if self.delay_type == 0:
             self.metadata['delay type'] = 'Short'
             self.metadata['time zero'] = self.short_t0
-        if self.delay_type == 1:
-            self.metadata['delay type'] = 'Long'
-            self.metadata['time zero'] = self.long_t0
+        #if self.delay_type == 1:
+            #self.metadata['delay type'] = 'Long'
+            #self.metadata['time zero'] = self.long_t0
         #if self.delay_type == 2:
             #self.metadata['delay type'] = 'Disco'
             #self.metadata['timezero'] = self.disco_t0
@@ -267,9 +267,9 @@ class Editor(QtWidgets.QMainWindow):
         self.metadata['calib wave high'] = self.calib[3]
         self.metadata['cutoff low'] = self.cutoff[0]
         self.metadata['cutoff high'] = self.cutoff[1]
-        self.metadata['use reference'] = self.ui.d_use_reference.isChecked()
+        #self.metadata['use reference'] = self.ui.d_use_reference.isChecked()
         self.metadata['avg off shots'] = self.ui.d_use_avg_off_shots.isChecked()
-        self.metadata['use ref manip'] = self.ui.d_use_ref_manip.isChecked()
+        #self.metadata['use ref manip'] = self.ui.d_use_ref_manip.isChecked()
         self.metadata['use calib'] = self.ui.d_use_calib.isChecked()
         
         
@@ -312,7 +312,7 @@ class Editor(QtWidgets.QMainWindow):
         '''load times from timefile and store them'''
         self.times = np.genfromtxt(self.timefile_folder+'/'+self.timefile,dtype=float) #timefile to use for delay generator
         #if self.delay_type == 2:
-         #   self.disco_times = np.linspace(min(self.times),max(self.times),((max(self.times)-min(self.times))/self.bin_length)+1) #timefile to use for binning
+        #    self.disco_times = np.linspace(min(self.times),max(self.times),((max(self.times)-min(self.times))/self.bin_length)+1) #timefile to use for binning
         return
         
     def exec_timefile_new_blank_btn(self):
@@ -370,29 +370,29 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.short_t0.setValue(self.short_t0)
         return
         
-    def update_long_t0(self):
-        '''executes when the long time t0 is changed - keeps consistent between tabs'''
-        self.long_t0 = self.ui.long_t0.value()
-        self.ui.d_long_t0.setValue(self.long_t0)
-        return
+    #def update_long_t0(self):
+    #    '''executes when the long time t0 is changed - keeps consistent between tabs'''
+    #    self.long_t0 = self.ui.long_t0.value()
+    #    self.ui.d_long_t0.setValue(self.long_t0)
+    #    return
         
-    def update_d_long_t0(self):
-        '''diagnostics tab equivalent to update_long_t0'''
-        self.long_t0 = self.ui.d_long_t0.value()
-        self.ui.long_t0.setValue(self.long_t0)
-        return
+    #def update_d_long_t0(self):
+    #    '''diagnostics tab equivalent to update_long_t0'''
+    #    self.long_t0 = self.ui.d_long_t0.value()
+    #    self.ui.long_t0.setValue(self.long_t0)
+    #    return
     
-    def update_disco_t0(self):
-        '''executes when the disco time t0 is changed - keeps consistent between tabs'''
-        self.disco_t0 = self.ui.disco_t0.value()
-        self.ui.d_disco_t0.setValue(self.disco_t0)
-        return
+    #def update_disco_t0(self):
+    #    '''executes when the disco time t0 is changed - keeps consistent between tabs'''
+    #    self.disco_t0 = self.ui.disco_t0.value()
+    #    self.ui.d_disco_t0.setValue(self.disco_t0)
+    #    return
         
-    def update_d_disco_t0(self):
-        '''diagnostics tab equivalent to update_disco_t0'''
-        self.disco_t0 = self.ui.d_disco_t0.value()
-        self.ui.disco_t0.setValue(self.disco_t0)
-        return
+    #def update_d_disco_t0(self):
+    #    '''diagnostics tab equivalent to update_disco_t0'''
+    #    self.disco_t0 = self.ui.d_disco_t0.value()
+    #    self.ui.disco_t0.setValue(self.disco_t0)
+    #    return
         
     def update_num_shots(self):
         '''executes when the number of shotes is updated - note that this is total
@@ -523,34 +523,34 @@ class Editor(QtWidgets.QMainWindow):
         self.use_actual_times = self.ui.plot_timescale.isChecked()
         return
         
-    def update_refman(self):
-        '''stores referance manipulation data'''
-        self.refman = [self.ui.d_refman_vertrical_stretch.value(),
-                       self.ui.d_refman_vertical_offset.value(),
-                       self.ui.d_refman_horiz_offset.value(),
-                       self.ui.d_refman_scale_center.value(),
-                       self.ui.d_refman_scale_factor.value()]
-        return
+    #def update_refman(self):
+    #    '''stores referance manipulation data'''
+    #    self.refman = [self.ui.d_refman_vertrical_stretch.value(),
+    #                   self.ui.d_refman_vertical_offset.value(),
+    #                   self.ui.d_refman_horiz_offset.value(),
+    #                   self.ui.d_refman_scale_center.value(),
+    #                   self.ui.d_refman_scale_factor.value()]
+    #    return
         
-    def update_threshold(self):
-        '''stores threshold information for tiggering'''
-        self.threshold = [self.ui.d_threshold_pixel.value(),
-                          self.ui.d_threshold_value.value()]
-        return
+    #def update_threshold(self):
+    #    '''stores threshold information for tiggering'''
+    #    self.threshold = [self.ui.d_threshold_pixel.value(),
+    #                      self.ui.d_threshold_value.value()]
+    #    return
         
     def update_d_time(self):
         '''stores time to move to in diagnostics'''
         self.d_time = self.ui.d_time.value()
         return
         
-    def exec_d_set_linear_corr_btn(self):
-        '''exectues routine to recalculate linear pixel correction'''
-        try:
-            self.linear_corr = self.bgd.set_linear_pixel_correlation()
-            self.append_history('Successfully set linear pixel correction')
-            print(self.linear_corr)
-        except:
-            self.append_history('Error setting linear pixel correction')
+    #def exec_d_set_linear_corr_btn(self):
+    #    '''exectues routine to recalculate linear pixel correction'''
+    #    try:
+    #        self.linear_corr = self.bgd.set_linear_pixel_correlation()
+    #        self.append_history('Successfully set linear pixel correction')
+    #        print(self.linear_corr)
+    #    except:
+    #        self.append_history('Error setting linear pixel correction')
         
     def append_history(self,message):
         self.ui.history.appendPlainText(message)
@@ -586,9 +586,9 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.d_error_graph.plotItem.showAxis('top',show=True)
         self.ui.d_error_graph.plotItem.showAxis('right',show=True)
         
-        self.ui.d_trigger_graph.plotItem.setLabels(left='Trigger Signal',bottom='Shot')
-        self.ui.d_trigger_graph.plotItem.showAxis('top',show=True)
-        self.ui.d_trigger_graph.plotItem.showAxis('right',show=True)
+        #self.ui.d_trigger_graph.plotItem.setLabels(left='Trigger Signal',bottom='Shot')
+        #self.ui.d_trigger_graph.plotItem.showAxis('top',show=True)
+        #self.ui.d_trigger_graph.plotItem.showAxis('right',show=True)
         
         self.ui.d_probe_ref_graph.plotItem.setLabels(left='Counts',bottom='Wavelength / Pixel')
         self.ui.d_probe_ref_graph.plotItem.showAxis('top',show=True)
@@ -631,9 +631,9 @@ class Editor(QtWidgets.QMainWindow):
             self.plot_dtt = self.current_sweep.avg_data[:]
         self.plot_ls = self.current_data.dtt[:]
         self.plot_probe_shot_error = self.current_data.probe_shot_error[:]
-        if self.ui.d_use_reference.isChecked() is True:
-            self.plot_ref_shot_error = self.current_data.ref_shot_error[:]
-            self.plot_dtt_error = self.current_data.dtt_error[:]
+        #if self.ui.d_use_reference.isChecked() is True:
+        #    self.plot_ref_shot_error = self.current_data.ref_shot_error[:]
+        #    self.plot_dtt_error = self.current_data.dtt_error[:]
         self.plot_probe_on = self.current_data.probe_on[:]
         self.plot_reference_on = self.current_data.reference_on[:]
         self.plot_probe_on_array = self.current_data.probe_on_array[:]
@@ -644,9 +644,9 @@ class Editor(QtWidgets.QMainWindow):
                 self.plot_dtt = self.plot_dtt[:,self.cutoff[0]:self.cutoff[1]]
             self.plot_ls = self.plot_ls[self.cutoff[0]:self.cutoff[1]]
             self.plot_probe_shot_error = self.plot_probe_shot_error[self.cutoff[0]:self.cutoff[1]]
-            if self.ui.d_use_reference.isChecked() is True:
-                self.plot_ref_shot_error = self.plot_ref_shot_error[self.cutoff[0]:self.cutoff[1]]
-                self.plot_dtt_error = self.plot_dtt_error[self.cutoff[0]:self.cutoff[1]]
+            #if self.ui.d_use_reference.isChecked() is True:
+            #    self.plot_ref_shot_error = self.plot_ref_shot_error[self.cutoff[0]:self.cutoff[1]]
+            #    self.plot_dtt_error = self.plot_dtt_error[self.cutoff[0]:self.cutoff[1]]
             self.plot_probe_on = self.plot_probe_on[self.cutoff[0]:self.cutoff[1]]
             self.plot_reference_on = self.plot_reference_on[self.cutoff[0]:self.cutoff[1]]
             self.plot_probe_on_array = self.plot_probe_on_array[:,self.cutoff[0]:self.cutoff[1]]
@@ -701,21 +701,21 @@ class Editor(QtWidgets.QMainWindow):
         '''error plot on diagnostics tab'''
         try:
             self.ui.d_error_graph.plotItem.plot(self.plot_waves,np.log10(self.plot_probe_shot_error),pen='r',clear=True,fillBrush='r')
-            if self.ui.d_use_reference.isChecked() is True:         
-                self.ui.d_error_graph.plotItem.plot(self.plot_waves,np.log10(self.plot_ref_shot_error),pen='g',clear=False,fillBrush='g')    
-                self.ui.d_error_graph.plotItem.plot(self.plot_waves,np.log10(self.plot_dtt_error),pen='b',clear=False,fillBrush='b')
+            #if self.ui.d_use_reference.isChecked() is True:
+            #    self.ui.d_error_graph.plotItem.plot(self.plot_waves,np.log10(self.plot_ref_shot_error),pen='g',clear=False,fillBrush='g')
+            #    self.ui.d_error_graph.plotItem.plot(self.plot_waves,np.log10(self.plot_dtt_error),pen='b',clear=False,fillBrush='b')
         except:
             self.append_history('Error plotting error!')
         self.ui.d_error_graph.plotItem.setYRange(-4,1,padding=0)
         return
         
-    def d_trigger_plot(self):
-        '''trigger plot on diagnostics tab'''
-        try:
-            self.ui.d_trigger_graph.plotItem.plot(np.arange(self.num_shots),self.current_data.trigger,pen=None,symbol='o',clear=True)
-        except:
-            self.append_history('Error Plotting Trigger')
-        return
+    #def d_trigger_plot(self):
+    #    '''trigger plot on diagnostics tab'''
+    #    try:
+    #        self.ui.d_trigger_graph.plotItem.plot(np.arange(self.num_shots),self.current_data.trigger,pen=None,symbol='o',clear=True)
+    #    except:
+    #        self.append_history('Error Plotting Trigger')
+    #    return
         
     def d_probe_ref_plot(self):
         '''probe and reference spectra plot on diagnostics tab'''
@@ -724,8 +724,8 @@ class Editor(QtWidgets.QMainWindow):
         try:
             if self.ui.d_display_mode.currentIndex() == 0:
                 self.ui.d_probe_ref_graph.plotItem.plot(self.plot_waves,self.plot_probe_on,pen='r')
-                if self.ui.d_use_reference.isChecked() is True:
-                    self.ui.d_probe_ref_graph.plotItem.plot(self.plot_waves,self.plot_reference_on,pen='b')
+                #if self.ui.d_use_reference.isChecked() is True:
+                #    self.ui.d_probe_ref_graph.plotItem.plot(self.plot_waves,self.plot_reference_on,pen='b')
             if self.ui.d_display_mode.currentIndex() == 1:
                 if self.ui.d_display_mode_spectra.currentIndex() == 0:
                     for spec in self.plot_probe_on_array:
@@ -820,7 +820,7 @@ class Editor(QtWidgets.QMainWindow):
             self.ui.d_time_box.setDisabled(True)
             self.ui.d_other_box.setDisabled(True)
             self.ui.d_calib_box.setDisabled(True)
-            self.ui.d_refmanip_box.setDisabled(True)
+            #self.ui.d_refmanip_box.setDisabled(True)
             self.ui.d_acquire_options_box.setDisabled(True)
         return
             
@@ -834,7 +834,7 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.timefile_box.setDisabled(False)
         self.ui.acquire_options_box.setDisabled(False)
         self.ui.calib_box.setDisabled(False)
-        self.ui.d_refmanip_box.setDisabled(False)
+        #self.ui.d_refmanip_box.setDisabled(False)
         self.ui.d_acquire_options_box.setDisabled(False)
         self.ui.d_other_box.setDisabled(False)
         self.ui.d_calib_box.setDisabled(False)
@@ -868,17 +868,17 @@ class Editor(QtWidgets.QMainWindow):
         self.high_trig_std = self.current_data.separate_on_off(self.tau_flip_request)
         if self.ui.test_run_btn.isChecked() is False:
             self.current_data.sub_bgd(self.bgd)
-        if self.ui.d_use_ref_manip.isChecked() is True:
-            self.current_data.manipulate_reference(self.refman)
+        #if self.ui.d_use_ref_manip.isChecked() is True:
+        #    self.current_data.manipulate_reference(self.refman)
         self.current_data.average_shots()
-        if self.ui.d_use_reference.isChecked() is True:
-            self.current_data.correct_probe_with_reference()
-            self.current_data.average_refd_shots()
-            self.high_dtt = self.current_data.calculate_dtt(use_reference=True,cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked(),max_dtt=np.abs(self.ui.d_max_dtt.value()))
-            self.current_data.calculate_dtt_error(use_reference=True,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
+        #if self.ui.d_use_reference.isChecked() is True:
+        #    self.current_data.correct_probe_with_reference()
+        #    self.current_data.average_refd_shots()
+        #    self.high_dtt = self.current_data.calculate_dtt(use_reference=True,cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked(),max_dtt=np.abs(self.ui.d_max_dtt.value()))
+        #    self.current_data.calculate_dtt_error(use_reference=True,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
         else:
-            self.high_dtt = self.current_data.calculate_dtt(use_reference=False,cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked(),max_dtt=np.abs(self.ui.d_max_dtt.value()))
-            self.current_data.calculate_dtt_error(use_reference=False,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
+            self.high_dtt = self.current_data.calculate_dtt(cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked(),max_dtt=np.abs(self.ui.d_max_dtt.value()))
+            self.current_data.calculate_dtt_error(use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
         
 # =============================================================================
 #         if self.delay_type == 2:
@@ -953,7 +953,7 @@ class Editor(QtWidgets.QMainWindow):
         #        self.bgd_data.linear_pixel_correlation(self.linear_corr)
         #    except:
         #        self.append_history('Error using linear pixel correction')
-        #self.bgd.separate_on_off(self.threshold)
+        self.bgd.separate_on_off(self.tau_flip_request)
         self.bgd.average_shots() 
         self.camera.Exit()
         self.run()          
@@ -976,13 +976,13 @@ class Editor(QtWidgets.QMainWindow):
         if self.delay_type == 0:
             self.append_history('Connecting to delay stage')
             self.delay = esp301_delay_stage(self.short_t0)
-        if self.delay_type == 1:
-            self.append_history('Connecting to delay generator')
-            self.delay = pink_laser_delay(self.long_t0)
+        #if self.delay_type == 1:
+        #    self.append_history('Connecting to delay generator')
+        #    self.delay = pink_laser_delay(self.long_t0)
         #if self.delay_type == 2:
-            #self.append_history('Connecting to delay generator')
-            #self.delay = disco_laser_delay(self.disco_t0,"COM3",38400)
-            
+        #    self.append_history('Connecting to delay generator')
+        #    self.delay = disco_laser_delay(self.disco_t0,"COM3",38400)
+        
         if self.delay.initialized is False:
             self.append_history('Stage Not Initialized Correctly')
             self.idling()
@@ -1135,17 +1135,17 @@ class Editor(QtWidgets.QMainWindow):
         self.current_data.separate_on_off(self.tau_flip_request)
         if self.ui.test_run_btn.isChecked() is False:
             self.current_data.sub_bgd(self.bgd)
-        if self.ui.d_use_ref_manip.isChecked() is True:
-            self.current_data.manipulate_reference(self.refman)
+        #if self.ui.d_use_ref_manip.isChecked() is True:
+        #    self.current_data.manipulate_reference(self.refman)
         self.current_data.average_shots()
-        if self.ui.d_use_reference.isChecked() is True:
-            self.current_data.correct_probe_with_reference()
-            self.current_data.average_refd_shots()
-            self.current_data.calculate_dtt(use_reference=True,cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
-            self.current_data.calculate_dtt_error(use_reference=True,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
+        #if self.ui.d_use_reference.isChecked() is True:
+        #    self.current_data.correct_probe_with_reference()
+        #    self.current_data.average_refd_shots()
+        #    self.current_data.calculate_dtt(use_reference=True,cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
+        #    self.current_data.calculate_dtt_error(use_reference=True,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
         else:
-            self.current_data.calculate_dtt(use_reference=False,cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
-            self.current_data.calculate_dtt_error(use_reference=False,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
+            self.current_data.calculate_dtt(cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
+            self.current_data.calculate_dtt_error(use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
 
         self.create_plot_waves_and_times()
         self.d_ls_plot()
@@ -1203,12 +1203,12 @@ class Editor(QtWidgets.QMainWindow):
         if self.delay_type == 0:
             self.append_history('Connecting to delay stage')
             self.delay = esp301_delay_stage(self.short_t0)
-        if self.delay_type == 1:
-            self.append_history('Connecting to delay generator')
-            self.delay = pink_laser_delay(self.long_t0)
+        #if self.delay_type == 1:
+        #    self.append_history('Connecting to delay generator')
+        #    self.delay = pink_laser_delay(self.long_t0)
         #if self.delay_type == 2:
-            #self.append_history('Connecting to delay generator')
-            #self.delay = disco_laser_delay(self.disco_t0,"COM3",38400)
+        #    self.append_history('Connecting to delay generator')
+        #    self.delay = disco_laser_delay(self.disco_t0,"COM3",38400)
         
         if self.delay.initialized is False:
             self.append_history('Stage/DG Not Initialized Correctly')
@@ -1289,7 +1289,7 @@ class Editor(QtWidgets.QMainWindow):
         
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    last_instance_filename = r'C:\Users\Public\Documents\Python Scripts\PyTA\last_instance_values.txt'
+    last_instance_filename = r'/Users/siedahhall/Desktop/ASRC_TA-Development/last_instance_values.txt'
     try:
         last_instance_values = np.genfromtxt(last_instance_filename)
         ex = Editor(last_instance_filename,pl=last_instance_values,preloaded=True)
