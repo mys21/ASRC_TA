@@ -2294,19 +2294,6 @@ Run</string>
       <property name="title">
        <string>Other</string>
       </property>
-      <widget class="QPushButton" name="d_set_linear_corr_btn">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>41</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Set</string>
-       </property>
-      </widget>
       <widget class="QCheckBox" name="d_use_avg_off_shots">
        <property name="geometry">
         <rect>

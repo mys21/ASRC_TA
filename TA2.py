@@ -866,8 +866,8 @@ class Editor(QtWidgets.QMainWindow):
         #    except:
         #        self.append_history('Error using linear pixel correction')
         self.high_trig_std = self.current_data.separate_on_off(self.tau_flip_request)
-        if self.ui.test_run_btn.isChecked() is False:
-            self.current_data.sub_bgd(self.bgd)
+        #if self.ui.test_run_btn.isChecked() is False:		TEST_RUN_BTN DOES NOTHING
+            #self.current_data.sub_bgd(self.bgd)
         #if self.ui.d_use_ref_manip.isChecked() is True:
         #    self.current_data.manipulate_reference(self.refman)
         self.current_data.average_shots()
@@ -1002,23 +1002,23 @@ class Editor(QtWidgets.QMainWindow):
         self.num_pixels = self.camera.num_pixels
         self.camera.moveToThread(self.acquire_thread)
         self.camera.start_acquire.connect(self.camera.Acquire)
-        self.camera.data_ready.connect(self.post_acquire_bgd)
+        #self.camera.data_ready.connect(self.post_acquire_bgd)
         
-        if self.ui.test_run_btn.isChecked() is False:
-            #self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
-            self.camera.Initialize(lines_per_frame = self.num_shots)
-            self.message_block()
-            self.append_history('Taking Background')
-            self.acquire_bgd()
-        else:
-            self.run()
+        #if self.ui.test_run_btn.isChecked() is False:
+        #    #self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
+        #    self.camera.Initialize(lines_per_frame = self.num_shots)
+        #    self.message_block()
+        #    self.append_history('Taking Background')
+        #    self.acquire_bgd()
+        #else:
+        self.run()
         return
             
     def run(self):
         self.update_metadata()
         self.current_sweep = sweep_processing(self.times,self.num_pixels,self.filename,self.metadata)    
         
-        self.camera.data_ready.disconnect(self.post_acquire_bgd)
+        #self.camera.data_ready.disconnect(self.post_acquire_bgd)
         self.camera.data_ready.connect(self.post_acquire)
         self.camera.Initialize(lines_per_frame = self.num_shots)
         #self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
@@ -1133,8 +1133,8 @@ class Editor(QtWidgets.QMainWindow):
         #    except:
         #        self.append_history('Error using linear pixel correction')
         self.current_data.separate_on_off(self.tau_flip_request)
-        if self.ui.test_run_btn.isChecked() is False:
-            self.current_data.sub_bgd(self.bgd)
+        #if self.ui.test_run_btn.isChecked() is False:
+            #self.current_data.sub_bgd(self.bgd)
         #if self.ui.d_use_ref_manip.isChecked() is True:
         #    self.current_data.manipulate_reference(self.refman)
         self.current_data.average_shots()
@@ -1231,18 +1231,19 @@ class Editor(QtWidgets.QMainWindow):
         self.num_pixels = self.camera.num_pixels
         self.camera.moveToThread(self.acquire_thread)
         self.camera.start_acquire.connect(self.camera.Acquire)
-        self.camera.data_ready.connect(self.d_post_acquire_bgd)
+        #self.camera.data_ready.connect(self.d_post_acquire_bgd)
         
-        self.camera.Initialize(lines_per_frame = self.num_shots)
+        #self.camera.Initialize(lines_per_frame = self.num_shots)
         #self.camera.Initialize(number_of_scans=self.num_shots*10,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())
-        self.message_block()
-        self.append_history('Taking Background')
-        self.d_acquire_bgd()
+        #self.message_block()
+        #self.append_history('Taking Background')
+        #self.d_acquire_bgd()
+        self.d_run()	#Added function after removing connection with bgd
 
     def d_run(self):
         self.move(self.d_time)
         
-        self.camera.data_ready.disconnect(self.d_post_acquire_bgd)
+        #self.camera.data_ready.disconnect(self.d_post_acquire_bgd)
         self.camera.data_ready.connect(self.d_post_acquire)
         self.camera.Initialize(lines_per_frame = self.num_shots)
         #self.camera.Initialize(number_of_scans=self.num_shots,exposure_time_us=1,use_ir_gain=self.ui.d_use_ir_gain.isChecked())

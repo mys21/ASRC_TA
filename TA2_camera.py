@@ -80,7 +80,6 @@ class octoplus(QObject):
     start_acquire = pyqtSignal()																			
     data_ready = pyqtSignal(np.ndarray,np.ndarray,int,int)													
     @pyqtSlot()																							
-
     def Acquire(self):
         self.StartAcquisition()
         self.GetBuffer()
@@ -99,7 +98,6 @@ class octoplus(QObject):
 
     _exit = pyqtSignal()																					
     @pyqtSlot()																						
-
     def Exit(self):
         self.StopAcquisition()
         self.FlushBuffers()
