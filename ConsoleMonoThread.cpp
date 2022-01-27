@@ -54,6 +54,7 @@ int main(int argc, char * argv[])
 
 	//Fixed Registers
 	InitializeRegisters(0x1210C, TRIGGER_MODE);
+	//USB3_ReadRegister(hCamera, 0x1210C, &ulValue, &iSize);
 	InitializeRegisters(0x4F000018, CIRCULAR_BUFFER);
 	InitializeRegisters(0x4F000010, MAX_BULK_QUEUE_NUM);
 	InitializeRegisters(0x4F000000, ENABLE_CONTEXTUAL_DATA);

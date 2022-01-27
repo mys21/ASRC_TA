@@ -169,15 +169,16 @@ class sweep_processing:
             for key, item in self.metadata.items():
                 dset.attrs[key] = str(item).encode('ascii','ignore')
                     
-    def save_metadata_each_sweep(self,probe,reference,error):
+    #def save_metadata_each_sweep(self,probe,reference,error):
+    def save_metadata_each_sweep(self,probe,error):
         with h5py.File(self.hdf5_filename) as hdf5_file:
             dset = hdf5_file.create_dataset('Spectra/Sweep_'+str(self.sweep_index)+'_Probe_Spectrum',data=probe)
             dset.attrs['date'] = str(dt.datetime.now().date()).encode('ascii','ignore')
             dset.attrs['time'] = str(dt.datetime.now().time()).encode('ascii','ignore')
                 
-            dset2 = hdf5_file.create_dataset('Spectra/Sweep_'+str(self.sweep_index)+'_Reference_Spectrum',data=reference)
-            dset2.attrs['date'] = str(dt.datetime.now().date()).encode('ascii','ignore')
-            dset2.attrs['time'] = str(dt.datetime.now().time()).encode('ascii','ignore')
+            #dset2 = hdf5_file.create_dataset('Spectra/Sweep_'+str(self.sweep_index)+'_Reference_Spectrum',data=reference)
+            #dset2.attrs['date'] = str(dt.datetime.now().date()).encode('ascii','ignore')
+            #dset2.attrs['time'] = str(dt.datetime.now().time()).encode('ascii','ignore')
                 
             dset3 = hdf5_file.create_dataset('Spectra/Sweep_'+str(self.sweep_index)+'_Error_Spectrum',data=error)
             dset3.attrs['date'] = str(dt.datetime.now().date()).encode('ascii','ignore')

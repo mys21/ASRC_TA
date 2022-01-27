@@ -50,7 +50,7 @@ class octoplus(QObject):
         self.max_bulk_queue_number = 128
         self.line_period = 1111  # units of 10 ns
         self.pulse_width = 80  # units of 10 ns
-        self.timeout = c_ulong(5000)	# 5 s
+        self.timeout = c_ulong(10000)	# 10 s
         self.iNbOfBuffer = c_size_t(30)
         self.ulNbCameras = c_ulong()
         self.ulIndex = c_ulong(0)
@@ -58,6 +58,7 @@ class octoplus(QObject):
         self.hCamera = c_void_p()
         self.ImageInfos = tImageInfos()
         self.lines_per_frame = 1
+        self.readtest = 0
         
     # Combined methods to call camera
     def Initialize(self, lines_per_frame = 1000):
@@ -74,29 +75,52 @@ class octoplus(QObject):
         self.WriteRegister(0x12128, self.lines_per_frame)
         self.WriteRegister(0x12100, self.line_period)
         self.WriteRegister(0x1211C, self.pulse_width)
+
+		#Reading resgisters for debugging
+        print ("trigger mode: ")
+        self.ReadRegister(0x1210C, self.readtest)
+        print ("exposure_time: ")
+        self.ReadRegister(0x12108, self.readtest)
+        print ("max_bulk_queue_number: ")
+        self.ReadRegister(0x4F000010, self.readtest)
+        print ("lines_per_frame: ")
+        self.ReadRegister(0x12128, self.readtest)
+        print ("line_period: ")
+        self.ReadRegister(0x12100, self.readtest)
+        print ("pulse_width: ")
+        self.ReadRegister(0x1211C, self.readtest)
+        print ("enable_contextual_data: ")
+        self.ReadRegister(0x4F000000, self.readtest)
+
         self.SetImageParameters()
         return         
     
     start_acquire = pyqtSignal()																			
-    data_ready = pyqtSignal(np.ndarray,np.ndarray,int,int)													
+    #data_ready = pyqtSignal(np.ndarray,np.ndarray,int,int)
+    data_ready = pyqtSignal(np.ndarray,int,int)	
     @pyqtSlot()																							
     def Acquire(self):
         self.StartAcquisition()
         self.GetBuffer()
+        print ("missed triggers: ")
+        self.ReadRegister(0x12110, self.readtest)
         start=time.time()
         self.Construct_Data_Vec()
         end=time.time()
-        print(end-start)
+        #print(end-start)
         self.RequeueBuffer()
-        self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)					
+        #self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)	
+        self.data_ready.emit(self.probe,self.first_pixel,self.num_pixels)
+        #self.StopAcquisition()
+        #self.FlushBuffers()
         return 
 
     def Construct_Data_Vec(self):
         raw_data = cast(self.ImageInfos.pDatas, POINTER(c_ushort))
         self.probe = np.ctypeslib.as_array(raw_data, shape = (self.lines_per_frame, self.pixels))
-        self.reference = np.ones((self.lines_per_frame, self.pixels), dtype = np.uint16)	#no reference data from octoplus, this is filled with ones (dummy data)
+        #self.reference = np.ones((self.lines_per_frame, self.pixels), dtype = np.uint16)	#no reference data from octoplus, this is filled with ones (dummy data)
 
-    _exit = pyqtSignal()																					
+    _exit = pyqtSignal()									#commenting to test if the code runs less/more efficiently or if changes are negligible												
     @pyqtSlot()																						
     def Exit(self):
         self.StopAcquisition()
@@ -131,6 +155,14 @@ class octoplus(QObject):
         iSize = c_size_t(ulValue.__sizeof__())
         self.dll.USB3_WriteRegister.restype = c_size_t
         self.dll.USB3_WriteRegister(self.hCamera, ulAddress, byref(ulValue), byref(iSize))
+
+    def ReadRegister(self, nAddress, nValue):
+        ulAddress = c_ulong(nAddress)
+        ulValue = c_ulong(nValue)
+        iSize = c_size_t(ulValue.__sizeof__())
+        self.dll.USB3_ReadRegister.restype = c_size_t
+        self.dll.USB3_ReadRegister(self.hCamera, ulAddress, byref(ulValue), byref(iSize))
+        print(ulValue.value)
         
     def SetImageParameters(self):
         iImageHeight = c_size_t(self.lines_per_frame)
