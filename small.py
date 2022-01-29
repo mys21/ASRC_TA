@@ -19,6 +19,7 @@ class Editor(QtWidgets.QMainWindow):
 
         #connects buttons to functions
         self.ui.initializeButton.clicked.connect(self.exec_initialize_btn)
+        self.ui.exitCameraButton.clicked.connect(self.exec_exit_camera_btn)
         self.ui.linesPerFrame.textChanged.connect(self.update_lines_per_frame)
 
         #sets variables
@@ -58,7 +59,12 @@ class Editor(QtWidgets.QMainWindow):
         self.append_history("data processed")
         self.create_plots()
         self.append_history("plots created")
+
+        return
+
+    def exec_exit_camera_btn(self):
         self.camera.Exit()
+        self.append_history("camera closed")
         return
 
     def processing(self):
