@@ -59,7 +59,11 @@ class Editor(QtWidgets.QMainWindow):
         self.append_history("data processed")
         self.create_plots()
         self.append_history("plots created")
-        
+        return
+
+    def exec_exit_camera_btn(self):
+        self.camera.Exit()
+        self.append_history("camera closed")
         return
         
     def exec_exit_camera_btn(self):
