@@ -18,6 +18,10 @@ class tImagePixelType(IntEnum):
     def __init__(self, value):
 	    self._as_parameter = c_int(value)
 
+class tContextDataPerLine(Structure):
+    _fields_ = [("u16LineCounter", c_ushort),
+                ("u16NbMissedTriggers", c_ushort)]
+
 class tImageInfos(Structure):
     _fields_ = [("hBuffer", c_void_p),
 	            ("pDatas", c_void_p),
@@ -43,20 +47,21 @@ class octoplus(QObject):
         self.pixels = 2048 # including dummy pixels
         self.num_pixels = 2048
         self.first_pixel = 0
-        self.enable_contextual_data = 1
-        self.circular_buffer = 1
+        self.enable_contextual_data = 0
+        self.circular_buffer = 0
         self.trigger_mode = 1					#IMPORTANT: trigger_mode is set to 4 during experiments | for testing code trigger_mode is set to 1 (due to limited access to laser)
-        self.exposure_time = 132 # units of 10 ns 
+        self.exposure_time = 132 # units of 10 ns (636 for trigger mode 4)
         self.max_bulk_queue_number = 128
         self.line_period = 1111  # units of 10 ns
         self.pulse_width = 80  # units of 10 ns
         self.timeout = c_ulong(10000)	# 10 s
-        self.iNbOfBuffer = c_size_t(30)
+        self.iNbOfBuffer = c_size_t(10)
         self.ulNbCameras = c_ulong()
         self.ulIndex = c_ulong(0)
         self.CameraInfo = tCameraInfo()
         self.hCamera = c_void_p()
         self.ImageInfos = tImageInfos()
+        #self.ContextDataPerLine = tContextDataPerLine()
         self.lines_per_frame = 1
         self.readtest = 0
         
@@ -68,29 +73,29 @@ class octoplus(QObject):
         self.GetCameraInfo()
         self.OpenCamera()
         self.WriteRegister(0x4F000000, self.enable_contextual_data)
-        self.WriteRegister(0x4F000018, self.circular_buffer)
+        #self.WriteRegister(0x4F000018, self.circular_buffer)
         self.WriteRegister(0x1210C, self.trigger_mode)
         self.WriteRegister(0x12108, self.exposure_time)
-        self.WriteRegister(0x4F000010, self.max_bulk_queue_number)
+        #self.WriteRegister(0x4F000010, self.max_bulk_queue_number)
         self.WriteRegister(0x12128, self.lines_per_frame)
         self.WriteRegister(0x12100, self.line_period)
         self.WriteRegister(0x1211C, self.pulse_width)
 
 		#Reading resgisters for debugging
-        print ("trigger mode: ")
-        self.ReadRegister(0x1210C, self.readtest)
-        print ("exposure_time: ")
-        self.ReadRegister(0x12108, self.readtest)
-        print ("max_bulk_queue_number: ")
-        self.ReadRegister(0x4F000010, self.readtest)
-        print ("lines_per_frame: ")
-        self.ReadRegister(0x12128, self.readtest)
-        print ("line_period: ")
-        self.ReadRegister(0x12100, self.readtest)
-        print ("pulse_width: ")
-        self.ReadRegister(0x1211C, self.readtest)
-        print ("enable_contextual_data: ")
-        self.ReadRegister(0x4F000000, self.readtest)
+        #print ("trigger mode: ")
+        #self.ReadRegister(0x1210C, self.readtest)
+        #print ("exposure_time: ")
+        #self.ReadRegister(0x12108, self.readtest)
+        #print ("max_bulk_queue_number: ")
+        #self.ReadRegister(0x4F000010, self.readtest)
+        #print ("lines_per_frame: ")
+        #self.ReadRegister(0x12128, self.readtest)
+        #print ("line_period: ")
+        #self.ReadRegister(0x12100, self.readtest)
+        #print ("pulse_width: ")
+        #self.ReadRegister(0x1211C, self.readtest)
+        #print ("enable_contextual_data: ")
+        #self.ReadRegister(0x4F000000, self.readtest)
 
         self.SetImageParameters()
         return         
@@ -102,8 +107,9 @@ class octoplus(QObject):
     def Acquire(self):
         self.StartAcquisition()
         self.GetBuffer()
-        print ("missed triggers: ")
-        self.ReadRegister(0x12110, self.readtest)
+        self.FrameData()
+        #print ("missed triggers: ")
+        #self.ReadRegister(0x12110, self.readtest)
         start=time.time()
         self.Construct_Data_Vec()
         end=time.time()
@@ -118,14 +124,25 @@ class octoplus(QObject):
     def Construct_Data_Vec(self):
         raw_data = cast(self.ImageInfos.pDatas, POINTER(c_ushort))
         self.probe = np.ctypeslib.as_array(raw_data, shape = (self.lines_per_frame, self.pixels))
-        #self.reference = np.ones((self.lines_per_frame, self.pixels), dtype = np.uint16)	#no reference data from octoplus, this is filled with ones (dummy data)
+        #self.reference = np.ones((self.lines_per_frame, self.pixels), dtype = np.uint16)
 
-    _exit = pyqtSignal()									#commenting to test if the code runs less/more efficiently or if changes are negligible												
+    def FrameData(self):
+        print("Images Acquired: ", self.ImageInfos.iNbImageAcquired)
+        print("Lines lost: ", self.ImageInfos.iNbLineLost)
+        print("Missed triggers: ", self.ImageInfos.iNbMissedTriggers)
+        print("Valid lines from frame: ", self.ImageInfos.iFrameTriggerNbValidLines)
+        if self.ImageInfos.iCounterBufferStarvation!= 0:
+            print("Buffer Starvation!!!!!")
+      
+	
+
+    _exit = pyqtSignal()																				
     @pyqtSlot()																						
     def Exit(self):
         self.StopAcquisition()
         self.FlushBuffers()
         self.CloseCamera()
+        print("Camera Closed")
         self.TerminateLibrary()
         
     ###########################################################################
@@ -176,6 +193,11 @@ class octoplus(QObject):
     def GetBuffer(self):
         self.dll.USB3_GetBuffer.restype = POINTER(tImageInfos)
         self.dll.USB3_GetBuffer(self.hCamera, byref(self.ImageInfos), self.timeout)
+
+    def GetLineContextualData(self):
+        self.dll.USB3_GetLineContextualData.restype = POINTER(tContextDataPerLine)
+        self.dll.USB3_GetLineContextualData(self.hCamera, byref(self.ImageInfos), byref(self.ContextDataPerLine), self.ulLineNumber)
+        print(ContextDataPerLine.u16NbMissedTriggers)
 
     def RequeueBuffer(self):
         self.dll.USB3_RequeueBuffer.argtypes = c_void_p, c_void_p

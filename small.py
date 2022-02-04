@@ -19,6 +19,7 @@ class Editor(QtWidgets.QMainWindow):
 
         #connects buttons to functions
         self.ui.initializeButton.clicked.connect(self.exec_initialize_btn)
+        self.ui.exitCameraButton.clicked.connect(self.exec_exit_camera_btn)
         self.ui.linesPerFrame.textChanged.connect(self.update_lines_per_frame)
 
         #sets variables
@@ -58,12 +59,20 @@ class Editor(QtWidgets.QMainWindow):
         self.append_history("data processed")
         self.create_plots()
         self.append_history("plots created")
-        self.camera.Exit()
+        
         return
-
+        
+    def exec_exit_camera_btn(self):
+        try:
+            self.camera.Exit()
+            self.append_history("camera closed")
+        except:
+            self.append_history("error, probably camera isn't on")
+        return
+        
     def processing(self):
         start=time.time()
-        self.ta = ta_data_processing(self.camera.probe, self.camera.reference, self.camera.first_pixel, self.camera.num_pixels)
+        self.ta = ta_data_processing(self.camera.probe, self.camera.first_pixel, self.camera.num_pixels)
         self.ta.separate_on_off()
         self.ta.average_shots() #NOTE: average shots can only be called after separate_on_off
         end=time.time()
