@@ -588,7 +588,7 @@ class Editor(QtWidgets.QMainWindow):
         #except:
         #    self.append_history('Error plotting error!')
         #self.ui.d_error_graph.plotItem.setYRange(-4,1,padding=0)
-        self.append_history('Not plotting error!')
+        #self.append_history('Not plotting error!')
         return
         
     def d_probe_ref_plot(self):
@@ -760,7 +760,7 @@ class Editor(QtWidgets.QMainWindow):
 # =============================================================================
             
         
-        if (self.high_trig_std is False) and (self.high_dtt is False):
+        if self.high_dtt is False:
 # =============================================================================
 #             if self.delay_type == 2:
 #                 if self.binfail == True:

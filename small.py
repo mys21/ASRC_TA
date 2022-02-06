@@ -59,17 +59,24 @@ class Editor(QtWidgets.QMainWindow):
         self.append_history("data processed")
         self.create_plots()
         self.append_history("plots created")
-
         return
 
     def exec_exit_camera_btn(self):
         self.camera.Exit()
         self.append_history("camera closed")
         return
-
+        
+    def exec_exit_camera_btn(self):
+        try:
+            self.camera.Exit()
+            self.append_history("camera closed")
+        except:
+            self.append_history("error, probably camera isn't on")
+        return
+        
     def processing(self):
         start=time.time()
-        self.ta = ta_data_processing(self.camera.probe, self.camera.reference, self.camera.first_pixel, self.camera.num_pixels)
+        self.ta = ta_data_processing(self.camera.probe, self.camera.first_pixel, self.camera.num_pixels)
         self.ta.separate_on_off()
         self.ta.average_shots() #NOTE: average shots can only be called after separate_on_off
         end=time.time()
