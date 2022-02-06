@@ -36,10 +36,10 @@ class Ui_MainWindow(object):
         self.linesPerFrameLabel = QtWidgets.QLabel(self.centralwidget)
         self.linesPerFrameLabel.setGeometry(QtCore.QRect(130, 60, 121, 16))
         self.linesPerFrameLabel.setObjectName("linesPerFrameLabel")
-        self.pumpsOnPlot = QtWidgets.QGraphicsView(self.centralwidget)
+        self.pumpsOnPlot = PlotWidget(self.centralwidget)
         self.pumpsOnPlot.setGeometry(QtCore.QRect(100, 300, 301, 241))
         self.pumpsOnPlot.setObjectName("pumpsOnPlot")
-        self.pumpsOffPlot = QtWidgets.QGraphicsView(self.centralwidget)
+        self.pumpsOffPlot = PlotWidget(self.centralwidget)
         self.pumpsOffPlot.setGeometry(QtCore.QRect(410, 300, 311, 241))
         self.pumpsOffPlot.setObjectName("pumpsOffPlot")
         self.pumpOnLabel = QtWidgets.QLabel(self.centralwidget)
@@ -72,13 +72,4 @@ class Ui_MainWindow(object):
         self.pumpOnLabel.setText(_translate("MainWindow", "Avg Pumps On"))
         self.pumpOffLabel.setText(_translate("MainWindow", "Avg Pumps Off"))
         self.exitCameraButton.setText(_translate("MainWindow", "Exit Camera"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+from pyqtgraph import PlotWidget
