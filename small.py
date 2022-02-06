@@ -62,18 +62,13 @@ class Editor(QtWidgets.QMainWindow):
         return
 
     def exec_exit_camera_btn(self):
-        self.camera.Exit()
-        self.append_history("camera closed")
-        return
-        
-    def exec_exit_camera_btn(self):
         try:
             self.camera.Exit()
             self.append_history("camera closed")
         except:
             self.append_history("error, probably camera isn't on")
         return
-        
+
     def processing(self):
         start=time.time()
         self.ta = ta_data_processing(self.camera.probe, self.camera.first_pixel, self.camera.num_pixels)
