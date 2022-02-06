@@ -47,7 +47,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="initializeButton">
+   <widget class="QPushButton" name="runButton">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -57,7 +57,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Click to Initialize</string>
+     <string>Run</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -132,7 +132,7 @@
      <string>Avg Pumps Off</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="exitCameraButton">
+   <widget class="QPushButton" name="stopButton">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -142,7 +142,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Exit Camera</string>
+     <string>Stop</string>
     </property>
    </widget>
   </widget>
