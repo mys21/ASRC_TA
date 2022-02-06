@@ -16,10 +16,10 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.show()
         self.lines_per_frame = 1000
-
+        self.self.times = [1]
         #connects buttons to functions
-        self.ui.initializeButton.clicked.connect(self.exec_initialize_btn)
-        self.ui.exitCameraButton.clicked.connect(self.exec_exit_camera_btn)
+        self.ui.runButton.clicked.connect(self.exec_run_btn)
+        self.ui.stopButton.clicked.connect(self.exec_stop_btn)
         self.ui.linesPerFrame.textChanged.connect(self.update_lines_per_frame)
 
         #sets variables
@@ -40,44 +40,54 @@ class Editor(QtWidgets.QMainWindow):
         return
 
     #things that happen during runtime
-    def exec_initialize_btn(self):
+    def exec_run_btn(self):
         '''execute on pushed button - initializes camera'''
-        self.append_history("button pushed")
+        self.ui.runButton.setDisabled(True)
         self.camera= octoplus()
+        #self.camera.start_acquire.connect(self.camera.Acquire)
+        self.camera.data_ready.connect(self.post_acquire)
         self.camera.Initialize( lines_per_frame=self.lines_per_frame)
-        #self.cameraLog = "\n".join(self.camera.log)
+
         self.append_history("camera initialized")
         self.append_history("Number of Cameras: "+ str(self.camera.ulNbCameras.value))
 
-        start=time.time()
+        self.timestep = 0
+        self.append_history('Acquiring '+str(self.num_shots)+' shots')
+        #self.camera.start_acquire.emit()
         self.camera.Acquire()
-        end=time.time()
         self.append_history("data acquired"+ " timer: "+ str(end-start))
         self.append_history("Buffer Size: "+ str(self.camera.ImageInfos.iBufferSize))
+        return
 
-        self.processing()
+    def post_acquire(self):
+        self.current_data = ta_data_processing(self.camera.probe, self.camera.first_pixel, self.camera.num_pixels)
+        self.current_data.separate_on_off()
+        self.current_data.average_shots()
         self.append_history("data processed")
         self.create_plots()
         self.append_history("plots created")
+
+        if self.stop_request is True:
+            self.finish()
+        elif elf.timestep == len(self.times)-1:
+            #self.post_sweep()
+            self.finish()
+        else:
+            #this does DELAY stuff that is not connected
+            self.timestep = self.timestep+1
+            #self.time = self.times[self.timestep]
+            #self.move(self.time)
+            self.camera.Acquire()
         return
 
-    def exec_exit_camera_btn(self):
-        try:
-            self.camera.Exit()
-            self.append_history("camera closed")
-        except:
-            self.append_history("error, probably camera isn't on")
+    def finish():
+        self.camera.Exit()
+        self.append_history("camera closed")
+        self.ui.runButton.setDisabled(False)
         return
 
-    def processing(self):
-        start=time.time()
-        self.ta = ta_data_processing(self.camera.probe, self.camera.first_pixel, self.camera.num_pixels)
-        self.ta.separate_on_off()
-        self.ta.average_shots() #NOTE: average shots can only be called after separate_on_off
-        end=time.time()
-        self.append_history("processing took: "+ str(end-start)+ " seconds")
-        #self.append_history("Pump on: ", self.ta.probe_on) #not sure if this is good to append cause entire array
-        #self.append_history("Pump off: ", self.ta.probe_off)
+    def exec_stop_btn(self):
+        self.stop_request=True
         return
 
     #--start of plotting functions---
