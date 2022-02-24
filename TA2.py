@@ -136,19 +136,19 @@ class Editor(QtWidgets.QMainWindow):
             self.ui.spectra_timestep.setValue(0)
             self.ui.d_time.setValue(1)
         else:
-            self.ui.cutoff_pixel_low.setValue(pl[0])
-            self.ui.cutoff_pixel_high.setValue(pl[1])
-            self.ui.calib_pixel_low.setValue(pl[2])
-            self.ui.calib_pixel_high.setValue(pl[3])
-            self.ui.calib_wave_low.setValue(pl[4])
-            self.ui.calib_wave_high.setValue(pl[5])
-            self.ui.num_shots.setValue(pl[6])
-            self.ui.num_sweeps.setValue(pl[7])
-            self.ui.kinetic_pixel.setValue(pl[8])
+            self.ui.cutoff_pixel_low.setValue(int(pl[0]))
+            self.ui.cutoff_pixel_high.setValue(int(pl[1]))
+            self.ui.calib_pixel_low.setValue(int(pl[2]))
+            self.ui.calib_pixel_high.setValue(int(pl[3]))
+            self.ui.calib_wave_low.setValue(int(pl[4]))
+            self.ui.calib_wave_high.setValue(int(pl[5]))
+            self.ui.num_shots.setValue(int(pl[6]))
+            self.ui.num_sweeps.setValue(int(pl[7]))
+            self.ui.kinetic_pixel.setValue(int(pl[8]))
             self.ui.spectra_timestep.setValue(int(pl[9]))
-            self.ui.delay_type_list.setCurrentIndex(pl[10])
-            self.ui.d_display_mode.setCurrentIndex(pl[11])
-            self.ui.d_display_mode_spectra.setCurrentIndex(pl[12])
+            self.ui.delay_type_list.setCurrentIndex(int(pl[10]))
+            self.ui.d_display_mode.setCurrentIndex(int(pl[11]))
+            self.ui.d_display_mode_spectra.setCurrentIndex(int(pl[12]))
             self.ui.short_t0.setValue(pl[13])
             self.ui.kinetic_pixel.setValue(0)
             self.ui.spectra_timestep.setValue(0)
@@ -861,6 +861,8 @@ class Editor(QtWidgets.QMainWindow):
         self.camera.moveToThread(self.acquire_thread)
         self.camera.start_acquire.connect(self.camera.Acquire)
 
+        self.tau_flip_request = False
+
         self.run()
         return
             
@@ -925,7 +927,9 @@ class Editor(QtWidgets.QMainWindow):
             self.append_history('Saving Sweep '+str(self.current_sweep.sweep_index))
             try:
                 self.current_sweep.save_current_data(self.waves)
+                print('current sweep saved')
                 self.current_sweep.save_avg_data(self.waves)
+                print('current sweep avg saved')
                 self.current_sweep.save_metadata_each_sweep(self.current_data.probe_on,
                                                             self.current_data.probe_shot_error)
             except:
@@ -1083,6 +1087,8 @@ class Editor(QtWidgets.QMainWindow):
         self.num_pixels = self.camera.num_pixels
         self.camera.moveToThread(self.acquire_thread)
         self.camera.start_acquire.connect(self.camera.Acquire)
+
+        self.tau_flip_request = True
 
         self.d_run()
 

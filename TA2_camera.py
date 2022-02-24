@@ -4,6 +4,8 @@ import numpy as np
 from enum import IntEnum
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot	
 import time
+from datetime import datetime
+from math import ceil
 
 class tCameraInfo(Structure):
 	_fields_ = [("pcID", c_char*260)]
@@ -39,6 +41,10 @@ class tImageInfos(Structure):
 				("iFrameTriggerNbValidLines", c_ulonglong),
 				("iCounterBufferStarvation", c_ulonglong)]
 
+# variables to print the current day and time
+now = datetime.now()
+current_day_time = now.strftime("%m/%d%Y %H:%M:%S")
+
 class octoplus(QObject):																				
     def __init__(self):
         super(QObject,self).__init__()   																	
@@ -49,12 +55,12 @@ class octoplus(QObject):
         self.first_pixel = 0
         self.enable_contextual_data = 0
         self.circular_buffer = 0
-        self.trigger_mode = 1					#IMPORTANT: trigger_mode is set to 4 during experiments | for testing code trigger_mode is set to 1 (due to limited access to laser)
-        self.exposure_time = 132 # units of 10 ns (636 for trigger mode 4)
+        self.trigger_mode = 4					# IMPORTANT: trigger_mode is set to 4 during experiments | trigger_mode is set to 1 when testing code (due to limited access to laser)
+        self.exposure_time = 132 # units of 10 ns
         self.max_bulk_queue_number = 128
-        self.line_period = 1111  # units of 10 ns
+        self.line_period = 1101 # units of 10 ns	# line_period = (line period * 100) - 10, to avoid losing "valid lines per frame" | period doubled from 1101 b/c frequency was halved
         self.pulse_width = 80  # units of 10 ns
-        self.timeout = c_ulong(10000)	# 10 s
+        self.timeout = c_ulong(60000)	# 10 s
         self.iNbOfBuffer = c_size_t(10)
         self.ulNbCameras = c_ulong()
         self.ulIndex = c_ulong(0)
@@ -64,15 +70,24 @@ class octoplus(QObject):
         #self.ContextDataPerLine = tContextDataPerLine()
         self.lines_per_frame = 1
         self.readtest = 0
+        self.num_frames = 1
         
     # Combined methods to call camera
     def Initialize(self, lines_per_frame = 1000):
-        self.lines_per_frame = lines_per_frame
+        #self.lines_per_frame = lines_per_frame
+        if lines_per_frame > 65535:         # If the desired number of lines > 65535 the lines will be split into multiple images, due to a limitation of the linescan camera
+            self.num_frames = ceil(lines_per_frame / 65535)
+            #print("Number of frames: ", self.num_frames)
+            self.lines_per_frame = int(lines_per_frame/self.num_frames)
+            #print("lines per frame: ", self.lines_per_frame)
+        else:
+            self.lines_per_frame = lines_per_frame
+
         self.InitializeLibrary()
         self.UpdateCameraList() 
         self.GetCameraInfo()
         self.OpenCamera()
-        self.WriteRegister(0x4F000000, self.enable_contextual_data)
+        #self.WriteRegister(0x4F000000, self.enable_contextual_data)	could this be the issue, and cause zeros to be added to the end of the buffer? - no
         #self.WriteRegister(0x4F000018, self.circular_buffer)
         self.WriteRegister(0x1210C, self.trigger_mode)
         self.WriteRegister(0x12108, self.exposure_time)
@@ -81,7 +96,7 @@ class octoplus(QObject):
         self.WriteRegister(0x12100, self.line_period)
         self.WriteRegister(0x1211C, self.pulse_width)
 
-		#Reading resgisters for debugging
+		#Reading registers for debugging
         #print ("trigger mode: ")
         #self.ReadRegister(0x1210C, self.readtest)
         #print ("exposure_time: ")
@@ -107,18 +122,42 @@ class octoplus(QObject):
     def Acquire(self):
         self.StartAcquisition()
         self.GetBuffer()
-        self.FrameData()
+        #self.FrameData()
         #print ("missed triggers: ")
         #self.ReadRegister(0x12110, self.readtest)
-        start=time.time()
+        #start=time.time()
         self.Construct_Data_Vec()
-        end=time.time()
+        try:
+            self.RequeueBuffer()
+        except OSError:     # Print time of OSError, an error given when RequeueBuffer does not work
+            print("RequeueBuffer error occured: ", current_day_time)
+            
+        count = 1
+        while count < self.num_frames:  # looping acquisition through no. of frames
+            count = count + 1
+            self.GetBuffer()
+            #self.FrameData()
+            self.Update_Data_Vec()
+            
+            try:
+                self.RequeueBuffer()
+            except OSError:
+                print("RequeueBuffer error occured: ", current_day_time)
+
+        #end=time.time()
         #print(end-start)
         self.RequeueBuffer()
-        #self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)	
+        #self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)
+
+		#Save to file
+        #start = time.time()
+        #np.savetxt('test_data.csv', self.probe, '%d')
+        #end = time.time()
+        #print("Time to save file: ",end-start)
+
         self.data_ready.emit(self.probe,self.first_pixel,self.num_pixels)
-        #self.StopAcquisition()
-        #self.FlushBuffers()
+        self.StopAcquisition()
+        self.FlushBuffers()
         return 
 
     def Construct_Data_Vec(self):
@@ -126,21 +165,25 @@ class octoplus(QObject):
         self.probe = np.ctypeslib.as_array(raw_data, shape = (self.lines_per_frame, self.pixels))
         #self.reference = np.ones((self.lines_per_frame, self.pixels), dtype = np.uint16)
 
-    def FrameData(self):
+    def Update_Data_Vec(self):
+        raw_data = cast(self.ImageInfos.pDatas, POINTER(c_ushort))
+        probe = np.ctypeslib.as_array(raw_data, shape = (self.lines_per_frame, self.pixels))
+        self.probe = np.append(self.probe, probe, axis = 0)
+
+    def FrameData(self):		
         print("Images Acquired: ", self.ImageInfos.iNbImageAcquired)
         print("Lines lost: ", self.ImageInfos.iNbLineLost)
         print("Missed triggers: ", self.ImageInfos.iNbMissedTriggers)
         print("Valid lines from frame: ", self.ImageInfos.iFrameTriggerNbValidLines)
         if self.ImageInfos.iCounterBufferStarvation!= 0:
             print("Buffer Starvation!!!!!")
-      
-	
+      	
 
     _exit = pyqtSignal()																				
     @pyqtSlot()																						
     def Exit(self):
-        self.StopAcquisition()
-        self.FlushBuffers()
+        #self.StopAcquisition()
+        #self.FlushBuffers()
         self.CloseCamera()
         print("Camera Closed")
         self.TerminateLibrary()
@@ -200,7 +243,7 @@ class octoplus(QObject):
         print(ContextDataPerLine.u16NbMissedTriggers)
 
     def RequeueBuffer(self):
-        self.dll.USB3_RequeueBuffer.argtypes = c_void_p, c_void_p
+        self.dll.USB3_RequeueBuffer.argtypes = [c_void_p, c_void_p]
         self.dll.USB3_RequeueBuffer.restype = None
         self.dll.USB3_RequeueBuffer(self.hCamera, self.ImageInfos.hBuffer)
 

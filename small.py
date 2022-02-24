@@ -17,11 +17,13 @@ class Editor(QtWidgets.QMainWindow):
         self.show()
         self.lines_per_frame = 1000
         self.self.times = [1]
+        #self.times = [1]
+        self.num_images= 10
         #connects buttons to functions
         self.ui.runButton.clicked.connect(self.exec_run_btn)
         self.ui.stopButton.clicked.connect(self.exec_stop_btn)
         self.ui.linesPerFrame.textChanged.connect(self.update_lines_per_frame)
-
+		
         #sets variables
         self.ui.History.setText(" ")
 
@@ -42,6 +44,7 @@ class Editor(QtWidgets.QMainWindow):
     #things that happen during runtime
     def exec_run_btn(self):
         '''execute on pushed button - initializes camera'''
+        self.stop_request= False
         self.ui.runButton.setDisabled(True)
         self.camera= octoplus()
         #self.camera.start_acquire.connect(self.camera.Acquire)
@@ -60,6 +63,26 @@ class Editor(QtWidgets.QMainWindow):
         return
 
     def post_acquire(self):
+        #self.append_history('Acquiring '+str(self.num_shots)+' shots')
+        #self.camera.start_acquire.emit()
+        self.camera.Acquire()
+        
+        #self.append_history("data acquired"+ " timer: "+ str(end-start))
+        #self.append_history("Buffer Size: "+ str(self.camera.ImageInfos.iBufferSize))
+        return
+
+    def FrameData(self):
+        data= f"""Images Acquired: {self.camera.ImageInfos.iNbImageAcquired} 
+Lines lost: {self.camera.ImageInfos.iNbLineLost}
+Missed triggers: {self.camera.ImageInfos.iNbMissedTriggers}
+Valid lines from frame: {self.camera.ImageInfos.iFrameTriggerNbValidLines}
+"""
+        if self.camera.ImageInfos.iCounterBufferStarvation!= 0:
+            data= data + "Buffer Starvation!!!!!"
+        return data
+
+    def post_acquire(self):
+        self.append_history(self.FrameData())
         self.current_data = ta_data_processing(self.camera.probe, self.camera.first_pixel, self.camera.num_pixels)
         self.current_data.separate_on_off()
         self.current_data.average_shots()
@@ -70,6 +93,7 @@ class Editor(QtWidgets.QMainWindow):
         if self.stop_request is True:
             self.finish()
         elif elf.timestep == len(self.times)-1:
+        elif self.timestep == self.num_images - 1:
             #self.post_sweep()
             self.finish()
         else:
@@ -80,7 +104,7 @@ class Editor(QtWidgets.QMainWindow):
             self.camera.Acquire()
         return
 
-    def finish():
+    def finish(self):
         self.camera.Exit()
         self.append_history("camera closed")
         self.ui.runButton.setDisabled(False)
@@ -96,9 +120,9 @@ class Editor(QtWidgets.QMainWindow):
         '''pump off plot'''
         #if doesn't work, remove the .plotItem
         try:
-            self.ui.pumpsOffPlot.plotItem.plot(self.plot_waves,self.ta.probe_off,pen='g',clear=True)
-        except:
-            self.append_history('Error Plotting pump off Plot')
+            self.ui.pumpsOffPlot.plotItem.plot(self.plot_waves,self.current_data.probe_off,pen='g',clear=True)
+        except Exception as e:
+            self.append_history('Error Plotting pump off Plot: ' + str(e))
 
         self.ui.pumpsOffPlot.plotItem.setLabels(left='dtt',bottom='Wavelength / Pixel')
         self.ui.pumpsOffPlot.plotItem.showAxis('top',show=True)
@@ -108,7 +132,7 @@ class Editor(QtWidgets.QMainWindow):
     def pump_on_plot(self):
         '''pump off plot'''
         try:
-            self.ui.pumpsOnPlot.plotItem.plot(self.plot_waves,self.ta.probe_on,pen='g',clear=True)
+            self.ui.pumpsOnPlot.plotItem.plot(self.plot_waves,self.current_data.probe_on,pen='g',clear=True)
         except:
             self.append_history('Error Plotting pump on Plot')
 

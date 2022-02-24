@@ -10,3 +10,4 @@ from pathlib import Path
 with open('small_gui_class.py','w+') as file:
     #PyQt5.uic.compileUi(r"\Users\annezats\Documents\research\spectrometer build\ASRC_TA\small_gui.ui",file)
     PyQt5.uic.compileUi(Path('small_gui.ui'),file)
+

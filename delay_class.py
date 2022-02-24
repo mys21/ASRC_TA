@@ -73,6 +73,8 @@ class esp301_delay_stage:
         else:
             print("Delay Stage Error!")
             self.initialized=False
+        # Initialize motor
+        result, errString = self.stage.MO_Set(self.axis,"")
         # Get positive software limit
         result, rlimit, errString = self.stage.SR_Get(self.axis,Double(0.),"")
         self.plimit = rlimit
@@ -98,9 +100,9 @@ class esp301_delay_stage:
         while response == 0:
             pytime.sleep(.1)
             result2, response, errString2 = self.stage.MD(self.axis,Int32(1),"")
-        print([errString, result2])
+        #print([errString, result2])
         result, currentPosition, errString = self.stage.TP(self.axis, Double(0.), "")
-        print([errString, currentPosition])
+        #print([errString, currentPosition])
         return
 
     def convert_ps_to_mm(self,time_ps):
@@ -127,7 +129,7 @@ class esp301_delay_stage:
         on_stage = True
         #pos = self.convert_ps_to_mm(float(self.t0-time))
         pos = self.convert_ps_to_mm(float(self.t0+time))
-        print(pos)
+        #print(pos)
         # change to read stage limits
         if (pos>self.plimit) or (pos<self.nlimit):
             on_stage = False
