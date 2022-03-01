@@ -5,42 +5,15 @@ import numpy as np
 
 class ta_data_processing:
     '''class for processing ta data'''
-    #def __init__(self,probe_array,reference_array,first_pixel,num_pixels):
-    #    '''select parts of array which contain the camera data and thus ignoring 
-    #       dummy pixels. A copy of the entire probe array is saved as this will have
-    #       the informaiton form the trigger (photodiode/chopper wheel)'''
-    #    self.untrimmed_probe_array = np.array(probe_array,dtype=int)
-    #    self.probe_array = np.array(probe_array,dtype=float)[:,first_pixel:num_pixels+first_pixel]
-    #    self.reference_array = np.array(reference_array,dtype=float)[:,first_pixel:num_pixels+first_pixel]
-    #    self.raw_probe_array = np.array(probe_array,dtype=float)[:,first_pixel:num_pixels+first_pixel]
-    #    self.raw_reference_array = np.array(reference_array,dtype=float)[:,first_pixel:num_pixels+first_pixel]
-    #    self.first_pixel = first_pixel
-    #    self.num_pixels = num_pixels
-        #self.disco_delays_array = np.array(self.untrimmed_probe_array,dtype=float)[::2,self.TDC_pixel]
-
     def __init__(self,probe_array,first_pixel,num_pixels):
         '''select parts of array which contain the camera data and thus ignoring 
            dummy pixels. A copy of the entire probe array is saved as this will have
            the informaiton form the trigger (photodiode/chopper wheel)'''
         self.untrimmed_probe_array = np.array(probe_array,dtype=int)
         self.probe_array = np.array(probe_array,dtype=float)[:,first_pixel:num_pixels+first_pixel]
-        #self.reference_array = np.array(reference_array,dtype=float)[:,first_pixel:num_pixels+first_pixel]
         self.raw_probe_array = np.array(probe_array,dtype=float)[:,first_pixel:num_pixels+first_pixel]
-        #self.raw_reference_array = np.array(reference_array,dtype=float)[:,first_pixel:num_pixels+first_pixel]
         self.first_pixel = first_pixel
         self.num_pixels = num_pixels
-
-
-    #def update(self,probe_array,reference_array,first_pixel,num_pixels):
-    #    '''select parts of array which contain the camera data and thus ignoring 
-    #       dummy pixels. A copy of the entire probe array is saved as this will have
-    #       the informaiton form the trigger (photodiode/chopper wheel)'''
-    #    self.untrimmed_probe_array = probe_array
-    #    self.probe_array = probe_array[:,first_pixel:num_pixels+first_pixel]
-    #    self.reference_array = reference_array[:,first_pixel:num_pixels+first_pixel]
-    #   self.first_pixel = first_pixel
-    #    self.num_pixels = num_pixels
-    #    self.disco_delays_array = probe_array[::2,self.TDC_pixel]
         
     def update(self,probe_array,first_pixel,num_pixels):
         '''select parts of array which contain the camera data and thus ignoring 
@@ -48,7 +21,6 @@ class ta_data_processing:
            the informaiton form the trigger (photodiode/chopper wheel)'''
         self.untrimmed_probe_array = probe_array
         self.probe_array = probe_array[:,first_pixel:num_pixels+first_pixel]
-        #self.reference_array = reference_array[:,first_pixel:num_pixels+first_pixel]
         self.first_pixel = first_pixel
         self.num_pixels = num_pixels
         self.disco_delays_array = probe_array[::2,self.TDC_pixel]
@@ -78,37 +50,39 @@ class ta_data_processing:
             #self.probe_on_array = self.probe_array[::2,:]
             #self.probe_off_array = self.probe_array[1::2,:]
 
-            self.probe_on_array = self.probe_array[1::2,:]
-            self.probe_off_array = self.probe_array[::2,:]
+            # Using "divdide by 3" method
+            # To correct for the mismatch of ADCs of camera at running at 90kHz
+            self.probe1_on_array = self.probe_array[1::6,:]
+            self.probe1_off_array = self.probe_array[2::6,:]
+            self.probe2_off_array = self.probe_array[3::6,:]
+            self.probe2_on_array = self.probe_array[4::6,:]
 
-            #self.reference_on_array = self.reference_array[::2,:]
-            #self.reference_off_array = self.reference_array[1::2,:]
         else:
             #self.probe_on_array = self.probe_array[1::2,:]
             #self.probe_off_array = self.probe_array[::2,:]
 
-            self.probe_on_array = self.probe_array[::2,:]
-            self.probe_off_array = self.probe_array[1::2,:]
+            self.probe1_on_array = self.probe_array[2::6,:]
+            self.probe1_off_array = self.probe_array[1::6,:]
+            self.probe2_off_array = self.probe_array[4::6,:]
+            self.probe2_on_array = self.probe_array[3::6,:]
 
-
-            #self.reference_on_array = self.reference_array[1::2,:]
-            #self.reference_off_array = self.reference_array[::2,:]
         return
         
     def average_shots(self):
         '''simple enough - averages shots'''
-        self.probe_on = self.probe_on_array.mean(axis=0)
-        self.probe_off = self.probe_off_array.mean(axis=0)
-        #self.reference_on = self.reference_on_array.mean(axis=0)
-        #self.reference_off = self.reference_off_array.mean(axis=0)
+        #self.probe_on = self.probe_on_array.mean(axis=0)
+        #self.probe_off = self.probe_off_array.mean(axis=0)
+        
+        self.probe1_on = self.probe1_on_array.mean(axis=0)
+        self.probe1_off = self.probe1_off_array.mean(axis=0)
+        self.probe2_on = self.probe2_on_array.mean(axis=0)
+        self.probe2_off = self.probe2_off_array.mean(axis=0)
         return
         
     def sub_bgd(self,bgd):
         '''subtract background which is passed as an identical class'''
         self.probe_on_array = self.probe_on_array - bgd.probe_on
         self.probe_off_array = self.probe_off_array - bgd.probe_off
-        #self.reference_on_array = self.reference_on_array - bgd.reference_on
-        #self.reference_off_array = self.reference_off_array - bgd.reference_off
         return
         
     def manipulate_reference(self,refman):
@@ -145,57 +119,25 @@ class ta_data_processing:
         self.refd_probe_off = self.refd_probe_off_array.mean(axis=0)
         return
         
-    #def calculate_dtt(self,use_reference=False,cutoff=[0,100],use_avg_off_shots=True,max_dtt=1):
-    #    '''calculate dtt for each shot pair'''
-    #    high_dtt = False
-    #    if use_reference is True:
-    #        if use_avg_off_shots is True:
-    #            self.dtt_array = (self.refd_probe_on_array-self.refd_probe_off_array)/self.refd_probe_off
-    #        if use_avg_off_shots is False:
-    #            self.dtt_array = (self.refd_probe_on_array-self.refd_probe_off_array)/self.refd_probe_off_array
-    #    if use_reference is False:
-    #        if use_avg_off_shots is True:
-    #            self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off + 10)
-    #        if use_avg_off_shots is False:
-    #            self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off_array + 10)
-    #    self.dtt = self.dtt_array.mean(axis=0)
-    #    fin_dtt = self.dtt[np.isfinite(self.dtt)]
-    #    if np.abs(fin_dtt[cutoff[0]:cutoff[1]]).max() > max_dtt:
-    #        high_dtt = True
-    #        print('High dtt! '+str(datetime.datetime.now()))
-    #    return high_dtt
-        
     def calculate_dtt(self,cutoff=[0,100],use_avg_off_shots=True,max_dtt=1):
         '''calculate dtt for each shot pair'''
         high_dtt = False
         if use_avg_off_shots is True:
-            self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off + 10)
+            #self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off + 10)
+            self.dtt_array = ((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array))/(self.probe1_off_array + self.probe2_off_array)
         if use_avg_off_shots is False:
-            self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off_array + 10)
+            self.dtt_array = ((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array))/(self.probe1_off_array + self.probe2_off_array)
         self.dtt = self.dtt_array.mean(axis=0)
         fin_dtt = self.dtt[np.isfinite(self.dtt)]
         if np.abs(fin_dtt[cutoff[0]:cutoff[1]]).max() > max_dtt:
             high_dtt = True
             print('High dtt! '+str(datetime.datetime.now()))
         return high_dtt
-
-    #def calculate_dtt_error(self,use_reference=False,use_avg_off_shots=True):
-    #    '''calculates standard deviation of the dtt array'''
-    #    if use_reference is True:
-    #        if use_avg_off_shots is True:
-    #            self.probe_shot_error = np.std(2*(self.probe_on_array-self.probe_off_array)/(self.probe_on+self.probe_off),axis=0)
-    #            self.ref_shot_error = np.std(2*(self.reference_on_array-self.reference_off)/(self.reference_on_array+self.reference_off),axis=0)
-    #        if use_avg_off_shots is False:
-    #            self.probe_shot_error = np.std(2*(self.probe_on_array-self.probe_off_array)/(self.probe_on_array+self.probe_off_array),axis=0)
-    #            self.ref_shot_error = np.std(2*(self.reference_on_array-self.reference_off_array)/(self.reference_on_array+self.reference_off_array),axis=0)
-    #        self.dtt_error = np.std(self.refd_probe_off_array,axis=0)
-    #    if use_reference is False:
-    #        self.probe_shot_error = np.std(2*(self.probe_on_array-self.probe_off_array+10)/(self.probe_on_array+self.probe_off_array+10),axis=0)
-    #    return
    
     def calculate_dtt_error(self,use_avg_off_shots=True):
         '''calculates standard deviation of the dtt array'''
-        self.probe_shot_error = np.std(2*(self.probe_on_array-self.probe_off_array+10)/(self.probe_on_array+self.probe_off_array+10),axis=0)
+        self.probe_shot_error = np.std(2*((self.probe1_on_array+self.probe2_on_array) - (self.probe1_off_array+self.probe2_off_array)/(self.probe1_on_array+self.probe1_off_array+self.probe2_on_array+self.probe2_off_array),axis=0)
+        #self.probe_shot_error = np.std(2*(self.probe_on_array-self.probe_off_array+10)/(self.probe_on_array+self.probe_off_array+10),axis=0)
         return
  
 #==============================================================================

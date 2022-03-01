@@ -6,6 +6,7 @@ from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 import time
 from datetime import datetime
 from math import ceil
+import Tombak_control as tk
 
 class tCameraInfo(Structure):
 	_fields_ = [("pcID", c_char*260)]
@@ -71,6 +72,7 @@ class octoplus(QObject):
         self.lines_per_frame = 1
         self.readtest = 0
         self.num_frames = 1
+        self.port = 'COM3'  #port for frame trigger on tombak | line trigger is port 'COM5'
         
     # Combined methods to call camera
     def Initialize(self, lines_per_frame = 1000):
@@ -82,7 +84,10 @@ class octoplus(QObject):
             #print("lines per frame: ", self.lines_per_frame)
         else:
             self.lines_per_frame = lines_per_frame
-
+        
+        # TOMBAK
+        tk.Tombak_initialise(self.lines_per_frame, 'COM3')
+        
         self.InitializeLibrary()
         self.UpdateCameraList() 
         self.GetCameraInfo()
