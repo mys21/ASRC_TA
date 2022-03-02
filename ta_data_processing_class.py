@@ -47,8 +47,8 @@ class ta_data_processing:
            offset by 1ms) the trigger is rolled over by one value to compensate. 
            Should get rid of tau flip'''
         if tau_flip_request is True:
-            #self.probe_on_array = self.probe_array[::2,:]
-            #self.probe_off_array = self.probe_array[1::2,:]
+            self.probe_on_array = self.probe_array[::2,:]
+            self.probe_off_array = self.probe_array[1::2,:]
 
             # Using "divdide by 3" method
             # To correct for the mismatch of ADCs of camera at running at 90kHz
@@ -58,8 +58,8 @@ class ta_data_processing:
             self.probe2_on_array = self.probe_array[4::6,:]
 
         else:
-            #self.probe_on_array = self.probe_array[1::2,:]
-            #self.probe_off_array = self.probe_array[::2,:]
+            self.probe_on_array = self.probe_array[1::2,:]
+            self.probe_off_array = self.probe_array[::2,:]
 
             self.probe1_on_array = self.probe_array[2::6,:]
             self.probe1_off_array = self.probe_array[1::6,:]
@@ -70,13 +70,19 @@ class ta_data_processing:
         
     def average_shots(self):
         '''simple enough - averages shots'''
-        #self.probe_on = self.probe_on_array.mean(axis=0)
-        #self.probe_off = self.probe_off_array.mean(axis=0)
-        
-        self.probe1_on = self.probe1_on_array.mean(axis=0)
-        self.probe1_off = self.probe1_off_array.mean(axis=0)
-        self.probe2_on = self.probe2_on_array.mean(axis=0)
-        self.probe2_off = self.probe2_off_array.mean(axis=0)
+        self.probe_on = self.probe_on_array.mean(axis=0)
+        self.probe_off = self.probe_off_array.mean(axis=0)
+  
+        #self.probe_on_array = self.probe1_on_array
+        #self.probe_on_array = np.append(self.probe_on_array, self.probe2_on_array)
+
+        #self.probe_off_array = self.probe1_off_array
+        #self.probe_off_array = np.append(self.probe_off_array, self.probe2_on_array)
+   
+        #self.probe1_on = self.probe1_on_array.mean(axis=0)
+        #self.probe1_off = self.probe1_off_array.mean(axis=0)
+        #self.probe2_on = self.probe2_on_array.mean(axis=0)
+        #self.probe2_off = self.probe2_off_array.mean(axis=0)
         return
         
     def sub_bgd(self,bgd):
@@ -136,7 +142,7 @@ class ta_data_processing:
    
     def calculate_dtt_error(self,use_avg_off_shots=True):
         '''calculates standard deviation of the dtt array'''
-        self.probe_shot_error = np.std(2*((self.probe1_on_array+self.probe2_on_array) - (self.probe1_off_array+self.probe2_off_array)/(self.probe1_on_array+self.probe1_off_array+self.probe2_on_array+self.probe2_off_array),axis=0)
+        self.probe_shot_error = np.std(2*((self.probe1_on_array+self.probe2_on_array) - (self.probe1_off_array+self.probe2_off_array))/(self.probe1_on_array+self.probe1_off_array+self.probe2_on_array+self.probe2_off_array),axis=0)
         #self.probe_shot_error = np.std(2*(self.probe_on_array-self.probe_off_array+10)/(self.probe_on_array+self.probe_off_array+10),axis=0)
         return
  

@@ -1,0 +1,12 @@
+LICENCE.txt
+README.md
+setup.py
+aerodiode/__init__.py
+aerodiode/aerodiode.py
+aerodiode/main_tombak.py
+aerodiode/tombak.py
+aerodiode.egg-info/PKG-INFO
+aerodiode.egg-info/SOURCES.txt
+aerodiode.egg-info/dependency_links.txt
+aerodiode.egg-info/requires.txt
+aerodiode.egg-info/top_level.txt

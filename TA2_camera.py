@@ -85,8 +85,8 @@ class octoplus(QObject):
         else:
             self.lines_per_frame = lines_per_frame
         
-        # TOMBAK
-        tk.Tombak_initialise(self.lines_per_frame, 'COM3')
+        # Set TOMBAK - 'COM3' is frame trigger port
+        tk.Tombak_frame_initialise(45000)
         
         self.InitializeLibrary()
         self.UpdateCameraList() 
@@ -127,7 +127,7 @@ class octoplus(QObject):
     def Acquire(self):
         self.StartAcquisition()
         self.GetBuffer()
-        #self.FrameData()
+        self.FrameData()
         #print ("missed triggers: ")
         #self.ReadRegister(0x12110, self.readtest)
         #start=time.time()
@@ -141,7 +141,7 @@ class octoplus(QObject):
         while count < self.num_frames:  # looping acquisition through no. of frames
             count = count + 1
             self.GetBuffer()
-            #self.FrameData()
+            self.FrameData()
             self.Update_Data_Vec()
             
             try:
@@ -151,14 +151,14 @@ class octoplus(QObject):
 
         #end=time.time()
         #print(end-start)
-        self.RequeueBuffer()
+        #self.RequeueBuffer()
         #self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)
 
 		#Save to file
-        #start = time.time()
-        #np.savetxt('test_data.csv', self.probe, '%d')
-        #end = time.time()
-        #print("Time to save file: ",end-start)
+        start = time.time()
+        np.savetxt('test_data.csv', self.probe, '%d')
+        end = time.time()
+        print("Time to save file: ",end-start)
 
         self.data_ready.emit(self.probe,self.first_pixel,self.num_pixels)
         self.StopAcquisition()
@@ -176,10 +176,11 @@ class octoplus(QObject):
         self.probe = np.append(self.probe, probe, axis = 0)
 
     def FrameData(self):		
-        print("Images Acquired: ", self.ImageInfos.iNbImageAcquired)
-        print("Lines lost: ", self.ImageInfos.iNbLineLost)
-        print("Missed triggers: ", self.ImageInfos.iNbMissedTriggers)
-        print("Valid lines from frame: ", self.ImageInfos.iFrameTriggerNbValidLines)
+        #print("Images Acquired: ", self.ImageInfos.iNbImageAcquired)
+        #print("Lines lost: ", self.ImageInfos.iNbLineLost)
+        #print("Missed triggers: ", self.ImageInfos.iNbMissedTriggers)
+        if self.ImageInfos.iFrameTriggerNbValidLines!= 0:
+            print("Valid lines from frame: ", self.ImageInfos.iFrameTriggerNbValidLines)
         if self.ImageInfos.iCounterBufferStarvation!= 0:
             print("Buffer Starvation!!!!!")
       	

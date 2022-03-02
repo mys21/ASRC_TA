@@ -6,7 +6,7 @@ import keyboard
 
 if __name__ == "__main__":
 	oc = octoplus()
-	oc.Initialize(40000)	#45000 lines runs slow, 1000 is better for quick testing
+	oc.Initialize(90000)	#45000 lines runs slow, 1000 is better for quick testing
 	print('Number of Cameras: ', oc.ulNbCameras.value)
 	print("Camera ID: ", oc.CameraInfo.pcID)
 	oc.Acquire()
