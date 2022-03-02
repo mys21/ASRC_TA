@@ -6,23 +6,28 @@ import keyboard
 
 if __name__ == "__main__":
 	oc = octoplus()
-	oc.Initialize(90000)	#45000 lines runs slow, 1000 is better for quick testing
+	shots = input("Number of lines: ")
+	shots = int(shots)
+	oc.Initialize(shots)
 	print('Number of Cameras: ', oc.ulNbCameras.value)
 	print("Camera ID: ", oc.CameraInfo.pcID)
+	print("Start time: ", oc.current_day_time)
 	oc.Acquire()
 
-	#running = True
-
-	#while running == True:
-	#	try:
-	#		oc.Acquire()
-	#		#if keyboard.is_pressed("q"):
-	#		#	print("q pressed, ending acquire loop")
-	#		#	break		
-	#	except OSError:
-	#		print("Requeue Error!")
-	#		running = False
-	#		break
+	running = True
+	count = 1
+	while running == True:
+		try:
+			oc.Acquire()
+			print(count)
+			count = count+1
+			if keyboard.is_pressed('q'):
+				print("q pressed, ending acquire loop\n")
+				break		
+		except OSError:
+			print("Requeue Error!")
+			running = False
+			break
 
 	#print("Buffer Size: ", oc.ImageInfos.iBufferSize)
 	#print(oc.probe)
