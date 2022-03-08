@@ -19,10 +19,11 @@ if __name__ == "__main__":
 	while running == True:
 		try:
 			oc.Acquire()
-			print(count)
+			print(count+1)
+			#print(oc.current_time)
 			count = count+1
 			if keyboard.is_pressed('q'):
-				print("q pressed, ending acquire loop\n")
+				print("\nq pressed, ending acquire loop")
 				break		
 		except OSError:
 			print("Requeue Error!")

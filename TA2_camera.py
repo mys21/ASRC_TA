@@ -3,9 +3,9 @@ import os
 import numpy as np
 from enum import IntEnum
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot	
-import time
+from time import time
 from datetime import datetime
-from math import ceil
+from math import ceil, floor
 import Tombak_control as tk
 
 class tCameraInfo(Structure):
@@ -42,9 +42,6 @@ class tImageInfos(Structure):
 				("iFrameTriggerNbValidLines", c_ulonglong),
 				("iCounterBufferStarvation", c_ulonglong)]
 
-# variables to print the current day and time
-now = datetime.now()
-
 
 class octoplus(QObject):																				
     def __init__(self):
@@ -72,29 +69,40 @@ class octoplus(QObject):
         self.lines_per_frame = 1
         self.readtest = 0
         self.num_frames = 1
-        self.port = 'COM3'  #port for frame trigger on tombak | line trigger is port 'COM5'
-        self.current_day_time = now.strftime("%m/%d/%Y %H:%M:%S")
+        self.now = datetime.now()
+        self.current_day_time = self.now.strftime("%m/%d/%Y %H:%M:%S")
+        self.current_time = self.now.strftime("%H:%M:%S:%f")
+        self.timestamp = self.now.strftime("%m/%d/%y %H%M%S")
         
     # Combined methods to call camera
     def Initialize(self, lines_per_frame = 1000):
         #self.lines_per_frame = lines_per_frame
+
+        # Set TOMBAK - 'COM3' is frame trigger port
+        tk.Tombak_frame_initialise(lines_per_frame)	# Input can be given by the user in terms of time instead of number of shots
+
+        lines_per_frame = lines_per_frame - 2
+
         if lines_per_frame > 44998:         
 		# 44998 is the maximum number of lines per frame that can occur without dropped lines (for 2Hz frame trigger)
+		# As long as we are using the 'DIV3 method' for TA, we will have a max line acquisition of 44994 at 2Hz
 		# Will have to be lowered (by how many lines, 2?) if the frame trigger rate is greater than this number (NEEDS REVIEW)
 		# If the desired number of lines > 44998, the lines will be split into multiple images, due to a limitation of the linescan camera
             self.num_frames = ceil(lines_per_frame / 44998)
             self.lines_per_frame = int(lines_per_frame/self.num_frames)
         else:
             self.lines_per_frame = lines_per_frame
-        
-        # Set TOMBAK - 'COM3' is frame trigger port
-        tk.Tombak_frame_initialise(45000)	# Input can be given by the user in terms of time instead of number of shots
+
+        if self.lines_per_frame % 6 != 0:
+            self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
+
         
         self.InitializeLibrary()
         self.UpdateCameraList() 
         self.GetCameraInfo()
         self.OpenCamera()
-        #self.WriteRegister(0x4F000000, self.enable_contextual_data)	could this be the issue, and cause zeros to be added to the end of the buffer? - no
+
+        #self.WriteRegister(0x4F000000, self.enable_contextual_data)
         #self.WriteRegister(0x4F000018, self.circular_buffer)
         self.WriteRegister(0x1210C, self.trigger_mode)
         self.WriteRegister(0x12108, self.exposure_time)
@@ -128,47 +136,36 @@ class octoplus(QObject):
     @pyqtSlot()																							
     def Acquire(self):
         self.StartAcquisition()
+        start = time()
         self.GetBuffer()
+        end = time()
         self.FrameData()
-        #print ("missed triggers: ")
-        #self.ReadRegister(0x12110, self.readtest)
-        #start=time.time()
         self.Construct_Data_Vec()
         try:
             self.RequeueBuffer()
-        except OSError:     # Print time of OSError, an error given when RequeueBuffer does not work
+        except OSError: 
+            self.now = datetime.now()
             print("RequeueBuffer error occured: ", self.current_day_time)
-        self.StopAcquisition()
-        self.FlushBuffers()
 
         count = 1
-        while count < self.num_frames:  # looping acquisition through no. of frames
+        while count < self.num_frames:
             count = count + 1
-            self.StartAcquisition()
             self.GetBuffer()
             self.FrameData()
             self.Update_Data_Vec()          
             try:
                 self.RequeueBuffer()
             except OSError:
+                self.now = datetime.now()
                 print("RequeueBuffer error occured: ", self.current_day_time)
-            self.StopAcquisition()
-            self.FlushBuffers()
 
-        #end=time.time()
-        #print(end-start)
-        #self.RequeueBuffer()
         #self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)
-
-		#Save to file
-        #start = time.time()
-        #np.savetxt('test_data.csv', self.probe, '%d')
-        #end = time.time()
-        #print("Time to save file: ",end-start)
+		#self.Savefile()
 
         self.data_ready.emit(self.probe,self.first_pixel,self.num_pixels)
-        #self.StopAcquisition()
-        #self.FlushBuffers()
+        self.StopAcquisition()
+        self.FlushBuffers()
+        print('Acquire', end-start)
         return 
 
     def Construct_Data_Vec(self):
@@ -189,13 +186,16 @@ class octoplus(QObject):
             print("Valid lines from frame: ", self.ImageInfos.iFrameTriggerNbValidLines)
         if self.ImageInfos.iCounterBufferStarvation!= 0:
             print("Buffer Starvation!!!!!")
-      	
+
+    def Savefile(self):
+        start = time()
+        np.savetxt('test_data_'+self.timestamp+'.csv', self.probe, '%d')
+        end = time()
+        print("Time to save file: ", end-start)
 
     _exit = pyqtSignal()																				
     @pyqtSlot()																						
     def Exit(self):
-        #self.StopAcquisition()
-        #self.FlushBuffers()
         self.CloseCamera()
         print("Camera Closed")
         self.TerminateLibrary()
