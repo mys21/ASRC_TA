@@ -6,7 +6,7 @@ from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 from time import time
 from datetime import datetime
 from math import ceil, floor
-import Tombak_control as tk
+from Tombak_control import Tombak_control as tk
 
 class tCameraInfo(Structure):
 	_fields_ = [("pcID", c_char*260)]
@@ -53,7 +53,7 @@ class octoplus(QObject):
         self.first_pixel = 0
         self.enable_contextual_data = 0
         self.circular_buffer = 0
-        self.trigger_mode = 4					# IMPORTANT: trigger_mode is set to 4 during experiments | trigger_mode is set to 1 when testing code (due to limited access to laser)
+        self.trigger_mode = 4				# IMPORTANT: trigger_mode is set to 4 during experiments | trigger_mode is set to 1 when testing code (due to limited access to laser)
         self.exposure_time = 132 # units of 10 ns
         self.max_bulk_queue_number = 128
         self.line_period = 1101 # units of 10 ns	# line_period = (line period * 100) - 10, to avoid losing "valid lines per frame" | period doubled from 1101 b/c frequency was halved
@@ -75,27 +75,21 @@ class octoplus(QObject):
         self.timestamp = self.now.strftime("%m/%d/%y %H%M%S")
         
     # Combined methods to call camera
-    def Initialize(self, lines_per_frame = 1000):
-        #self.lines_per_frame = lines_per_frame
-
-        # Set TOMBAK - 'COM3' is frame trigger port
-        tk.Tombak_frame_initialise(lines_per_frame)	# Input can be given by the user in terms of time instead of number of shots
-
-        lines_per_frame = lines_per_frame - 2
-
-        if lines_per_frame > 44998:         
-		# 44998 is the maximum number of lines per frame that can occur without dropped lines (for 2Hz frame trigger)
-		# As long as we are using the 'DIV3 method' for TA, we will have a max line acquisition of 44994 at 2Hz
-		# Will have to be lowered (by how many lines, 2?) if the frame trigger rate is greater than this number (NEEDS REVIEW)
-		# If the desired number of lines > 44998, the lines will be split into multiple images, due to a limitation of the linescan camera
-            self.num_frames = ceil(lines_per_frame / 44998)
-            self.lines_per_frame = int(lines_per_frame/self.num_frames)
+    def Initialize(self, lines_per_frame = 1000):	# Input can be given by the user in terms of time instead of number of shots
+	
+	# Frames and number of lines needed
+        if lines_per_frame > 65535:
+            self.num_frames = ceil(lines_per_frame / 65535)
+            self.lines_per_frame = floor(lines_per_frame/self.num_frames)			
         else:
             self.lines_per_frame = lines_per_frame
-
+	
+	# DIV3 method requires that every 6th shot is related
         if self.lines_per_frame % 6 != 0:
             self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
-
+	
+        # Set TOMBAK - 'COM3' is frame trigger port
+        tk.Initialize_tombak(self.lines_per_frame+2)	# To prevent lost lines, 2 extra lines are desired for frame trigger
         
         self.InitializeLibrary()
         self.UpdateCameraList() 
@@ -139,7 +133,7 @@ class octoplus(QObject):
         start = time()
         self.GetBuffer()
         end = time()
-        self.FrameData()
+        self.FrameDebugger()
         self.Construct_Data_Vec()
         try:
             self.RequeueBuffer()
@@ -151,7 +145,7 @@ class octoplus(QObject):
         while count < self.num_frames:
             count = count + 1
             self.GetBuffer()
-            self.FrameData()
+            self.FrameDebugger()
             self.Update_Data_Vec()          
             try:
                 self.RequeueBuffer()
@@ -178,7 +172,7 @@ class octoplus(QObject):
         probe = np.ctypeslib.as_array(raw_data, shape = (self.lines_per_frame, self.pixels))
         self.probe = np.append(self.probe, probe, axis = 0)
 
-    def FrameData(self):		
+    def FrameDebugger(self):		
         if self.ImageInfos.iFrameTriggerNbValidLines!= 0 and self.ImageInfos.iFrameTriggerNbValidLines!=self.lines_per_frame:
             #print("Images Acquired: ", self.ImageInfos.iNbImageAcquired)
             print("Lines lost: ", self.ImageInfos.iNbLineLost)
