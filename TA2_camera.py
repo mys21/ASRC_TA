@@ -6,7 +6,7 @@ from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot
 from time import time
 from datetime import datetime
 from math import ceil, floor
-from Tombak_control import Tombak_control as tk
+from Tombak_control import Tombak_control
 
 class tCameraInfo(Structure):
 	_fields_ = [("pcID", c_char*260)]
@@ -83,14 +83,18 @@ class octoplus(QObject):
             self.lines_per_frame = floor(lines_per_frame/self.num_frames)			
         else:
             self.lines_per_frame = lines_per_frame
-	
+        print("Lines per frame: ", self.lines_per_frame)
 	# DIV3 method requires that every 6th shot is related
         if self.lines_per_frame % 6 != 0:
             self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
 	
         # Set TOMBAK - 'COM3' is frame trigger port
-        tk.Initialize_tombak(self.lines_per_frame+2)	# To prevent lost lines, 2 extra lines are desired for frame trigger
-        
+        self.num_shots = self.lines_per_frame + 2	# To prevent lost lines, 2 extra lines are desired for frame trigger
+        tk = Tombak_control()
+        tk.Initialize_tombak(self.num_shots)	
+        print("Tombak division: ", tk.division)
+        print("Tombak output freq: " + (tk.frame_freq/tk.divsion) + "Hz")
+
         self.InitializeLibrary()
         self.UpdateCameraList() 
         self.GetCameraInfo()

@@ -1,8 +1,8 @@
 from aerodiode import Tombak
-from math imput ceil
+from math import ceil
 
 
-class Tombak_control():
+class Tombak_control:
     def __init__(self):
         self.frame_freq = 1 # read from tombak
         self.line_freq = 1  # read from tombak
