@@ -135,10 +135,10 @@ class ta_data_processing:
             self.dtt_array = ((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array))/(self.probe1_off_array + self.probe2_off_array)
         self.dtt = self.dtt_array.mean(axis=0)
         fin_dtt = self.dtt[np.isfinite(self.dtt)]
-        if np.abs(fin_dtt[cutoff[0]:cutoff[1]]).max() > max_dtt:
-            high_dtt = True
-            print('High dtt! '+str(datetime.datetime.now()))
-        return high_dtt
+        #if np.abs(fin_dtt[cutoff[0]:cutoff[1]]).max() > max_dtt:
+         #   high_dtt = True
+         #   print('High dtt! '+str(datetime.datetime.now()))
+        return #high_dtt
    
     def calculate_dtt_error(self,use_avg_off_shots=True):
         '''calculates standard deviation of the dtt array'''

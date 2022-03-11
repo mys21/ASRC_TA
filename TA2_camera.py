@@ -57,7 +57,7 @@ class octoplus(QObject):
         self.exposure_time = 132 # units of 10 ns
         self.max_bulk_queue_number = 128
         self.line_period = 1101 # units of 10 ns	# line_period = (line period * 100) - 10, to avoid losing "valid lines per frame" | period doubled from 1101 b/c frequency was halved
-        self.pulse_width = 80  # units of 10 ns
+        self.pulse_width = 70  # units of 10 ns
         self.timeout = c_ulong(60000)	# 10 s
         self.iNbOfBuffer = c_size_t(10)
         self.ulNbCameras = c_ulong()
@@ -76,24 +76,32 @@ class octoplus(QObject):
         
     # Combined methods to call camera
     def Initialize(self, lines_per_frame = 1000):	# Input can be given by the user in terms of time instead of number of shots
-	
-	# Frames and number of lines needed
-        if lines_per_frame > 65535:
-            self.num_frames = ceil(lines_per_frame / 65535)
+        #lines_per_frame = lines_per_frame - 2	# To prevent lost lines, 2 extra lines are desired for frame trigger
+		# Frames and number of lines needed
+        if lines_per_frame > 65534:
+            self.num_frames = ceil(lines_per_frame / 65534)
             self.lines_per_frame = floor(lines_per_frame/self.num_frames)			
         else:
             self.lines_per_frame = lines_per_frame
-        print("Lines per frame: ", self.lines_per_frame)
-	# DIV3 method requires that every 6th shot is related
-        if self.lines_per_frame % 6 != 0:
-            self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
-	
+
         # Set TOMBAK - 'COM3' is frame trigger port
-        self.num_shots = self.lines_per_frame + 2	# To prevent lost lines, 2 extra lines are desired for frame trigger
+        self.num_shots = self.lines_per_frame + 2	
+        print('Tombak lines: ', self.num_shots)
         tk = Tombak_control()
         tk.Initialize_tombak(self.num_shots)	
         print("Tombak division: ", tk.division)
-        print("Tombak output freq: " + (tk.frame_freq/tk.divsion) + "Hz")
+        out_freq = tk.frame_freq/tk.division
+        print("Tombak output freq: " + str(out_freq) + " Hz")
+
+	
+		# DIV3 method requires that every 6th shot is related
+        if self.lines_per_frame % 6 != 0:
+            self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
+
+		# Actual lines per frame
+        print("Lines in buffer: ", self.lines_per_frame)	
+
+
 
         self.InitializeLibrary()
         self.UpdateCameraList() 
@@ -143,6 +151,7 @@ class octoplus(QObject):
             self.RequeueBuffer()
         except OSError: 
             self.now = datetime.now()
+            self.current_day_time = self.now.strftime("%m/%d/%Y %H:%M:%S")
             print("RequeueBuffer error occured: ", self.current_day_time)
 
         count = 1
@@ -155,6 +164,7 @@ class octoplus(QObject):
                 self.RequeueBuffer()
             except OSError:
                 self.now = datetime.now()
+                self.current_day_time = self.now.strftime("%m/%d/%Y %H:%M:%S")
                 print("RequeueBuffer error occured: ", self.current_day_time)
 
         #self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)
@@ -163,7 +173,7 @@ class octoplus(QObject):
         self.data_ready.emit(self.probe,self.first_pixel,self.num_pixels)
         self.StopAcquisition()
         self.FlushBuffers()
-        print('Acquire', end-start)
+        print('Time elapsed for GetBuffer: ', end-start)
         return 
 
     def Construct_Data_Vec(self):

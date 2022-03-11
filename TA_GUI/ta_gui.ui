@@ -61,7 +61,7 @@
      </palette>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="acquire_tab">
      <attribute name="title">
@@ -675,7 +675,7 @@
         </rect>
        </property>
        <property name="maximum">
-        <number>65535</number>
+        <number>655350</number>
        </property>
       </widget>
       <widget class="QLabel" name="label_5">
@@ -2064,7 +2064,7 @@ Run</string>
         </rect>
        </property>
        <property name="maximum">
-        <number>65535</number>
+        <number>655351</number>
        </property>
       </widget>
       <widget class="QComboBox" name="d_display_mode">

@@ -200,7 +200,7 @@ class Ui_TA_GUI(object):
         self.long_t0.setObjectName("long_t0")
         self.num_shots = QtWidgets.QSpinBox(self.acquire_options_box)
         self.num_shots.setGeometry(QtCore.QRect(10, 90, 71, 22))
-        self.num_shots.setMaximum(65535)
+        self.num_shots.setMaximum(655350)
         self.num_shots.setObjectName("num_shots")
         self.label_5 = QtWidgets.QLabel(self.acquire_options_box)
         self.label_5.setGeometry(QtCore.QRect(90, 20, 91, 21))
@@ -596,7 +596,7 @@ class Ui_TA_GUI(object):
         self.label_37.setObjectName("label_37")
         self.d_num_shots = QtWidgets.QSpinBox(self.d_acquire_options_box)
         self.d_num_shots.setGeometry(QtCore.QRect(170, 100, 71, 22))
-        self.d_num_shots.setMaximum(65535)
+        self.d_num_shots.setMaximum(655351)
         self.d_num_shots.setObjectName("d_num_shots")
         self.d_display_mode = QtWidgets.QComboBox(self.d_acquire_options_box)
         self.d_display_mode.setGeometry(QtCore.QRect(10, 130, 69, 22))
@@ -778,7 +778,7 @@ class Ui_TA_GUI(object):
         TA_GUI.setStatusBar(self.statusBar)
 
         self.retranslateUi(TA_GUI)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(TA_GUI)
 
     def retranslateUi(self, TA_GUI):

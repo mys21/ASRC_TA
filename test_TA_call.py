@@ -12,23 +12,27 @@ if __name__ == "__main__":
 	print('Number of Cameras: ', oc.ulNbCameras.value)
 	print("Camera ID: ", oc.CameraInfo.pcID)
 	print("Start time: ", oc.current_day_time)
-	oc.Acquire()
+	#oc.Acquire()
 
-	running = True
-	count = 1
-	while running == True:
-		try:
-			oc.Acquire()
-			print(count+1)
-			#print(oc.current_time)
-			count = count+1
-			if keyboard.is_pressed('q'):
-				print("\nq pressed, ending acquire loop")
-				break		
-		except OSError:
-			print("Requeue Error!")
-			running = False
-			break
+	for i in range(5):
+		oc.Acquire()
+		print(i+1," :")
+
+#	running = True
+#	count = 1
+#	while running == True:
+#		try:
+#			oc.Acquire()
+#			print(count+1)
+#			#print(oc.current_time)
+#			count = count+1
+#			if keyboard.is_pressed('q'):
+#				print("\nq pressed, ending acquire loop")
+#				break		
+#		except OSError:
+#			print("Requeue Error!")
+#			running = False
+#			break
 
 	#print("Buffer Size: ", oc.ImageInfos.iBufferSize)
 	#print(oc.probe)
