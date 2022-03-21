@@ -583,12 +583,11 @@ class Editor(QtWidgets.QMainWindow):
         
     def d_error_plot(self):
         '''error plot on diagnostics tab'''
-        #try:
-        #    self.ui.d_error_graph.plotItem.plot(self.plot_waves,np.log10(self.plot_probe_shot_error),pen='r',clear=True,fillBrush='r')
-        #except:
-        #    self.append_history('Error plotting error!')
-        #self.ui.d_error_graph.plotItem.setYRange(-4,1,padding=0)
-        #self.append_history('Not plotting error!')
+        try:
+            self.ui.d_error_graph.plotItem.plot(self.plot_waves,np.log10(self.plot_probe_shot_error),pen='r',clear=True,fillBrush='r')
+        except:
+            self.append_history('Error plotting error!')
+        self.ui.d_error_graph.plotItem.setYRange(-4,1,padding=0)
         return
         
     def d_probe_ref_plot(self):
@@ -715,23 +714,6 @@ class Editor(QtWidgets.QMainWindow):
         self.append_history('Acquiring '+str(self.num_shots)+' shots')
         self.camera.start_acquire.emit()
         return
-        
-    #def post_acquire(self,probe,reference,first_pixel,num_pixels):
-    #    '''process ta data according to functions found in ta_data_processing.py'''
-    #    try:
-    #        self.current_data.update(probe,
-    #                                 reference,
-    #                                 first_pixel,
-    #                                 num_pixels)
-    #    except:
-    #         self.current_data = ta_data_processing(probe,
-    #                                                reference,
-    #                                                first_pixel,
-    #                                                num_pixels)
-    #    self.high_trig_std = self.current_data.separate_on_off(self.tau_flip_request)
-    #    self.current_data.average_shots()
-    #    self.high_dtt = self.current_data.calculate_dtt(cutoff=self.cutoff,use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked(),max_dtt=np.abs(self.ui.d_max_dtt.value()))
-    #   self.current_data.calculate_dtt_error(use_avg_off_shots=self.ui.d_use_avg_off_shots.isChecked())
 
     def post_acquire(self,probe,first_pixel,num_pixels):
         '''process ta data according to functions found in ta_data_processing.py'''
@@ -770,6 +752,7 @@ class Editor(QtWidgets.QMainWindow):
 #             else:
 # =============================================================================
             self.current_sweep.add_current_data(self.current_data.dtt,time_point=self.timestep)
+            self.append_history('Last point added')
         else:
             self.append_history('Did not add last point')
             
@@ -899,28 +882,6 @@ class Editor(QtWidgets.QMainWindow):
         self.move(self.time)
         self.acquire()
         return
-        
-    #def post_sweep(self):
-    #    if self.ui.test_run_btn.isChecked() is False:
-    #        self.append_history('Saving Sweep '+str(self.current_sweep.sweep_index))
-    #        try:
-    #            self.current_sweep.save_current_data(self.waves)
-    #            self.current_sweep.save_avg_data(self.waves)
-    #            self.current_sweep.save_metadata_each_sweep(self.current_data.probe_on,
-    #                                                        self.current_data.reference_on,
-    #                                                        self.current_data.probe_shot_error)
-    #        except:
-    #            self.message_error_saving()
-    #    
-    #    self.current_sweep.next_sweep()
-    #    
-    #    if self.current_sweep.sweep_index == self.num_sweeps:
-    #        self.finish()
-    #    else:
-    #        self.append_history('Starting Sweep '+str(self.current_sweep.sweep_index))
-    #        self.ui.sweep_display.display(self.current_sweep.sweep_index+1)
-    #        self.start_sweep()
-    #    return
 
     def post_sweep(self):
         if self.ui.test_run_btn.isChecked() is False:
@@ -986,19 +947,6 @@ class Editor(QtWidgets.QMainWindow):
         self.append_history('Acquiring '+str(self.num_shots)+' shots')
         self.camera.start_acquire.emit()
         return
-
-     #def d_post_acquire(self,probe,reference,first_pixel,num_pixels):
-     #   '''process ta data according to functions found in ta_data_processing.py'''
-     #   try:
-     #       self.current_data.update(probe,
-     #                                reference,
-     #                                first_pixel,
-     #                                num_pixels)
-     #   except:
-     #        self.current_data = ta_data_processing(probe,
-     #                                               reference,
-     #                                               first_pixel,
-     #                                               num_pixels)
 													
     def d_post_acquire(self,probe,first_pixel,num_pixels):
         '''process ta data according to functions found in ta_data_processing.py'''

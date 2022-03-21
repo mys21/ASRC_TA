@@ -3,7 +3,7 @@ import os
 import numpy as np
 from enum import IntEnum
 from PyQt5.QtCore import QObject, pyqtSignal, pyqtSlot	
-from time import time
+from time import time, sleep
 from datetime import datetime
 from math import ceil, floor
 from Tombak_control import Tombak_control
@@ -55,10 +55,10 @@ class octoplus(QObject):
         self.circular_buffer = 0
         self.trigger_mode = 4				# IMPORTANT: trigger_mode is set to 4 during experiments | trigger_mode is set to 1 when testing code (due to limited access to laser)
         self.exposure_time = 132 # units of 10 ns
-        self.max_bulk_queue_number = 128
+        self.max_bulk_queue_number = 16
         self.line_period = 1101 # units of 10 ns	# line_period = (line period * 100) - 10, to avoid losing "valid lines per frame" | period doubled from 1101 b/c frequency was halved
         self.pulse_width = 70  # units of 10 ns
-        self.timeout = c_ulong(60000)	# 10 s
+        self.timeout = c_ulong(60000)	# 60 s
         self.iNbOfBuffer = c_size_t(10)
         self.ulNbCameras = c_ulong()
         self.ulIndex = c_ulong(0)
@@ -75,33 +75,30 @@ class octoplus(QObject):
         self.timestamp = self.now.strftime("%m/%d/%y %H%M%S")
         
     # Combined methods to call camera
-    def Initialize(self, lines_per_frame = 1000):	# Input can be given by the user in terms of time instead of number of shots
-        #lines_per_frame = lines_per_frame - 2	# To prevent lost lines, 2 extra lines are desired for frame trigger
+    def Initialize(self, lines_per_frame = 1000):	# Input can be given by the user in terms of time instead of number of shots	
 		# Frames and number of lines needed
         if lines_per_frame > 65534:
             self.num_frames = ceil(lines_per_frame / 65534)
             self.lines_per_frame = floor(lines_per_frame/self.num_frames)			
         else:
             self.lines_per_frame = lines_per_frame
-
-        # Set TOMBAK - 'COM3' is frame trigger port
-        self.num_shots = self.lines_per_frame + 2	
-        print('Tombak lines: ', self.num_shots)
-        tk = Tombak_control()
-        tk.Initialize_tombak(self.num_shots)	
-        print("Tombak division: ", tk.division)
-        out_freq = tk.frame_freq/tk.division
-        print("Tombak output freq: " + str(out_freq) + " Hz")
-
 	
 		# DIV3 method requires that every 6th shot is related
         if self.lines_per_frame % 6 != 0:
             self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
 
+        # Set TOMBAK - 'COM3' is frame trigger port
+        self.num_shots = self.lines_per_frame + 2	# To prevent lost lines, 2 extra lines are desired for frame trigger
+        print('\nTombak lines: ', self.num_shots)
+        tk = Tombak_control()
+        tk.Initialize_tombak(self.num_shots)	
+        print("Tombak division: ", tk.division)
+        sleep(6)
+        out_freq = tk.frame_freq/tk.division
+        print("Tombak output freq: " + str(out_freq) + " Hz")
+
 		# Actual lines per frame
         print("Lines in buffer: ", self.lines_per_frame)	
-
-
 
         self.InitializeLibrary()
         self.UpdateCameraList() 
@@ -110,9 +107,10 @@ class octoplus(QObject):
 
         #self.WriteRegister(0x4F000000, self.enable_contextual_data)
         #self.WriteRegister(0x4F000018, self.circular_buffer)
+        self.WriteRegister(0x12288, 0)
         self.WriteRegister(0x1210C, self.trigger_mode)
         self.WriteRegister(0x12108, self.exposure_time)
-        #self.WriteRegister(0x4F000010, self.max_bulk_queue_number)
+        self.WriteRegister(0x4F000010, self.max_bulk_queue_number)
         self.WriteRegister(0x12128, self.lines_per_frame)
         self.WriteRegister(0x12100, self.line_period)
         self.WriteRegister(0x1211C, self.pulse_width)
@@ -122,10 +120,10 @@ class octoplus(QObject):
         #self.ReadRegister(0x1210C, self.readtest)
         #print ("exposure_time: ")
         #self.ReadRegister(0x12108, self.readtest)
-        #print ("max_bulk_queue_number: ")
-        #self.ReadRegister(0x4F000010, self.readtest)
-        #print ("lines_per_frame: ")
-        #self.ReadRegister(0x12128, self.readtest)
+        print ("max_bulk_queue_number: ")
+        self.ReadRegister(0x4F000010, self.readtest)
+        print ("lines_per_frame: ")
+        self.ReadRegister(0x12128, self.readtest)
         #print ("line_period: ")
         #self.ReadRegister(0x12100, self.readtest)
         #print ("pulse_width: ")
@@ -142,24 +140,31 @@ class octoplus(QObject):
     @pyqtSlot()																							
     def Acquire(self):
         self.StartAcquisition()
+        #nError = 0
         start = time()
         self.GetBuffer()
         end = time()
+        #nError = self.GetBuffer()
+        #print("nError value: ", self.GetBuffer())
+        #if (nError != 0):
+            #print("****************************************GetBuffer Error*************************************************") 
         self.FrameDebugger()
         self.Construct_Data_Vec()
+        #print(self.probe[1:50])
         try:
             self.RequeueBuffer()
         except OSError: 
             self.now = datetime.now()
             self.current_day_time = self.now.strftime("%m/%d/%Y %H:%M:%S")
-            print("RequeueBuffer error occured: ", self.current_day_time)
+            print("*****************************************RequeueBuffer error occured: ", self.current_day_time)
+
 
         count = 1
         while count < self.num_frames:
             count = count + 1
             self.GetBuffer()
             self.FrameDebugger()
-            self.Update_Data_Vec()          
+            self.Update_Data_Vec()  
             try:
                 self.RequeueBuffer()
             except OSError:
@@ -167,19 +172,19 @@ class octoplus(QObject):
                 self.current_day_time = self.now.strftime("%m/%d/%Y %H:%M:%S")
                 print("RequeueBuffer error occured: ", self.current_day_time)
 
-        #self.data_ready.emit(self.probe,self.reference,self.first_pixel,self.num_pixels)
-		#self.Savefile()
 
+		#self.Savefile()
+        #self.RequeueBuffer()
         self.data_ready.emit(self.probe,self.first_pixel,self.num_pixels)
+        #self.WriteRegister(0x12290, 0)
         self.StopAcquisition()
         self.FlushBuffers()
-        print('Time elapsed for GetBuffer: ', end-start)
+        print('GetBuffer: ', end-start, "s")
         return 
 
     def Construct_Data_Vec(self):
         raw_data = cast(self.ImageInfos.pDatas, POINTER(c_ushort))
         self.probe = np.ctypeslib.as_array(raw_data, shape = (self.lines_per_frame, self.pixels))
-        #self.reference = np.ones((self.lines_per_frame, self.pixels), dtype = np.uint16)
 
     def Update_Data_Vec(self):
         raw_data = cast(self.ImageInfos.pDatas, POINTER(c_ushort))
@@ -204,10 +209,14 @@ class octoplus(QObject):
     _exit = pyqtSignal()																				
     @pyqtSlot()																						
     def Exit(self):
+        #self.StopAcquisition()
+        #self.FlushBuffers()
+        self.WriteRegister(0x1210C, 1)
+
         self.CloseCamera()
-        print("Camera Closed")
         self.TerminateLibrary()
-        
+        print("Camera Closed")
+		
     ###########################################################################
     ###########################################################################
     ###########################################################################

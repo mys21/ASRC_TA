@@ -70,8 +70,8 @@ class ta_data_processing:
         
     def average_shots(self):
         '''simple enough - averages shots'''
-        self.probe_on = self.probe_on_array.mean(axis=0)
-        self.probe_off = self.probe_off_array.mean(axis=0)
+        self.probe_on = (self.probe1_on_array.mean(axis=0) + self.probe2_on_array.mean(axis=0))/2
+        self.probe_off = (self.probe1_off_array.mean(axis=0) + self.probe2_off_array.mean(axis=0))/2
   
         #self.probe_on_array = self.probe1_on_array
         #self.probe_on_array = np.append(self.probe_on_array, self.probe2_on_array)
@@ -128,17 +128,21 @@ class ta_data_processing:
     def calculate_dtt(self,cutoff=[0,100],use_avg_off_shots=True,max_dtt=1):
         '''calculate dtt for each shot pair'''
         high_dtt = False
+        self.divide_by = self.probe1_off_array + self.probe2_off_array
+        self.divide_by[self.divide_by == 0] = 1		# to avoid true divide error, any instance where demoninator is 0, the value is changed to 1.
         if use_avg_off_shots is True:
             #self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off + 10)
-            self.dtt_array = ((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array))/(self.probe1_off_array + self.probe2_off_array)
+            np.seterr(invalid='ignore')
+            self.dtt_array = np.divide(((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array)), (self.divide_by))
         if use_avg_off_shots is False:
-            self.dtt_array = ((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array))/(self.probe1_off_array + self.probe2_off_array)
+            np.seterr(invalid='ignore')
+            self.dtt_array = np.divide(((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array)), (self.divide_by))
         self.dtt = self.dtt_array.mean(axis=0)
         fin_dtt = self.dtt[np.isfinite(self.dtt)]
         #if np.abs(fin_dtt[cutoff[0]:cutoff[1]]).max() > max_dtt:
          #   high_dtt = True
          #   print('High dtt! '+str(datetime.datetime.now()))
-        return #high_dtt
+        return high_dtt
    
     def calculate_dtt_error(self,use_avg_off_shots=True):
         '''calculates standard deviation of the dtt array'''

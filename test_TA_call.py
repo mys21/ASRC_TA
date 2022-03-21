@@ -15,8 +15,9 @@ if __name__ == "__main__":
 	#oc.Acquire()
 
 	for i in range(5):
+		print(i+1)
 		oc.Acquire()
-		print(i+1," :")
+
 
 #	running = True
 #	count = 1
