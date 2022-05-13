@@ -851,114 +851,132 @@
       <property name="title">
        <string>Calibration</string>
       </property>
-      <widget class="QSpinBox" name="calib_pixel_low">
+      <widget class="QDoubleSpinBox" name="calib_A">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>40</y>
-         <width>71</width>
+         <width>91</width>
          <height>22</height>
         </rect>
        </property>
+       <property name="decimals">
+        <number>5</number>
+       </property>
+       <property name="minimum">
+        <double>-2000.000000000000000</double>
+       </property>
        <property name="maximum">
-        <number>1200</number>
+        <double>2000.000000000000000</double>
        </property>
       </widget>
-      <widget class="QSpinBox" name="calib_wave_low">
+      <widget class="QDoubleSpinBox" name="calib_B">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>60</y>
-         <width>71</width>
+         <width>91</width>
          <height>22</height>
         </rect>
        </property>
+       <property name="decimals">
+        <number>5</number>
+       </property>
        <property name="minimum">
-        <number>300</number>
+        <double>-10.000000000000000</double>
        </property>
        <property name="maximum">
-        <number>1500</number>
+        <double>10.000000000000000</double>
        </property>
       </widget>
-      <widget class="QSpinBox" name="calib_pixel_high">
+      <widget class="QDoubleSpinBox" name="calib_C">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>90</y>
-         <width>71</width>
+         <width>91</width>
          <height>22</height>
         </rect>
        </property>
+       <property name="decimals">
+        <number>5</number>
+       </property>
+       <property name="minimum">
+        <double>-10.000000000000000</double>
+       </property>
        <property name="maximum">
-        <number>1200</number>
+        <double>10.000000000000000</double>
        </property>
       </widget>
-      <widget class="QSpinBox" name="calib_wave_high">
+      <widget class="QDoubleSpinBox" name="calib_D">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>110</y>
-         <width>71</width>
+         <width>91</width>
          <height>22</height>
         </rect>
        </property>
+       <property name="decimals">
+        <number>5</number>
+       </property>
        <property name="minimum">
-        <number>300</number>
+        <double>-10.000000000000000</double>
        </property>
        <property name="maximum">
-        <number>2000</number>
+        <double>10.000000000000000</double>
        </property>
       </widget>
       <widget class="QLabel" name="label_10">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>110</x>
          <y>40</y>
          <width>101</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>Pixel Low</string>
+        <string>A</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_11">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>110</x>
          <y>60</y>
          <width>101</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>Wavelength Low</string>
+        <string>B</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_12">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>110</x>
          <y>90</y>
          <width>101</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>Pixel High</string>
+        <string>C * 10^5</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_13">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>110</x>
          <y>110</y>
          <width>101</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>Wavelength High</string>
+        <string>D * 10^9</string>
        </property>
       </widget>
       <widget class="QCheckBox" name="use_calib">
@@ -1843,121 +1861,139 @@ Run</string>
        <rect>
         <x>10</x>
         <y>170</y>
-        <width>191</width>
+        <width>311</width>
         <height>141</height>
        </rect>
       </property>
       <property name="title">
        <string>Calibration</string>
       </property>
-      <widget class="QSpinBox" name="d_calib_pixel_low">
+      <widget class="QDoubleSpinBox" name="d_calib_A">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>40</y>
-         <width>71</width>
+         <width>111</width>
          <height>22</height>
         </rect>
        </property>
+       <property name="decimals">
+        <number>5</number>
+       </property>
+       <property name="minimum">
+        <double>-2000.000000000000000</double>
+       </property>
        <property name="maximum">
-        <number>1200</number>
+        <double>2000.000000000000000</double>
        </property>
       </widget>
-      <widget class="QSpinBox" name="d_calib_wave_low">
+      <widget class="QDoubleSpinBox" name="d_calib_B">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>60</y>
-         <width>71</width>
+         <width>111</width>
          <height>22</height>
         </rect>
        </property>
+       <property name="decimals">
+        <number>5</number>
+       </property>
        <property name="minimum">
-        <number>300</number>
+        <double>-10.000000000000000</double>
        </property>
        <property name="maximum">
-        <number>1500</number>
+        <double>10.000000000000000</double>
        </property>
       </widget>
-      <widget class="QSpinBox" name="d_calib_pixel_high">
+      <widget class="QDoubleSpinBox" name="d_calib_C">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>90</y>
-         <width>71</width>
+         <width>111</width>
          <height>22</height>
         </rect>
        </property>
+       <property name="decimals">
+        <number>5</number>
+       </property>
+       <property name="minimum">
+        <double>-10.000000000000000</double>
+       </property>
        <property name="maximum">
-        <number>1200</number>
+        <double>10.000000000000000</double>
        </property>
       </widget>
-      <widget class="QSpinBox" name="d_calib_wave_high">
+      <widget class="QDoubleSpinBox" name="d_calib_D">
        <property name="geometry">
         <rect>
          <x>10</x>
          <y>110</y>
-         <width>71</width>
+         <width>111</width>
          <height>22</height>
         </rect>
        </property>
+       <property name="decimals">
+        <number>5</number>
+       </property>
        <property name="minimum">
-        <number>300</number>
+        <double>-10.000000000000000</double>
        </property>
        <property name="maximum">
-        <number>2000</number>
+        <double>10.000000000000000</double>
        </property>
       </widget>
       <widget class="QLabel" name="label_23">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>140</x>
          <y>40</y>
          <width>101</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>Pixel Low</string>
+        <string>A</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_24">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>140</x>
          <y>60</y>
          <width>101</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>Wavelength Low</string>
+        <string>B</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_31">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>140</x>
          <y>90</y>
          <width>101</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>Pixel High</string>
+        <string>C * 10^5</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_32">
        <property name="geometry">
         <rect>
-         <x>90</x>
+         <x>140</x>
          <y>110</y>
          <width>101</width>
          <height>21</height>
         </rect>
        </property>
        <property name="text">
-        <string>Wavelength High</string>
+        <string>D * 10^9</string>
        </property>
       </widget>
       <widget class="QCheckBox" name="d_use_calib">
@@ -1974,6 +2010,32 @@ Run</string>
        </property>
        <property name="autoExclusive">
         <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_42">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>30</y>
+         <width>71</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>y = A + Bx +</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_43">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>50</y>
+         <width>71</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Cx^2 + Dx^3</string>
        </property>
       </widget>
      </widget>
@@ -2399,8 +2461,8 @@ Run</string>
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>170</y>
+        <x>10</x>
+        <y>10</y>
         <width>141</width>
         <height>141</height>
        </rect>

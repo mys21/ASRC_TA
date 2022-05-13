@@ -56,6 +56,7 @@ class octoplus(QObject):
         self.trigger_mode = 4				# IMPORTANT: trigger_mode is set to 4 during experiments | trigger_mode is set to 1 when testing code (due to limited access to laser)
         self.exposure_time = 132 # units of 10 ns
         self.max_bulk_queue_number = 16
+        self.bit_length = 4		# 4 = 12bits|3 = 11bits
         self.line_period = 1101 # units of 10 ns	# line_period = (line period * 100) - 10, to avoid losing "valid lines per frame" | period doubled from 1101 b/c frequency was halved
         self.pulse_width = 70  # units of 10 ns
         self.timeout = c_ulong(60000)	# 60 s
@@ -107,6 +108,8 @@ class octoplus(QObject):
 
         #self.WriteRegister(0x4F000000, self.enable_contextual_data)
         #self.WriteRegister(0x4F000018, self.circular_buffer)
+
+        self.WriteRegister(0x12020, self.bit_length)
         self.WriteRegister(0x12288, 0)
         self.WriteRegister(0x1210C, self.trigger_mode)
         self.WriteRegister(0x12108, self.exposure_time)
@@ -114,6 +117,7 @@ class octoplus(QObject):
         self.WriteRegister(0x12128, self.lines_per_frame)
         self.WriteRegister(0x12100, self.line_period)
         self.WriteRegister(0x1211C, self.pulse_width)
+
 
 		#Reading registers for debugging
         #print ("trigger mode: ")
@@ -203,6 +207,7 @@ class octoplus(QObject):
     def Savefile(self):
         start = time()
         np.savetxt('test_data_'+self.timestamp+'.csv', self.probe, '%d')
+        #np.savetxt('div3_1sweep_.csv', self.probe, '%d')
         end = time()
         print("Time to save file: ", end-start)
 

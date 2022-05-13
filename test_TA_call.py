@@ -12,11 +12,11 @@ if __name__ == "__main__":
 	print('Number of Cameras: ', oc.ulNbCameras.value)
 	print("Camera ID: ", oc.CameraInfo.pcID)
 	print("Start time: ", oc.current_day_time)
-	#oc.Acquire()
+	oc.Acquire()
 
-	for i in range(5):
-		print(i+1)
-		oc.Acquire()
+#	for i in range(5):
+#		print(i+1)
+#		oc.Acquire()
 
 
 #	running = True

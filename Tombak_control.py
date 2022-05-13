@@ -8,7 +8,7 @@ class Tombak_control:
         self.line_freq = 1  # read from tombak
         self.line_port = 'COM5' 
         self.frame_port = 'COM3'
-        self.frame_voltage = 0.5 # units of V
+        self.frame_voltage = 1 # units of V
         self.line_voltage = 0.5 # units of V
         self.line_pulse_width = 260 # units of ns
         self.frame_pulse_width = 800 # units of ns

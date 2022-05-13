@@ -51,10 +51,10 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.delay_type_list.addItem('Short')
         
         self.ui.use_calib.toggled.connect(self.update_use_calib)
-        self.ui.calib_pixel_low.valueChanged.connect(self.update_calib)
-        self.ui.calib_pixel_high.valueChanged.connect(self.update_calib)
-        self.ui.calib_wave_low.valueChanged.connect(self.update_calib)
-        self.ui.calib_wave_high.valueChanged.connect(self.update_calib)
+        self.ui.calib_A.valueChanged.connect(self.update_calib)
+        self.ui.calib_B.valueChanged.connect(self.update_calib)
+        self.ui.calib_C.valueChanged.connect(self.update_calib)
+        self.ui.calib_D.valueChanged.connect(self.update_calib)
         
         self.ui.use_cutoff.toggled.connect(self.update_use_cutoff)
         self.ui.cutoff_pixel_low.valueChanged.connect(self.update_cutoff)
@@ -71,10 +71,10 @@ class Editor(QtWidgets.QMainWindow):
         self.ui.plot_timescale.toggled.connect(self.update_plot_timescale)
         
         self.ui.d_use_calib.toggled.connect(self.update_d_use_calib)
-        self.ui.d_calib_pixel_low.valueChanged.connect(self.update_d_calib)
-        self.ui.d_calib_pixel_high.valueChanged.connect(self.update_d_calib)
-        self.ui.d_calib_wave_low.valueChanged.connect(self.update_d_calib)
-        self.ui.d_calib_wave_high.valueChanged.connect(self.update_d_calib)
+        self.ui.d_calib_A.valueChanged.connect(self.update_d_calib)
+        self.ui.d_calib_B.valueChanged.connect(self.update_d_calib)
+        self.ui.d_calib_C.valueChanged.connect(self.update_d_calib)
+        self.ui.d_calib_D.valueChanged.connect(self.update_d_calib)
         
         self.ui.d_use_cutoff.toggled.connect(self.update_d_use_cutoff)
         self.ui.d_cutoff_pixel_low.valueChanged.connect(self.update_d_cutoff)
@@ -120,10 +120,10 @@ class Editor(QtWidgets.QMainWindow):
         if preloaded is False:
             self.ui.cutoff_pixel_low.setValue(0)
             self.ui.cutoff_pixel_high.setValue(2048)
-            self.ui.calib_pixel_low.setValue(100)
-            self.ui.calib_pixel_high.setValue(400)
-            self.ui.calib_wave_low.setValue(500)
-            self.ui.calib_wave_high.setValue(800)
+            self.ui.calib_A.setValue(1.03797499e+03)
+            self.ui.calib_B.setValue(-3.05144425e-01)
+            self.ui.calib_C.setValue(1.13099072)
+            self.ui.calib_D.setValue(-2.97101736)
             self.ui.num_shots.setValue(200)
             self.ui.num_sweeps.setValue(500)
             self.ui.kinetic_pixel.setValue(100)
@@ -138,10 +138,10 @@ class Editor(QtWidgets.QMainWindow):
         else:
             self.ui.cutoff_pixel_low.setValue(int(pl[0]))
             self.ui.cutoff_pixel_high.setValue(int(pl[1]))
-            self.ui.calib_pixel_low.setValue(int(pl[2]))
-            self.ui.calib_pixel_high.setValue(int(pl[3]))
-            self.ui.calib_wave_low.setValue(int(pl[4]))
-            self.ui.calib_wave_high.setValue(int(pl[5]))
+            self.ui.calib_A.setValue(pl[2])
+            self.ui.calib_B.setValue(pl[3])
+            self.ui.calib_C.setValue(pl[4])
+            self.ui.calib_D.setValue(pl[5])
             self.ui.num_shots.setValue(int(pl[6]))
             self.ui.num_sweeps.setValue(int(pl[7]))
             self.ui.kinetic_pixel.setValue(int(pl[8]))
@@ -163,10 +163,10 @@ class Editor(QtWidgets.QMainWindow):
     def save_gui_data(self):
         output = np.array([self.ui.cutoff_pixel_low.value(),
                         self.ui.cutoff_pixel_high.value(),
-                        self.ui.calib_pixel_low.value(),
-                        self.ui.calib_pixel_high.value(),
-                        self.ui.calib_wave_low.value(),
-                        self.ui.calib_wave_high.value(),
+                        self.ui.calib_A.value(),
+                        self.ui.calib_B.value(),
+                        self.ui.calib_C.value(),
+                        self.ui.calib_D.value(),
                         self.ui.num_shots.value(),
                         self.ui.num_sweeps.value(),
                         self.ui.kinetic_pixel.value(),
@@ -359,26 +359,26 @@ class Editor(QtWidgets.QMainWindow):
         
     def update_calib(self):
         '''stores calibration data when values change'''
-        self.calib  = [self.ui.calib_pixel_low.value(),
-                       self.ui.calib_pixel_high.value(),
-                       self.ui.calib_wave_low.value(),
-                       self.ui.calib_wave_high.value()]
-        self.ui.d_calib_pixel_low.setValue(self.calib[0])
-        self.ui.d_calib_pixel_high.setValue(self.calib[1])
-        self.ui.d_calib_wave_low.setValue(self.calib[2])
-        self.ui.d_calib_wave_high.setValue(self.calib[3])
+        self.calib  = [self.ui.calib_A.value(),
+                       self.ui.calib_B.value(),
+                       self.ui.calib_C.value(),
+                       self.ui.calib_D.value()]
+        self.ui.d_calib_A.setValue(self.calib[0])
+        self.ui.d_calib_B.setValue(self.calib[1])
+        self.ui.d_calib_C.setValue(self.calib[2])
+        self.ui.d_calib_D.setValue(self.calib[3])
         return
         
     def update_d_calib(self):
         '''diagnostic equivalent of update_calib'''
-        self.calib  = [self.ui.d_calib_pixel_low.value(),
-                       self.ui.d_calib_pixel_high.value(),
-                       self.ui.d_calib_wave_low.value(),
-                       self.ui.d_calib_wave_high.value()]
-        self.ui.calib_pixel_low.setValue(self.calib[0])
-        self.ui.calib_pixel_high.setValue(self.calib[1])
-        self.ui.calib_wave_low.setValue(self.calib[2])
-        self.ui.calib_wave_high.setValue(self.calib[3])
+        self.calib  = [self.ui.d_calib_A.value(),
+                       self.ui.d_calib_B.value(),
+                       self.ui.d_calib_C.value(),
+                       self.ui.d_calib_D.value()]
+        self.ui.calib_A.setValue(self.calib[0])
+        self.ui.calib_B.setValue(self.calib[1])
+        self.ui.calib_C.setValue(self.calib[2])
+        self.ui.calib_D.setValue(self.calib[3])
         return
              
     def update_use_cutoff(self):
@@ -539,9 +539,23 @@ class Editor(QtWidgets.QMainWindow):
         
     def pixels_to_waves(self):
         '''uses calibration values to transform pixels to wavelength values'''
-        slope = (self.calib[3]-self.calib[2])/(self.calib[1]-self.calib[0])
-        y_int = self.calib[2]-slope*self.calib[0]
-        return np.linspace(0,self.num_pixels-1,self.num_pixels)*slope+y_int
+        #slope = (self.calib[3]-self.calib[2])/(self.calib[1]-self.calib[0])
+        #y_int = self.calib[2]-slope*self.calib[0]
+        #return np.linspace(0,self.num_pixels-1,self.num_pixels)*slope+y_int
+        pixels = np.linspace(0,self.num_pixels-1,self.num_pixels) 
+        waves = np.zeros(len(pixels))
+        #A = 1.03797499e+03
+        #B = -3.05144425e-01
+        #C = 1.13099072e-05
+        #D = -2.97101736e-09
+        A = self.calib[0]
+        B = self.calib[1]
+        C = self.calib[2]*1e-5
+        D = self.calib[3]*1e-9
+        for i,p in enumerate(pixels):
+            waves[i] = A + B*p + C*p*p + D*p*p*p
+        return waves
+		
                 
     def ls_plot(self):
         '''last shot plot on acquire tab'''
