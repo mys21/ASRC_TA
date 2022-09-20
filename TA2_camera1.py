@@ -383,4 +383,3 @@ class UTC_IR_Camera(QObject):
     def Exit(self):
         self.img1.close()
         print("Camera Closed")
-	
