@@ -81,6 +81,8 @@ class esp301_delay_stage:
         # Get negative software limit
         result, llimit, errString = self.stage.SL_Get(self.axis,Double(0.),"")
         self.nlimit = llimit
+        #home stage to reset all
+        #self.home()
 
     def home(self):
         result, errString = self.stage.OR(self.axis,Int32(0),"")
@@ -122,6 +124,7 @@ class esp301_delay_stage:
             #pos = self.convert_ps_to_mm(float(self.t0-time))
             pos = self.convert_ps_to_mm(float(self.t0+time))
             if (pos>self.plimit) or (pos<self.nlimit):
+            #if (pos>300) or (pos<-300):
                 all_on_stage = False
         return all_on_stage
 
@@ -132,6 +135,7 @@ class esp301_delay_stage:
         #print(pos)
         # change to read stage limits
         if (pos>self.plimit) or (pos<self.nlimit):
+        #if (pos>300) or (pos<-300):
             on_stage = False
         return on_stage
 

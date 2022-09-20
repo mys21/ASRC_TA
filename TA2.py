@@ -111,6 +111,8 @@ class Editor(QtWidgets.QMainWindow):
         self.num_pixels = 2048
         self.ui.filename.setText(r'D:\default_datafile')
         self.idle = True
+        # add variable so we only initialize the delay state once
+        self.dhome = False
         self.ui.use_calib.toggle()
         self.ui.use_cutoff.toggle()
         self.ui.plot_log_t.toggle()
@@ -837,6 +839,9 @@ class Editor(QtWidgets.QMainWindow):
         if self.delay_type == 0:
             self.append_history('Connecting to delay stage')
             self.delay = esp301_delay_stage(self.short_t0)
+            if self.dhome is False:
+                self.delay.home()
+            self.dhome = True
         
         if self.delay.initialized is False:
             self.append_history('Stage Not Initialized Correctly')
@@ -1027,6 +1032,9 @@ class Editor(QtWidgets.QMainWindow):
         if self.delay_type == 0:
             self.append_history('Connecting to delay stage')
             self.delay = esp301_delay_stage(self.short_t0)
+            if self.dhome is False:
+                self.delay.home()
+            self.dhome = True
         
         if self.delay.initialized is False:
             self.append_history('Stage/DG Not Initialized Correctly')

@@ -61,7 +61,7 @@
      </palette>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="acquire_tab">
      <attribute name="title">
@@ -648,6 +648,9 @@
          <height>22</height>
         </rect>
        </property>
+       <property name="minimum">
+        <double>-2000.000000000000000</double>
+       </property>
        <property name="maximum">
         <double>100000.000000000000000</double>
        </property>
@@ -1115,7 +1118,7 @@ Run</string>
         </rect>
        </property>
        <property name="maximum">
-        <number>1200</number>
+        <number>2047</number>
        </property>
       </widget>
       <widget class="QSpinBox" name="spectra_timestep">
@@ -1938,10 +1941,10 @@ Run</string>
         <number>5</number>
        </property>
        <property name="minimum">
-        <double>-10.000000000000000</double>
+        <double>-100.000000000000000</double>
        </property>
        <property name="maximum">
-        <double>10.000000000000000</double>
+        <double>100.000000000000000</double>
        </property>
       </widget>
       <widget class="QLabel" name="label_23">
@@ -2062,6 +2065,9 @@ Run</string>
        </property>
        <property name="inputMethodHints">
         <set>Qt::ImhDigitsOnly</set>
+       </property>
+       <property name="minimum">
+        <double>-2000.000000000000000</double>
        </property>
        <property name="maximum">
         <double>100000.000000000000000</double>
