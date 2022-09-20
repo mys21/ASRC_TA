@@ -10,7 +10,7 @@ if delay.initialized is False:
     #self.idling()
 
 # uncomment to home
-#delay.home()
+delay.home()
 
 # check current position (added function to class)
 currPos = delay.get_posmm()
