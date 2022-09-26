@@ -86,8 +86,12 @@ class octoplus(QObject):
             self.lines_per_frame = lines_per_frame
 	
 		# DIV3 method requires that every 6th shot is matched
-        if self.lines_per_frame % 6 != 0:
-            self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
+#        if self.lines_per_frame % 6 != 0:
+#            self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
+
+		# Burst method requires that every 4th shot is matched
+        if self.lines_per_frame % 4 != 0:
+            self.lines_per_frame = 4 * floor(self.lines_per_frame / 4)
 
         # Set TOMBAK - 'COM3' is frame trigger port
         self.num_shots = self.lines_per_frame + 2	# To prevent lost lines, 2 extra lines are desired for frame trigger

@@ -51,19 +51,18 @@ class ta_data_processing:
             self.probe_on_array = self.probe_array[::2,:]
             self.probe_off_array = self.probe_array[1::2,:]
 
-            # Using "divide by 3" method
+            # Using "divide by 3" method	#tau_flip is false when using div by 3 method
             # To correct for the mismatch of ADCs of camera at running at 90kHz
-            self.probe1_on_array = self.probe_array[1::6,:]
-            self.probe1_off_array = self.probe_array[2::6,:]
-            self.probe2_off_array = self.probe_array[3::6,:]
-            self.probe2_on_array = self.probe_array[4::6,:]
+#            self.probe1_on_array = self.probe_array[1::6,:]
+#            self.probe1_off_array = self.probe_array[2::6,:]
+#            self.probe2_off_array = self.probe_array[3::6,:]
+#            self.probe2_on_array = self.probe_array[4::6,:]
 
 			# Burst Method - 2 shots on, 2 shots off
-#            self.probe1_on_array = self.probe_array[1::4,:]
-#            self.probe1_off_array = self.probe_array[2::4,:]
-#            self.probe2_off_array = self.probe_array[3::4,:]
-#            self.probe2_on_array = self.probe_array[4::4,:]
-
+            self.probe1_on_array = self.probe_array[1::4,:]
+            self.probe1_off_array = self.probe_array[::4,:]
+            self.probe2_off_array = self.probe_array[3::4,:]
+            self.probe2_on_array = self.probe_array[2::4,:]
 
         else:
 			# shot-to-shot
@@ -71,16 +70,16 @@ class ta_data_processing:
             self.probe_off_array = self.probe_array[::2,:]
 
             # Using "divide by 3" method
-            self.probe1_on_array = self.probe_array[2::6,:]
-            self.probe1_off_array = self.probe_array[1::6,:]
-            self.probe2_off_array = self.probe_array[4::6,:]
-            self.probe2_on_array = self.probe_array[3::6,:]
+#            self.probe1_on_array = self.probe_array[2::6,:]
+#            self.probe1_off_array = self.probe_array[1::6,:]
+#            self.probe2_off_array = self.probe_array[4::6,:]
+#            self.probe2_on_array = self.probe_array[3::6,:]
 
 			# Burst Method
-#            self.probe1_on_array = self.probe_array[2::4,:]
-#            self.probe1_off_array = self.probe_array[1::4,:]
-#            self.probe2_off_array = self.probe_array[4::4,:]
-#            self.probe2_on_array = self.probe_array[3::4,:]
+            self.probe1_on_array = self.probe_array[::4,:]
+            self.probe1_off_array = self.probe_array[1::4,:]
+            self.probe2_off_array = self.probe_array[2::4,:]
+            self.probe2_on_array = self.probe_array[3::4,:]
 
         return
         
