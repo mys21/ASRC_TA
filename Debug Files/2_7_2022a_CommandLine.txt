@@ -1,0 +1,512 @@
+NOTES:
+
+C code set camera to requeue buffer for each image obtained. The stop acquisition and flush buffers were placed after the loop, when acquisition is completely over.
+
+Num of Cameras 0000000000000001
+Camera Info 323132354137343432
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 2
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 3
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 4
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 5
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 6
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 7
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 8
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 9
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 10
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 11
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 12
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 13
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 14
+Lines lost: 28
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 15
+Lines lost: 28
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 16
+Lines lost: 42
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 17
+Lines lost: 42
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 18
+Lines lost: 42
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 19
+Lines lost: 44
+Missed triggers: 0
+Valid lines from frame: 998
+
+Images Acquired: 20
+Lines lost: 45
+Missed triggers: 0
+Valid lines from frame: 999
+
+Images Acquired: 21
+Lines lost: 60
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 22
+Lines lost: 60
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 23
+Lines lost: 60
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 24
+Lines lost: 74
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 25
+Lines lost: 74
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 26
+Lines lost: 88
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 27
+Lines lost: 88
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 28
+Lines lost: 102
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 29
+Lines lost: 115
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 30
+Lines lost: 115
+Missed triggers: 0
+Valid lines from frame: 999
+
+Images Acquired: 31
+Lines lost: 115
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 32
+Lines lost: 115
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 33
+Lines lost: 115
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 34
+Lines lost: 128
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 35
+Lines lost: 128
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 36
+Lines lost: 142
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 37
+Lines lost: 156
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 38
+Lines lost: 171
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 39
+Lines lost: 171
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 40
+Lines lost: 184
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 41
+Lines lost: 184
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 42
+Lines lost: 184
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 43
+Lines lost: 198
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 44
+Lines lost: 211
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 45
+Lines lost: 225
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 46
+Lines lost: 225
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 47
+Lines lost: 240
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 48
+Lines lost: 240
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 49
+Lines lost: 254
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 50
+Lines lost: 268
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 51
+Lines lost: 268
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 52
+Lines lost: 283
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 53
+Lines lost: 297
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 54
+Lines lost: 297
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 55
+Lines lost: 297
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 56
+Lines lost: 311
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 57
+Lines lost: 311
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 58
+Lines lost: 326
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 59
+Lines lost: 326
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 60
+Lines lost: 326
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 61
+Lines lost: 326
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 62
+Lines lost: 339
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 63
+Lines lost: 339
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 64
+Lines lost: 339
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 65
+Lines lost: 354
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 66
+Lines lost: 367
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 67
+Lines lost: 367
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 68
+Lines lost: 367
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 69
+Lines lost: 367
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 70
+Lines lost: 367
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 71
+Lines lost: 367
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 72
+Lines lost: 367
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 73
+Lines lost: 381
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 74
+Lines lost: 394
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 75
+Lines lost: 394
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 76
+Lines lost: 407
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 77
+Lines lost: 422
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 78
+Lines lost: 422
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 79
+Lines lost: 422
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 80
+Lines lost: 435
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 81
+Lines lost: 435
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 82
+Lines lost: 435
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 83
+Lines lost: 449
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 84
+Lines lost: 449
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 85
+Lines lost: 449
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 86
+Lines lost: 449
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 87
+Lines lost: 463
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 88
+Lines lost: 463
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 89
+Lines lost: 463
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 90
+Lines lost: 463
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 91
+Lines lost: 477
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 92
+Lines lost: 477
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 93
+Lines lost: 491
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 94
+Lines lost: 492
+Missed triggers: 0
+Valid lines from frame: 999
+
+Images Acquired: 95
+Lines lost: 506
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 96
+Lines lost: 509
+Missed triggers: 0
+Valid lines from frame: 997
+
+Images Acquired: 97
+Lines lost: 522
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 98
+Lines lost: 522
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 99
+Lines lost: 522
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 100
+Lines lost: 536
+Missed triggers: 0
+Valid lines from frame: 986
+
+*********CAMERA CLOSED********
+
+C:\Users\mysfe\OneDrive\Desktop\CameraSoftware\x64\Debug\ConsoleMonoThread.exe (process 38724) exited with code 0.
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .

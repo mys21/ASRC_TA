@@ -1,0 +1,1922 @@
+
+Fri Mar 18 16:27:20 2022
+DLL_PROCESS_ATTACH
+
+Fri Mar 18 16:27:20 2022
+INFO: Dll version v1.5.1.0
+
+Fri Mar 18 16:27:27 2022
+GCInitLib: Enter
+Fri Mar 18 16:27:27 2022
+Enter UpdateDevicesList
+
+Fri Mar 18 16:27:27 2022
+NbUsbDeviceCount() = 1
+
+Fri Mar 18 16:27:27 2022
+gpCyUSBDevice->Open(0)
+
+Fri Mar 18 16:27:27 2022
+VID=0FD3  PID=0616
+
+Fri Mar 18 16:27:27 2022
+NbInterfaces = 1
+
+Fri Mar 18 16:27:27 2022
+
+bLength: 0x9
+bDescriptorType: 2
+wTotalLength: 31 (0x1f)
+bNumInterfaces: 1
+bConfigurationValue: 1
+iConfiguration: 0
+bmAttributes: 0x80
+MaxPower: 50
+
+Fri Mar 18 16:27:27 2022
+
+Interface  Descriptor:1
+bLength: 0x9
+bDescriptorType: 4
+bInterfaceNumber: 0
+bAlternateSetting: 0
+bNumEndpoints: 1
+
+Fri Mar 18 16:27:27 2022
+NbEndPoints = 1
+
+Fri Mar 18 16:27:27 2022
+
+EndPoint Descriptor:1
+bLength: 0x7
+bDescriptorType: 5
+bEndpointAddress: 0x83
+bmAttributes: 0x2
+wMaxPacketSize: 16384
+bInterval: 0
+
+Fri Mar 18 16:27:27 2022
+
+Check endpoint attribute = 1 or 2 
+
+Fri Mar 18 16:27:27 2022
+
+Attribute:BULK 	Sens:IN	MaxPktSize=16384	Address=0x00000083
+
+Fri Mar 18 16:27:27 2022
+
+bInEndPoint=0  bInEndPoint=1
+
+Fri Mar 18 16:27:27 2022
+
+Found valid Usb device: SerialNumber=323132354137343432
+
+Fri Mar 18 16:27:27 2022
+InsertCameraInSharedMemory: 323132354137343432
+
+Fri Mar 18 16:27:27 2022
+  Enter CDevice::Open()
+
+Fri Mar 18 16:27:27 2022
+  
+Enter CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Fri Mar 18 16:27:27 2022
+  Width=2048 Height=1000 EnableContextData=0, LinePitch=4096 PayloadSizeTheoric(Height x LinePitch)=4096000
+
+Fri Mar 18 16:27:27 2022
+  Leave CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Fri Mar 18 16:27:27 2022
+  
+Enter CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Fri Mar 18 16:27:27 2022
+  Width=2048 Height=1000 EnableContextData=0, LinePitch=4096 PayloadSizeTheoric(Height x LinePitch)=4096000
+
+Fri Mar 18 16:27:27 2022
+  Leave CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Fri Mar 18 16:27:27 2022
+  Leave CDevice::Open() Error=0
+
+Fri Mar 18 16:27:27 2022
+  GCReadPort Add=0x4F000000; Size=4
+
+Fri Mar 18 16:27:27 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  CDataStream::Open
+
+Fri Mar 18 16:27:27 2022
+  GCWritePort Add=0x12288; Size=104
+
+Fri Mar 18 16:27:27 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[4]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[8]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[12]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[16]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[20]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[24]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[28]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[32]=0x9F7E9880
+
+Fri Mar 18 16:27:27 2022
+  DataU32[36]=0x00007FFD
+
+Fri Mar 18 16:27:27 2022
+  DataU32[40]=0xBE3011D0
+
+Fri Mar 18 16:27:27 2022
+  DataU32[44]=0x000001DC
+
+Fri Mar 18 16:27:27 2022
+  DataU32[48]=0xBE2F91B0
+
+Fri Mar 18 16:27:27 2022
+  DataU32[52]=0x000001DC
+
+Fri Mar 18 16:27:27 2022
+  DataU32[56]=0x00000002
+
+Fri Mar 18 16:27:27 2022
+  DataU32[60]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[64]=0xE55B8490
+
+Fri Mar 18 16:27:27 2022
+  DataU32[68]=0x000001DC
+
+Fri Mar 18 16:27:27 2022
+  DataU32[72]=0xBE2F9288
+
+Fri Mar 18 16:27:27 2022
+  DataU32[76]=0x000001DC
+
+Fri Mar 18 16:27:27 2022
+  DataU32[80]=0x00000001
+
+Fri Mar 18 16:27:27 2022
+  DataU32[84]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[88]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[92]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[96]=0x00000008
+
+Fri Mar 18 16:27:27 2022
+  DataU32[100]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  GCWritePort Add=0x1210C; Size=104
+
+Fri Mar 18 16:27:27 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:27 2022
+  DataU32[4]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[8]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[12]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[16]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[20]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[24]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[28]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[32]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[36]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[40]=0xBE2F9330
+
+Fri Mar 18 16:27:27 2022
+  DataU32[44]=0x000001DC
+
+Fri Mar 18 16:27:27 2022
+  DataU32[48]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[52]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[56]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[60]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[64]=0xE55BD960
+
+Fri Mar 18 16:27:27 2022
+  DataU32[68]=0x000001DC
+
+Fri Mar 18 16:27:27 2022
+  DataU32[72]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[76]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[80]=0x00000001
+
+Fri Mar 18 16:27:27 2022
+  DataU32[84]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[88]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[92]=0x00000000
+
+Fri Mar 18 16:27:27 2022
+  DataU32[96]=0x00000004
+
+Fri Mar 18 16:27:27 2022
+  DataU32[100]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  GCWritePort Add=0x12108; Size=104
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x00000084
+
+Fri Mar 18 16:27:28 2022
+  DataU32[4]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[8]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[12]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[16]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[20]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[24]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[28]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[32]=0x9F7E9880
+
+Fri Mar 18 16:27:28 2022
+  DataU32[36]=0x00007FFD
+
+Fri Mar 18 16:27:28 2022
+  DataU32[40]=0xBE2F2BC0
+
+Fri Mar 18 16:27:28 2022
+  DataU32[44]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[48]=0xBE2F91B0
+
+Fri Mar 18 16:27:28 2022
+  DataU32[52]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[56]=0x00000002
+
+Fri Mar 18 16:27:28 2022
+  DataU32[60]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[64]=0xE55B8490
+
+Fri Mar 18 16:27:28 2022
+  DataU32[68]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[72]=0xBE2F9288
+
+Fri Mar 18 16:27:28 2022
+  DataU32[76]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[80]=0x00000001
+
+Fri Mar 18 16:27:28 2022
+  DataU32[84]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[88]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[92]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[96]=0x00000008
+
+Fri Mar 18 16:27:28 2022
+  DataU32[100]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  GCWritePort Add=0x4F000010; Size=104
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x00000010
+
+Fri Mar 18 16:27:28 2022
+  DataU32[4]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[8]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[12]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[16]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[20]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[24]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[28]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[32]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[36]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[40]=0xBE2F9330
+
+Fri Mar 18 16:27:28 2022
+  DataU32[44]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[48]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[52]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[56]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[60]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[64]=0xE55BD960
+
+Fri Mar 18 16:27:28 2022
+  DataU32[68]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[72]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[76]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[80]=0x00000001
+
+Fri Mar 18 16:27:28 2022
+  DataU32[84]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[88]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[92]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[96]=0x00000004
+
+Fri Mar 18 16:27:28 2022
+  DataU32[100]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+#### GCWritePort Error=-1009
+
+Fri Mar 18 16:27:28 2022
+  GCWritePort Add=0x12128; Size=104
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x0000EA60
+
+Fri Mar 18 16:27:28 2022
+  DataU32[4]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[8]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[12]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[16]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[20]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[24]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[28]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[32]=0x9F7E9880
+
+Fri Mar 18 16:27:28 2022
+  DataU32[36]=0x00007FFD
+
+Fri Mar 18 16:27:28 2022
+  DataU32[40]=0xBE2F2BC0
+
+Fri Mar 18 16:27:28 2022
+  DataU32[44]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[48]=0xBE2F91B0
+
+Fri Mar 18 16:27:28 2022
+  DataU32[52]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[56]=0x00000002
+
+Fri Mar 18 16:27:28 2022
+  DataU32[60]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[64]=0xE55B8490
+
+Fri Mar 18 16:27:28 2022
+  DataU32[68]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[72]=0xBE2F9288
+
+Fri Mar 18 16:27:28 2022
+  DataU32[76]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[80]=0x00000001
+
+Fri Mar 18 16:27:28 2022
+  DataU32[84]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[88]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[92]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[96]=0x00000008
+
+Fri Mar 18 16:27:28 2022
+  DataU32[100]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  GCWritePort Add=0x12100; Size=104
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x0000044D
+
+Fri Mar 18 16:27:28 2022
+  DataU32[4]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[8]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[12]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[16]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[20]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[24]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[28]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[32]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[36]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[40]=0xBE2F9330
+
+Fri Mar 18 16:27:28 2022
+  DataU32[44]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[48]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[52]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[56]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[60]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[64]=0xE55BD960
+
+Fri Mar 18 16:27:28 2022
+  DataU32[68]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[72]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[76]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[80]=0x00000001
+
+Fri Mar 18 16:27:28 2022
+  DataU32[84]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[88]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[92]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[96]=0x00000004
+
+Fri Mar 18 16:27:28 2022
+  DataU32[100]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  GCWritePort Add=0x1211C; Size=104
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x00000046
+
+Fri Mar 18 16:27:28 2022
+  DataU32[4]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[8]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[12]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[16]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[20]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[24]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[28]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[32]=0x9F7E9880
+
+Fri Mar 18 16:27:28 2022
+  DataU32[36]=0x00007FFD
+
+Fri Mar 18 16:27:28 2022
+  DataU32[40]=0xBE2F2BC0
+
+Fri Mar 18 16:27:28 2022
+  DataU32[44]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[48]=0xBE2F91B0
+
+Fri Mar 18 16:27:28 2022
+  DataU32[52]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[56]=0x00000002
+
+Fri Mar 18 16:27:28 2022
+  DataU32[60]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[64]=0xE55B8490
+
+Fri Mar 18 16:27:28 2022
+  DataU32[68]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[72]=0xBE2F9288
+
+Fri Mar 18 16:27:28 2022
+  DataU32[76]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[80]=0x00000001
+
+Fri Mar 18 16:27:28 2022
+  DataU32[84]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[88]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[92]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[96]=0x00000008
+
+Fri Mar 18 16:27:28 2022
+  DataU32[100]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  GCReadPort Add=0x4F000010; Size=104
+
+Fri Mar 18 16:27:28 2022
+#### GCReadPort Error=-1009
+
+Fri Mar 18 16:27:28 2022
+  GCReadPort Add=0x12128; Size=104
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x0000EA60
+
+Fri Mar 18 16:27:28 2022
+  DataU32[4]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[8]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[12]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[16]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[20]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[24]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[28]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[32]=0x9F7E9880
+
+Fri Mar 18 16:27:28 2022
+  DataU32[36]=0x00007FFD
+
+Fri Mar 18 16:27:28 2022
+  DataU32[40]=0xBE2F2BC0
+
+Fri Mar 18 16:27:28 2022
+  DataU32[44]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[48]=0xBE2F91B0
+
+Fri Mar 18 16:27:28 2022
+  DataU32[52]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[56]=0x00000002
+
+Fri Mar 18 16:27:28 2022
+  DataU32[60]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[64]=0xE55B8490
+
+Fri Mar 18 16:27:28 2022
+  DataU32[68]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[72]=0xBE2F9288
+
+Fri Mar 18 16:27:28 2022
+  DataU32[76]=0x000001DC
+
+Fri Mar 18 16:27:28 2022
+  DataU32[80]=0x00000001
+
+Fri Mar 18 16:27:28 2022
+  DataU32[84]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[88]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[92]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  DataU32[96]=0x00000008
+
+Fri Mar 18 16:27:28 2022
+  DataU32[100]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  GCWritePort Add=0x4F00000C; Size=4
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x0000EA60
+
+Fri Mar 18 16:27:28 2022
+  
+Enter CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Fri Mar 18 16:27:28 2022
+  Width=2048 Height=60000 EnableContextData=0, LinePitch=4096 PayloadSizeTheoric(Height x LinePitch)=245760000
+
+Fri Mar 18 16:27:28 2022
+  Leave CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:28 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:28 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::FlushQueue iOperation=4
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AnnounceBuffer: 0x000001DCBF6CD7F0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AnnounceBuffer: 0x000001DCBF6CD8A0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AnnounceBuffer: 0x000001DCBF6CD950
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AnnounceBuffer: 0x000001DCBF6CDA00
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AnnounceBuffer: 0x000001DCBF6CDAB0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AnnounceBuffer: 0x000001DCBF6CDB60
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AnnounceBuffer: 0x000001DCBF6CDC10
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AnnounceBuffer: 0x000001DCBF6CDCC0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AnnounceBuffer: 0x000001DCBF6CDD70
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AnnounceBuffer: 0x000001DCBF6CDE20
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CD7F0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CD8A0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CD950
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDA00
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDAB0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDB60
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDC10
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDCC0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDD70
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDE20
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AcquireThread AvailPhys=56028 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:28 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CD7F0
+
+Fri Mar 18 16:27:28 2022
+#### CDataStream::AcquireThread LineLost=5808 Buffer=@=0x000001DCBF6CD7F0 LineCounter=0 PreviousLineCounter=59727 NLineAcquired=59728 NbImageAcquired=0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CD7F0  u64NbLinesLost=5808 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CD8A0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CD7F0  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CD7F0
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CD8A0  unused buffer
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CD8A0) because of StopAcquisition
+
+Fri Mar 18 16:27:28 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:28 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:28 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:30 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:30 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:30 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:30 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::AcquireThread AvailPhys=53143 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:30 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:30 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CD950
+
+Fri Mar 18 16:27:30 2022
+#### CDataStream::AcquireThread LineLost=14 Buffer=@=0x000001DCBF6CD950 LineCounter=52 PreviousLineCounter=37 NLineAcquired=38 NbImageAcquired=0
+
+Fri Mar 18 16:27:30 2022
+#### CDataStream::AcquireThread Leader.u16RoiWidth(0) != Width(2048)
+
+Fri Mar 18 16:27:30 2022
+#### CDataStream::AcquireThread (Invalid leader infos) DeliverBuffer @=0x000001DCBF6CD950 with an error
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDA00
+
+Fri Mar 18 16:27:30 2022
+#### CDataStream::AcquireThread LineLost=15 Buffer=@=0x000001DCBF6CDA00 LineCounter=55703 PreviousLineCounter=55701 NLineAcquired=0 NbImageAcquired=0
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CD950  nError=-10007 NbImages_get_by_user = 0
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::EventGetDataBuffer:Requeue internally buffer(0x000001DCBF6CD950) on error
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::QueueBuffer: 0x0000000000000000
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDA00  unused buffer
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDA00) because of StopAcquisition
+
+Fri Mar 18 16:27:30 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:30 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:30 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:31 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:31 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:31 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:31 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:31 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:31 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:31 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:31 2022
+  CDataStream::AcquireThread AvailPhys=52926 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:31 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:31 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:32 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDAB0
+
+Fri Mar 18 16:27:32 2022
+#### CDataStream::AcquireThread LineLost=14 Buffer=@=0x000001DCBF6CDAB0 LineCounter=52 PreviousLineCounter=37 NLineAcquired=38 NbImageAcquired=0
+
+Fri Mar 18 16:27:32 2022
+#### CDataStream::AcquireThread LineLost=5774 Buffer=@=0x000001DCBF6CDAB0 LineCounter=0 PreviousLineCounter=59775 NLineAcquired=59762 NbImageAcquired=0
+
+Fri Mar 18 16:27:32 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDAB0  u64NbLinesLost=5774 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:32 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDB60
+
+Fri Mar 18 16:27:32 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CDAB0  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:32 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDAB0
+
+Fri Mar 18 16:27:32 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:32 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDB60  unused buffer
+
+Fri Mar 18 16:27:32 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDB60) because of StopAcquisition
+
+Fri Mar 18 16:27:32 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:32 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:32 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:34 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:34 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:34 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:34 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::AcquireThread AvailPhys=52688 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:34 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:34 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDC10
+
+Fri Mar 18 16:27:34 2022
+#### CDataStream::AcquireThread LineLost=14 Buffer=@=0x000001DCBF6CDC10 LineCounter=52 PreviousLineCounter=37 NLineAcquired=38 NbImageAcquired=0
+
+Fri Mar 18 16:27:34 2022
+#### CDataStream::AcquireThread LineLost=5858 Buffer=@=0x000001DCBF6CDC10 LineCounter=0 PreviousLineCounter=59691 NLineAcquired=59678 NbImageAcquired=0
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDC10  u64NbLinesLost=5858 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDCC0
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CDC10  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDC10
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDCC0  unused buffer
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDCC0) because of StopAcquisition
+
+Fri Mar 18 16:27:34 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:34 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:34 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:35 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:35 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:35 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:35 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:35 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:35 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:35 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:35 2022
+  CDataStream::AcquireThread AvailPhys=52462 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:35 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:35 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:36 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDD70
+
+Fri Mar 18 16:27:36 2022
+#### CDataStream::AcquireThread LineLost=5850 Buffer=@=0x000001DCBF6CDD70 LineCounter=0 PreviousLineCounter=59685 NLineAcquired=59686 NbImageAcquired=0
+
+Fri Mar 18 16:27:36 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDD70  u64NbLinesLost=5850 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:36 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDE20
+
+Fri Mar 18 16:27:36 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CDD70  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:36 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDD70
+
+Fri Mar 18 16:27:36 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:36 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDE20  unused buffer
+
+Fri Mar 18 16:27:36 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDE20) because of StopAcquisition
+
+Fri Mar 18 16:27:36 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:36 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:36 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:37 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:37 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:37 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:37 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:37 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:37 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:37 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:37 2022
+  CDataStream::AcquireThread AvailPhys=52227 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:37 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:37 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:38 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CD7F0
+
+Fri Mar 18 16:27:38 2022
+#### CDataStream::AcquireThread LineLost=5871 Buffer=@=0x000001DCBF6CD7F0 LineCounter=0 PreviousLineCounter=59664 NLineAcquired=59665 NbImageAcquired=0
+
+Fri Mar 18 16:27:38 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CD7F0  u64NbLinesLost=5871 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:38 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CD8A0
+
+Fri Mar 18 16:27:38 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CD7F0  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:38 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CD7F0
+
+Fri Mar 18 16:27:38 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:38 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CD8A0  unused buffer
+
+Fri Mar 18 16:27:38 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CD8A0) because of StopAcquisition
+
+Fri Mar 18 16:27:38 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:38 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:38 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:39 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:39 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:39 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:39 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:39 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:39 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:39 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:39 2022
+  CDataStream::AcquireThread AvailPhys=52228 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:39 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:39 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:40 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CD950
+
+Fri Mar 18 16:27:40 2022
+#### CDataStream::AcquireThread LineLost=14 Buffer=@=0x000001DCBF6CD950 LineCounter=52 PreviousLineCounter=37 NLineAcquired=38 NbImageAcquired=0
+
+Fri Mar 18 16:27:40 2022
+#### CDataStream::AcquireThread LineLost=5861 Buffer=@=0x000001DCBF6CD950 LineCounter=0 PreviousLineCounter=59688 NLineAcquired=59675 NbImageAcquired=0
+
+Fri Mar 18 16:27:40 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CD950  u64NbLinesLost=5861 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:40 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDA00
+
+Fri Mar 18 16:27:40 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CD950  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:40 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CD950
+
+Fri Mar 18 16:27:40 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:40 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDA00  unused buffer
+
+Fri Mar 18 16:27:40 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDA00) because of StopAcquisition
+
+Fri Mar 18 16:27:40 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:40 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:40 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:41 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:41 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:41 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:41 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:41 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:41 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:41 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:41 2022
+  CDataStream::AcquireThread AvailPhys=52210 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:41 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:41 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:42 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDAB0
+
+Fri Mar 18 16:27:42 2022
+#### CDataStream::AcquireThread LineLost=5832 Buffer=@=0x000001DCBF6CDAB0 LineCounter=0 PreviousLineCounter=59703 NLineAcquired=59704 NbImageAcquired=0
+
+Fri Mar 18 16:27:42 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDAB0  u64NbLinesLost=5832 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:42 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDB60
+
+Fri Mar 18 16:27:42 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CDAB0  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:42 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDAB0
+
+Fri Mar 18 16:27:42 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:42 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDB60  unused buffer
+
+Fri Mar 18 16:27:42 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDB60) because of StopAcquisition
+
+Fri Mar 18 16:27:42 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:42 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:42 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:43 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:43 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:43 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:43 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:43 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:43 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:43 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:43 2022
+  CDataStream::AcquireThread AvailPhys=52212 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:43 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:43 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:44 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDC10
+
+Fri Mar 18 16:27:44 2022
+#### CDataStream::AcquireThread LineLost=5802 Buffer=@=0x000001DCBF6CDC10 LineCounter=0 PreviousLineCounter=59733 NLineAcquired=59734 NbImageAcquired=0
+
+Fri Mar 18 16:27:44 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDC10  u64NbLinesLost=5802 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:44 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDCC0
+
+Fri Mar 18 16:27:44 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CDC10  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:44 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDC10
+
+Fri Mar 18 16:27:44 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:44 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDCC0  unused buffer
+
+Fri Mar 18 16:27:44 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDCC0) because of StopAcquisition
+
+Fri Mar 18 16:27:44 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:44 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:44 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:45 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:45 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:45 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:45 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:45 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:45 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:45 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:45 2022
+  CDataStream::AcquireThread AvailPhys=52212 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:45 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:45 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:46 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDD70
+
+Fri Mar 18 16:27:46 2022
+#### CDataStream::AcquireThread LineLost=5781 Buffer=@=0x000001DCBF6CDD70 LineCounter=0 PreviousLineCounter=59754 NLineAcquired=59755 NbImageAcquired=0
+
+Fri Mar 18 16:27:46 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDD70  u64NbLinesLost=5781 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:46 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDE20
+
+Fri Mar 18 16:27:46 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CDD70  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:46 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDD70
+
+Fri Mar 18 16:27:46 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:46 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDE20  unused buffer
+
+Fri Mar 18 16:27:46 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDE20) because of StopAcquisition
+
+Fri Mar 18 16:27:46 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:46 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:46 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:47 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:47 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:47 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:47 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:47 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:47 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:47 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:47 2022
+  CDataStream::AcquireThread AvailPhys=52211 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:47 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:47 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:48 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CD7F0
+
+Fri Mar 18 16:27:48 2022
+#### CDataStream::AcquireThread LineLost=5802 Buffer=@=0x000001DCBF6CD7F0 LineCounter=0 PreviousLineCounter=59733 NLineAcquired=59734 NbImageAcquired=0
+
+Fri Mar 18 16:27:48 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CD7F0  u64NbLinesLost=5802 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:48 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CD8A0
+
+Fri Mar 18 16:27:48 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CD7F0  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:48 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CD7F0
+
+Fri Mar 18 16:27:48 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:48 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CD8A0  unused buffer
+
+Fri Mar 18 16:27:48 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CD8A0) because of StopAcquisition
+
+Fri Mar 18 16:27:48 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:48 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:48 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:49 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:49 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:49 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:49 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:49 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:49 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:49 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:49 2022
+  CDataStream::AcquireThread AvailPhys=52203 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:49 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:49 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:50 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CD950
+
+Fri Mar 18 16:27:50 2022
+#### CDataStream::AcquireThread LineLost=14 Buffer=@=0x000001DCBF6CD950 LineCounter=52 PreviousLineCounter=37 NLineAcquired=38 NbImageAcquired=0
+
+Fri Mar 18 16:27:50 2022
+#### CDataStream::AcquireThread Leader.u16RoiWidth(1) != Width(2048)
+
+Fri Mar 18 16:27:50 2022
+#### CDataStream::AcquireThread (Invalid leader infos) DeliverBuffer @=0x000001DCBF6CD950 with an error
+
+Fri Mar 18 16:27:50 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDA00
+
+Fri Mar 18 16:27:50 2022
+#### CDataStream::AcquireThread LineLost=15 Buffer=@=0x000001DCBF6CDA00 LineCounter=4089 PreviousLineCounter=4087 NLineAcquired=0 NbImageAcquired=0
+
+Fri Mar 18 16:27:50 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CD950  nError=-10007 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:50 2022
+  CDataStream::EventGetDataBuffer:Requeue internally buffer(0x000001DCBF6CD950) on error
+
+Fri Mar 18 16:27:50 2022
+  CDataStream::QueueBuffer: 0x0000000000000000
+
+Fri Mar 18 16:27:50 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:50 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDA00  unused buffer
+
+Fri Mar 18 16:27:50 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDA00) because of StopAcquisition
+
+Fri Mar 18 16:27:50 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:50 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:50 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:51 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:51 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:51 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:51 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:51 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:51 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:51 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:51 2022
+  CDataStream::AcquireThread AvailPhys=52207 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:51 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:51 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:51 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDAB0
+
+Fri Mar 18 16:27:52 2022
+#### CDataStream::AcquireThread LineLost=5805 Buffer=@=0x000001DCBF6CDAB0 LineCounter=0 PreviousLineCounter=59730 NLineAcquired=59731 NbImageAcquired=0
+
+Fri Mar 18 16:27:52 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDAB0  u64NbLinesLost=5805 u64NbTriggerMissed=0 u16MemoFrameCounter =0 (Nb Total images acquired = 1)
+
+Fri Mar 18 16:27:52 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDB60
+
+Fri Mar 18 16:27:52 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CDAB0  nError=0 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:52 2022
+  CDataStream::QueueBuffer: 0x000001DCBF6CDAB0
+
+Fri Mar 18 16:27:52 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:52 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDB60  unused buffer
+
+Fri Mar 18 16:27:52 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDB60) because of StopAcquisition
+
+Fri Mar 18 16:27:52 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:52 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:52 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:53 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Fri Mar 18 16:27:53 2022
+  DataU32[0]=0x0EA60000
+
+Fri Mar 18 16:27:53 2022
+  GCReadPort Add=0x12020; Size=4
+
+Fri Mar 18 16:27:53 2022
+  DataU32[0]=0x00000004
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::StartCapture
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=185280000, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::AcquireThread AvailPhys=52210 MB	TotalPhys=65257 MB
+
+Fri Mar 18 16:27:53 2022
+  GCWritePort Add=0x18000; Size=4
+
+Fri Mar 18 16:27:53 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDC10
+
+Fri Mar 18 16:27:53 2022
+#### CDataStream::AcquireThread LineLost=14 Buffer=@=0x000001DCBF6CDC10 LineCounter=52 PreviousLineCounter=37 NLineAcquired=38 NbImageAcquired=0
+
+Fri Mar 18 16:27:53 2022
+#### CDataStream::AcquireThread LineLost=15 Buffer=@=0x000001DCBF6CDC10 LineCounter=200 PreviousLineCounter=198 NLineAcquired=185 NbImageAcquired=0
+
+Fri Mar 18 16:27:53 2022
+#### CDataStream::AcquireThread Leader.u16RoiWidth(1) != Width(2048)
+
+Fri Mar 18 16:27:53 2022
+#### CDataStream::AcquireThread (Invalid leader infos) DeliverBuffer @=0x000001DCBF6CDC10 with an error
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001DCBF6CDCC0
+
+Fri Mar 18 16:27:53 2022
+#### CDataStream::AcquireThread LineLost=16 Buffer=@=0x000001DCBF6CDCC0 LineCounter=29896 PreviousLineCounter=29894 NLineAcquired=0 NbImageAcquired=0
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::EventGetDataBuffer: 0x000001DCBF6CDC10  nError=-10007 NbImages_get_by_user = 1
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::EventGetDataBuffer:Requeue internally buffer(0x000001DCBF6CDC10) on error
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::QueueBuffer: 0x0000000000000000
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001DCBF6CDCC0  unused buffer
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::DeliverBuffer:Requeue internally buffer(0x000001DCBF6CDCC0) because of StopAcquisition
+
+Fri Mar 18 16:27:53 2022
+  GCWritePort Add=0x18004; Size=4
+
+Fri Mar 18 16:27:53 2022
+  DataU32[0]=0x00000000
+
+Fri Mar 18 16:27:53 2022
+  CDataStream::FlushQueue iOperation=1
+
+Fri Mar 18 16:27:54 2022
+  GCWritePort Add=0x1210C; Size=104
+
+Fri Mar 18 16:27:54 2022
+  DataU32[0]=0x00000001
+
+Fri Mar 18 16:27:54 2022
+  DataU32[4]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[8]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[12]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[16]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[20]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[24]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[28]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[32]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[36]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[40]=0xBE30A7B0
+
+Fri Mar 18 16:27:54 2022
+  DataU32[44]=0x000001DC
+
+Fri Mar 18 16:27:54 2022
+  DataU32[48]=0x853577F0
+
+Fri Mar 18 16:27:54 2022
+  DataU32[52]=0x000001DC
+
+Fri Mar 18 16:27:54 2022
+  DataU32[56]=0x00000001
+
+Fri Mar 18 16:27:54 2022
+  DataU32[60]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[64]=0xE5861880
+
+Fri Mar 18 16:27:54 2022
+  DataU32[68]=0x000001DC
+
+Fri Mar 18 16:27:54 2022
+  DataU32[72]=0xBE2F9D08
+
+Fri Mar 18 16:27:54 2022
+  DataU32[76]=0x000001DC
+
+Fri Mar 18 16:27:54 2022
+  DataU32[80]=0x00000001
+
+Fri Mar 18 16:27:54 2022
+  DataU32[84]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[88]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[92]=0x00000000
+
+Fri Mar 18 16:27:54 2022
+  DataU32[96]=0x00000008
+
+Fri Mar 18 16:27:54 2022
+  DataU32[100]=0x00000000
+
+Fri Mar 18 16:27:55 2022
+  CDataStream::Close
+
+Fri Mar 18 16:27:55 2022
+  CDataStream::StopCapture
+
+Fri Mar 18 16:27:55 2022
+  Enter CDevice::Close()
+
+Fri Mar 18 16:27:55 2022
+  CDataStream::Close
+
+Fri Mar 18 16:27:55 2022
+  Leave CDevice::Close()
+
+Fri Mar 18 16:27:55 2022
+GCCloseLib: Enter

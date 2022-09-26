@@ -1,0 +1,2970 @@
+
+Wed Jul 20 11:19:54 2022
+DLL_PROCESS_ATTACH
+
+Wed Jul 20 11:19:54 2022
+INFO: Dll version v1.5.1.0
+
+Wed Jul 20 11:20:03 2022
+GCInitLib: Enter
+Wed Jul 20 11:20:03 2022
+Enter UpdateDevicesList
+
+Wed Jul 20 11:20:03 2022
+NbUsbDeviceCount() = 1
+
+Wed Jul 20 11:20:03 2022
+gpCyUSBDevice->Open(0)
+
+Wed Jul 20 11:20:03 2022
+VID=0FD3  PID=0616
+
+Wed Jul 20 11:20:03 2022
+NbInterfaces = 1
+
+Wed Jul 20 11:20:03 2022
+
+bLength: 0x9
+bDescriptorType: 2
+wTotalLength: 31 (0x1f)
+bNumInterfaces: 1
+bConfigurationValue: 1
+iConfiguration: 0
+bmAttributes: 0x80
+MaxPower: 50
+
+Wed Jul 20 11:20:03 2022
+
+Interface  Descriptor:1
+bLength: 0x9
+bDescriptorType: 4
+bInterfaceNumber: 0
+bAlternateSetting: 0
+bNumEndpoints: 1
+
+Wed Jul 20 11:20:03 2022
+NbEndPoints = 1
+
+Wed Jul 20 11:20:03 2022
+
+EndPoint Descriptor:1
+bLength: 0x7
+bDescriptorType: 5
+bEndpointAddress: 0x83
+bmAttributes: 0x2
+wMaxPacketSize: 16384
+bInterval: 0
+
+Wed Jul 20 11:20:03 2022
+
+Check endpoint attribute = 1 or 2 
+
+Wed Jul 20 11:20:03 2022
+
+Attribute:BULK 	Sens:IN	MaxPktSize=16384	Address=0x00000083
+
+Wed Jul 20 11:20:03 2022
+
+bInEndPoint=0  bInEndPoint=1
+
+Wed Jul 20 11:20:03 2022
+
+Found valid Usb device: SerialNumber=323132354137343432
+
+Wed Jul 20 11:20:03 2022
+InsertCameraInSharedMemory: 323132354137343432
+
+Wed Jul 20 11:20:03 2022
+  Enter CDevice::Open()
+
+Wed Jul 20 11:20:03 2022
+  
+Enter CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Wed Jul 20 11:20:03 2022
+  Width=2048 Height=1000 EnableContextData=0, LinePitch=4096 PayloadSizeTheoric(Height x LinePitch)=4096000
+
+Wed Jul 20 11:20:03 2022
+  Leave CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Wed Jul 20 11:20:03 2022
+  
+Enter CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Wed Jul 20 11:20:03 2022
+  CRemoteDevice::UpdateLinePitchAndPayloadSize => SynchroMode(4) is FrameTrigger(NbLine=39996)
+
+Wed Jul 20 11:20:03 2022
+  Width=2048 Height=39996 EnableContextData=0, LinePitch=4096 PayloadSizeTheoric(Height x LinePitch)=163823616
+
+Wed Jul 20 11:20:03 2022
+  Leave CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Wed Jul 20 11:20:03 2022
+  Leave CDevice::Open() Error=0
+
+Wed Jul 20 11:20:03 2022
+  GCReadPort Add=0x4F000000; Size=4
+
+Wed Jul 20 11:20:03 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  CDataStream::Open
+
+Wed Jul 20 11:20:03 2022
+  GCWritePort Add=0x12020; Size=104
+
+Wed Jul 20 11:20:03 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:03 2022
+  DataU32[4]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[8]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[12]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[16]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[20]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[24]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[28]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[32]=0x165A9880
+
+Wed Jul 20 11:20:03 2022
+  DataU32[36]=0x00007FF9
+
+Wed Jul 20 11:20:03 2022
+  DataU32[40]=0x725322A0
+
+Wed Jul 20 11:20:03 2022
+  DataU32[44]=0x00000164
+
+Wed Jul 20 11:20:03 2022
+  DataU32[48]=0x7252B1B0
+
+Wed Jul 20 11:20:03 2022
+  DataU32[52]=0x00000164
+
+Wed Jul 20 11:20:03 2022
+  DataU32[56]=0x00000002
+
+Wed Jul 20 11:20:03 2022
+  DataU32[60]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[64]=0x1969BA90
+
+Wed Jul 20 11:20:03 2022
+  DataU32[68]=0x00000164
+
+Wed Jul 20 11:20:03 2022
+  DataU32[72]=0x7252B288
+
+Wed Jul 20 11:20:03 2022
+  DataU32[76]=0x00000164
+
+Wed Jul 20 11:20:03 2022
+  DataU32[80]=0x00000001
+
+Wed Jul 20 11:20:03 2022
+  DataU32[84]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[88]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[92]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[96]=0x00000008
+
+Wed Jul 20 11:20:03 2022
+  DataU32[100]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  GCWritePort Add=0x12288; Size=104
+
+Wed Jul 20 11:20:03 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[4]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[8]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[12]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[16]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[20]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[24]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[28]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[32]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[36]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[40]=0x7252B330
+
+Wed Jul 20 11:20:03 2022
+  DataU32[44]=0x00000164
+
+Wed Jul 20 11:20:03 2022
+  DataU32[48]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[52]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[56]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[60]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[64]=0x1969A470
+
+Wed Jul 20 11:20:03 2022
+  DataU32[68]=0x00000164
+
+Wed Jul 20 11:20:03 2022
+  DataU32[72]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[76]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[80]=0x00000001
+
+Wed Jul 20 11:20:03 2022
+  DataU32[84]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[88]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[92]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[96]=0x00000004
+
+Wed Jul 20 11:20:03 2022
+  DataU32[100]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  GCWritePort Add=0x1210C; Size=104
+
+Wed Jul 20 11:20:03 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:03 2022
+  DataU32[4]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[8]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[12]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[16]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[20]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[24]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[28]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[32]=0x165A9880
+
+Wed Jul 20 11:20:03 2022
+  DataU32[36]=0x00007FF9
+
+Wed Jul 20 11:20:03 2022
+  DataU32[40]=0x725296C0
+
+Wed Jul 20 11:20:03 2022
+  DataU32[44]=0x00000164
+
+Wed Jul 20 11:20:03 2022
+  DataU32[48]=0x7252B1B0
+
+Wed Jul 20 11:20:03 2022
+  DataU32[52]=0x00000164
+
+Wed Jul 20 11:20:03 2022
+  DataU32[56]=0x00000002
+
+Wed Jul 20 11:20:03 2022
+  DataU32[60]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[64]=0x1969BA90
+
+Wed Jul 20 11:20:03 2022
+  DataU32[68]=0x00000164
+
+Wed Jul 20 11:20:03 2022
+  DataU32[72]=0x7252B288
+
+Wed Jul 20 11:20:03 2022
+  DataU32[76]=0x00000164
+
+Wed Jul 20 11:20:03 2022
+  DataU32[80]=0x00000001
+
+Wed Jul 20 11:20:03 2022
+  DataU32[84]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[88]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[92]=0x00000000
+
+Wed Jul 20 11:20:03 2022
+  DataU32[96]=0x00000008
+
+Wed Jul 20 11:20:03 2022
+  DataU32[100]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  GCWritePort Add=0x12108; Size=104
+
+Wed Jul 20 11:20:04 2022
+  DataU32[0]=0x00000084
+
+Wed Jul 20 11:20:04 2022
+  DataU32[4]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[8]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[12]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[16]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[20]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[24]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[28]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[32]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[36]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[40]=0x7252B330
+
+Wed Jul 20 11:20:04 2022
+  DataU32[44]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[48]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[52]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[56]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[60]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[64]=0x1969A470
+
+Wed Jul 20 11:20:04 2022
+  DataU32[68]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[72]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[76]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[80]=0x00000001
+
+Wed Jul 20 11:20:04 2022
+  DataU32[84]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[88]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[92]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[96]=0x00000004
+
+Wed Jul 20 11:20:04 2022
+  DataU32[100]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  GCWritePort Add=0x4F000010; Size=104
+
+Wed Jul 20 11:20:04 2022
+  DataU32[0]=0x00000010
+
+Wed Jul 20 11:20:04 2022
+  DataU32[4]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[8]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[12]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[16]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[20]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[24]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[28]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[32]=0x165A9880
+
+Wed Jul 20 11:20:04 2022
+  DataU32[36]=0x00007FF9
+
+Wed Jul 20 11:20:04 2022
+  DataU32[40]=0x725296C0
+
+Wed Jul 20 11:20:04 2022
+  DataU32[44]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[48]=0x7252B1B0
+
+Wed Jul 20 11:20:04 2022
+  DataU32[52]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[56]=0x00000002
+
+Wed Jul 20 11:20:04 2022
+  DataU32[60]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[64]=0x1969BA90
+
+Wed Jul 20 11:20:04 2022
+  DataU32[68]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[72]=0x7252B288
+
+Wed Jul 20 11:20:04 2022
+  DataU32[76]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[80]=0x00000001
+
+Wed Jul 20 11:20:04 2022
+  DataU32[84]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[88]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[92]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[96]=0x00000008
+
+Wed Jul 20 11:20:04 2022
+  DataU32[100]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+#### GCWritePort Error=-1009
+
+Wed Jul 20 11:20:04 2022
+  GCWritePort Add=0x12128; Size=104
+
+Wed Jul 20 11:20:04 2022
+  DataU32[0]=0x00009C3C
+
+Wed Jul 20 11:20:04 2022
+  DataU32[4]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[8]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[12]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[16]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[20]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[24]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[28]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[32]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[36]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[40]=0x7252B330
+
+Wed Jul 20 11:20:04 2022
+  DataU32[44]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[48]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[52]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[56]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[60]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[64]=0x1969A470
+
+Wed Jul 20 11:20:04 2022
+  DataU32[68]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[72]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[76]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[80]=0x00000001
+
+Wed Jul 20 11:20:04 2022
+  DataU32[84]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[88]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[92]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[96]=0x00000004
+
+Wed Jul 20 11:20:04 2022
+  DataU32[100]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  GCWritePort Add=0x12100; Size=104
+
+Wed Jul 20 11:20:04 2022
+  DataU32[0]=0x0000044D
+
+Wed Jul 20 11:20:04 2022
+  DataU32[4]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[8]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[12]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[16]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[20]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[24]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[28]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[32]=0x165A9880
+
+Wed Jul 20 11:20:04 2022
+  DataU32[36]=0x00007FF9
+
+Wed Jul 20 11:20:04 2022
+  DataU32[40]=0x725296C0
+
+Wed Jul 20 11:20:04 2022
+  DataU32[44]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[48]=0x7252B1B0
+
+Wed Jul 20 11:20:04 2022
+  DataU32[52]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[56]=0x00000002
+
+Wed Jul 20 11:20:04 2022
+  DataU32[60]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[64]=0x1969BA90
+
+Wed Jul 20 11:20:04 2022
+  DataU32[68]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[72]=0x7252B288
+
+Wed Jul 20 11:20:04 2022
+  DataU32[76]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[80]=0x00000001
+
+Wed Jul 20 11:20:04 2022
+  DataU32[84]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[88]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[92]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[96]=0x00000008
+
+Wed Jul 20 11:20:04 2022
+  DataU32[100]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  GCWritePort Add=0x1211C; Size=104
+
+Wed Jul 20 11:20:04 2022
+  DataU32[0]=0x00000046
+
+Wed Jul 20 11:20:04 2022
+  DataU32[4]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[8]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[12]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[16]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[20]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[24]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[28]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[32]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[36]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[40]=0x7252B330
+
+Wed Jul 20 11:20:04 2022
+  DataU32[44]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[48]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[52]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[56]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[60]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[64]=0x1969A470
+
+Wed Jul 20 11:20:04 2022
+  DataU32[68]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[72]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[76]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[80]=0x00000001
+
+Wed Jul 20 11:20:04 2022
+  DataU32[84]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[88]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[92]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[96]=0x00000004
+
+Wed Jul 20 11:20:04 2022
+  DataU32[100]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  GCReadPort Add=0x4F000010; Size=104
+
+Wed Jul 20 11:20:04 2022
+#### GCReadPort Error=-1009
+
+Wed Jul 20 11:20:04 2022
+  GCReadPort Add=0x12128; Size=104
+
+Wed Jul 20 11:20:04 2022
+  DataU32[0]=0x00009C3C
+
+Wed Jul 20 11:20:04 2022
+  DataU32[4]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[8]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[12]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[16]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[20]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[24]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[28]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[32]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[36]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[40]=0x7252B330
+
+Wed Jul 20 11:20:04 2022
+  DataU32[44]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[48]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[52]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[56]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[60]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[64]=0x1969A470
+
+Wed Jul 20 11:20:04 2022
+  DataU32[68]=0x00000164
+
+Wed Jul 20 11:20:04 2022
+  DataU32[72]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[76]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[80]=0x00000001
+
+Wed Jul 20 11:20:04 2022
+  DataU32[84]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[88]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[92]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  DataU32[96]=0x00000004
+
+Wed Jul 20 11:20:04 2022
+  DataU32[100]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  GCWritePort Add=0x4F00000C; Size=4
+
+Wed Jul 20 11:20:04 2022
+  DataU32[0]=0x00009C3C
+
+Wed Jul 20 11:20:04 2022
+  
+Enter CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Wed Jul 20 11:20:04 2022
+  CRemoteDevice::UpdateLinePitchAndPayloadSize => SynchroMode(4) is FrameTrigger(NbLine=39996)
+
+Wed Jul 20 11:20:04 2022
+  Width=2048 Height=39996 EnableContextData=0, LinePitch=4096 PayloadSizeTheoric(Height x LinePitch)=163823616
+
+Wed Jul 20 11:20:04 2022
+  Leave CRemoteDevice::UpdateLinePitchAndPayloadSize
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:04 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:04 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:04 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:04 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::FlushQueue iOperation=4
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AnnounceBuffer: 0x000001647371D7D0
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AnnounceBuffer: 0x000001647371D880
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AnnounceBuffer: 0x000001647371D930
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AnnounceBuffer: 0x000001647371D9E0
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AnnounceBuffer: 0x000001647371DA90
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AnnounceBuffer: 0x000001647371DB40
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AnnounceBuffer: 0x000001647371DBF0
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AnnounceBuffer: 0x000001647371DCA0
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AnnounceBuffer: 0x000001647371DD50
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AnnounceBuffer: 0x000001647371DE00
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371D7D0
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371D880
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371D930
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371D9E0
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371DA90
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371DB40
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371DBF0
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371DCA0
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371DD50
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371DE00
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AcquireThread AvailPhys=48475 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:04 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:04 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D7D0
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:04 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D7D0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =1 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D880
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:04 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D7D0  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:04 2022
+  CDataStream::QueueBuffer: 0x000001647371D7D0
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D880  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =2 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D930
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:05 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D880  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::QueueBuffer: 0x000001647371D880
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:05 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371D930 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=3 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:05 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:05 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:05 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:06 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:06 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:06 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:06 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:06 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:06 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:06 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:06 2022
+  CDataStream::AcquireThread AvailPhys=44151 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:06 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:06 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D9E0
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:07 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D9E0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =4 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DA90
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:07 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D9E0  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::QueueBuffer: 0x000001647371D9E0
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DA90  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =5 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DB40
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:07 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DA90  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::QueueBuffer: 0x000001647371DA90
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:07 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DB40 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=6 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:07 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:08 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:08 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:08 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:09 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:09 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:09 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:09 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:09 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:09 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:09 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:09 2022
+  CDataStream::AcquireThread AvailPhys=43683 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:09 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:09 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:09 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DBF0
+
+Wed Jul 20 11:20:09 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:09 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DBF0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =7 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DCA0
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:10 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DBF0  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::QueueBuffer: 0x000001647371DBF0
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DCA0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =8 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DD50
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:10 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DCA0  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::QueueBuffer: 0x000001647371DCA0
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:10 2022
+#### CDataStream::AcquireThread Queue(13) FinishDataXfer failed
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=812 skip datas
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DD50 with 0 (2862 valid lines, 37134 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=9 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:10 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:10 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:10 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:12 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:12 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:12 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:12 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::AcquireThread AvailPhys=43218 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:12 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:12 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DE00
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:12 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DE00  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =10 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D7D0
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:12 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DE00  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:12 2022
+  CDataStream::QueueBuffer: 0x000001647371DE00
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D7D0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =11 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D880
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:13 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D7D0  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::QueueBuffer: 0x000001647371D7D0
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:13 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371D880 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=12 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:13 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:13 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:13 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:14 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:14 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:14 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:14 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:14 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:14 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:14 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:14 2022
+  CDataStream::AcquireThread AvailPhys=43057 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:14 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:14 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D930
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:15 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D930  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =13 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D9E0
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:15 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D930  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::QueueBuffer: 0x000001647371D930
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D9E0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =14 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DA90
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:15 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D9E0  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::QueueBuffer: 0x000001647371D9E0
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::AcquireThread: Frame trigger case AND a stop2 occured
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=812 skip datas
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DA90 with 0 (2862 valid lines, 37134 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=15 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:15 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:15 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:15 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:17 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:17 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:17 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:17 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:17 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:17 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:17 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:17 2022
+  CDataStream::AcquireThread AvailPhys=43057 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:17 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:17 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:17 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DB40
+
+Wed Jul 20 11:20:17 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:17 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DB40  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =16 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DBF0
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:18 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DB40  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::QueueBuffer: 0x000001647371DB40
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DBF0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =17 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DCA0
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:18 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DBF0  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::QueueBuffer: 0x000001647371DBF0
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:18 2022
+#### CDataStream::AcquireThread Queue(13) FinishDataXfer failed
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=812 skip datas
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DCA0 with 0 (2862 valid lines, 37134 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=18 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:18 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:18 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:18 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:20 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:20 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:20 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:20 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:20 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:20 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:20 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:20 2022
+  CDataStream::AcquireThread AvailPhys=43062 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:20 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:20 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:20 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DD50
+
+Wed Jul 20 11:20:20 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:20 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:20 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DD50  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =19 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:20 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DE00
+
+Wed Jul 20 11:20:20 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:20 2022
+
+Wed Jul 20 11:20:20 2022
+  UserBuffer was not filled:no need to reset it
+  CDataStream::EventGetDataBuffer: 0x000001647371DD50  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:20 2022
+  CDataStream::QueueBuffer: 0x000001647371DD50
+
+Wed Jul 20 11:20:21 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DE00  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =20 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:21 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D7D0
+
+Wed Jul 20 11:20:21 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:21 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:21 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DE00  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:21 2022
+  CDataStream::QueueBuffer: 0x000001647371DE00
+
+Wed Jul 20 11:20:21 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:21 2022
+  CDataStream::AcquireThread: Frame trigger case AND a stop2 occured
+
+Wed Jul 20 11:20:21 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371D7D0 with 0 (3847 valid lines, 36149 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=21 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:21 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:21 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:21 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:22 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:22 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:22 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:22 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:22 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:22 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:22 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:22 2022
+  CDataStream::AcquireThread AvailPhys=43054 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:22 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:22 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D880
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:23 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D880  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =22 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D930
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:23 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D880  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::QueueBuffer: 0x000001647371D880
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D930  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =23 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D9E0
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:23 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D930  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::QueueBuffer: 0x000001647371D930
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:23 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371D9E0 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=24 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:23 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:23 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:23 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:25 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:25 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:25 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:25 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:25 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:25 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:25 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:25 2022
+  CDataStream::AcquireThread AvailPhys=43054 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:25 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:25 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:25 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DA90
+
+Wed Jul 20 11:20:25 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:25 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DA90  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =25 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DB40
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:26 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DA90  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::QueueBuffer: 0x000001647371DA90
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DB40  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =26 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DBF0
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:26 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DB40  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::QueueBuffer: 0x000001647371DB40
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:26 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DBF0 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=27 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:26 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:26 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:26 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:28 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:28 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:28 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:28 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::AcquireThread AvailPhys=43059 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:28 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:28 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DCA0
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:28 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DCA0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =28 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DD50
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:28 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DCA0  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:28 2022
+  CDataStream::QueueBuffer: 0x000001647371DCA0
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DD50  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =29 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DE00
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:29 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DD50  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::QueueBuffer: 0x000001647371DD50
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:29 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DE00 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=30 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:29 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:29 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:29 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:30 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:30 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:30 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:30 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:30 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:30 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:30 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:30 2022
+  CDataStream::AcquireThread AvailPhys=43054 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:30 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:30 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D7D0
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:31 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D7D0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =31 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D880
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:31 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D7D0  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::QueueBuffer: 0x000001647371D7D0
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D880  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =32 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D930
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:31 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D880  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::QueueBuffer: 0x000001647371D880
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:31 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371D930 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=33 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:31 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:31 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:31 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:33 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:33 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:33 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:33 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:33 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:33 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:33 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:33 2022
+  CDataStream::AcquireThread AvailPhys=43059 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:33 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:33 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:33 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D9E0
+
+Wed Jul 20 11:20:33 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:33 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D9E0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =34 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DA90
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:34 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D9E0  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::QueueBuffer: 0x000001647371D9E0
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DA90  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =35 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DB40
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:34 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DA90  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::QueueBuffer: 0x000001647371DA90
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::AcquireThread: Frame trigger case AND a stop2 occured
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=812 skip datas
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DB40 with 0 (2862 valid lines, 37134 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=36 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:34 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:34 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:34 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:36 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:36 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:36 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:36 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::AcquireThread AvailPhys=43054 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:36 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:36 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DBF0
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:36 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DBF0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =37 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DCA0
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:36 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DBF0  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:36 2022
+  CDataStream::QueueBuffer: 0x000001647371DBF0
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DCA0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =38 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DD50
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:37 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DCA0  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::QueueBuffer: 0x000001647371DCA0
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:37 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DD50 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=39 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:37 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:37 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:37 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:38 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:38 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:38 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:38 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:38 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:38 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:38 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:38 2022
+  CDataStream::AcquireThread AvailPhys=43055 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:38 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:38 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DE00
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:39 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DE00  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =40 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D7D0
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:39 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DE00  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::QueueBuffer: 0x000001647371DE00
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D7D0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =41 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D880
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:39 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D7D0  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::QueueBuffer: 0x000001647371D7D0
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:39 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371D880 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=42 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:39 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:39 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:39 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:41 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:41 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:41 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:41 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:41 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:41 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:41 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:41 2022
+  CDataStream::AcquireThread AvailPhys=43054 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:41 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:41 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:41 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D930
+
+Wed Jul 20 11:20:41 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:41 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D930  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =43 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D9E0
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:42 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D930  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::QueueBuffer: 0x000001647371D930
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D9E0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =44 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DA90
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:42 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D9E0  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::QueueBuffer: 0x000001647371D9E0
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:42 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DA90 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=45 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:42 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:42 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:42 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:44 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:44 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:44 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:44 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::AcquireThread AvailPhys=43059 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:44 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:44 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DB40
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:44 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DB40  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =46 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DBF0
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:44 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DB40  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:44 2022
+  CDataStream::QueueBuffer: 0x000001647371DB40
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DBF0  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =47 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DCA0
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:45 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DBF0  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::QueueBuffer: 0x000001647371DBF0
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:45 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DCA0 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=48 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:45 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:45 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:45 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:46 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:46 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:46 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:46 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:46 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:46 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:46 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:46 2022
+  CDataStream::AcquireThread AvailPhys=43055 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:46 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:46 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DD50
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:47 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DD50  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =49 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DE00
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:47 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DD50  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::QueueBuffer: 0x000001647371DD50
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DE00  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =50 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D7D0
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:47 2022
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DE00  nError=0 NbImages_get_by_user = 2
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::QueueBuffer: 0x000001647371DE00
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:47 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371D7D0 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=51 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:47 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:47 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:47 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:49 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:49 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:49 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:49 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:49 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:49 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:49 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:49 2022
+  CDataStream::AcquireThread AvailPhys=43060 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:49 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:49 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:49 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D880
+
+Wed Jul 20 11:20:49 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:49 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D880  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =52 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D930
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:50 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D880  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::QueueBuffer: 0x000001647371D880
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371D930  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =53 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371D9E0
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:50 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371D930  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::QueueBuffer: 0x000001647371D930
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::AcquireThread: Frame trigger case AND a stop2 occured
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=812 skip datas
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371D9E0 with 0 (2862 valid lines, 37134 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=54 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:50 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:50 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:50 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:52 2022
+  GCReadPort Add=0x4F000004; Size=4
+
+Wed Jul 20 11:20:52 2022
+  DataU32[0]=0x09C3C000
+
+Wed Jul 20 11:20:52 2022
+  GCReadPort Add=0x12020; Size=4
+
+Wed Jul 20 11:20:52 2022
+  DataU32[0]=0x00000004
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::StartCapture
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::AcquireThread GetFpgaPayloadSize=123507648, pBulkEndPt->MaxPktSize=16384, Cypress bufferSize=4194304 nQueueSize=16
+
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::AcquireThread AvailPhys=43132 MB	TotalPhys=65257 MB
+
+Wed Jul 20 11:20:52 2022
+  GCWritePort Add=0x18000; Size=4
+
+Wed Jul 20 11:20:52 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DA90
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:52 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DA90  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =55 (Nb Total images acquired = 1)
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DB40
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:52 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DA90  nError=0 NbImages_get_by_user = 1
+
+Wed Jul 20 11:20:52 2022
+  CDataStream::QueueBuffer: 0x000001647371DA90
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::AcquireThread DeliverBuffer @=0x000001647371DB40  u64NbLinesLost=0 u64NbTriggerMissed=0 u16MemoFrameCounter =56 (Nb Total images acquired = 2)
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::GetInputBuffer pBuffer=0x000001647371DBF0
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::AcquireThread FrameTriggerResetLineCounter
+
+Wed Jul 20 11:20:53 2022
+  UserBuffer was not filled:no need to reset it
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::EventGetDataBuffer: 0x000001647371DB40  nError=0 NbImages_get_by_user = 2
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::QueueBuffer: 0x000001647371DB40
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:53 2022
+#### CDataStream::AcquireThread Queue(14) FinishDataXfer failed
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::AcquireThread: FinishDataXfer failed: Frame trigger case AND a stop occured
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::DeliverFrameTriggerUncomplete unNbRemainingBytes=3864 skip datas
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::AcquireThread FrameTrigger received DeliverBuffer(complete UserBuffer @=0x000001647371DBF0 with 0 (4221 valid lines, 35775 added lines)) u64NbLinesLost=0 u64NbTriggerMissed=0 u16FrameCounter=57 (Nb Total images acquired = 3)
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::AcquireThread u64NbImageAcquired = 0 Sleep(1)
+
+Wed Jul 20 11:20:53 2022
+  GCWritePort Add=0x18004; Size=4
+
+Wed Jul 20 11:20:53 2022
+  DataU32[0]=0x00000000
+
+Wed Jul 20 11:20:53 2022
+  CDataStream::FlushQueue iOperation=1
+
+Wed Jul 20 11:20:54 2022
+  GCWritePort Add=0x1210C; Size=104
+
+Wed Jul 20 11:20:54 2022
+  DataU32[0]=0x00000001
+
+Wed Jul 20 11:20:54 2022
+  DataU32[4]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[8]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[12]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[16]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[20]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[24]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[28]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[32]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[36]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[40]=0x165AB810
+
+Wed Jul 20 11:20:54 2022
+  DataU32[44]=0x00007FF9
+
+Wed Jul 20 11:20:54 2022
+  DataU32[48]=0x000133B7
+
+Wed Jul 20 11:20:54 2022
+  DataU32[52]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[56]=0x0002C098
+
+Wed Jul 20 11:20:54 2022
+  DataU32[60]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[64]=0x00000001
+
+Wed Jul 20 11:20:54 2022
+  DataU32[68]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[72]=0x19B15090
+
+Wed Jul 20 11:20:54 2022
+  DataU32[76]=0x00000164
+
+Wed Jul 20 11:20:54 2022
+  DataU32[80]=0x000133B7
+
+Wed Jul 20 11:20:54 2022
+  DataU32[84]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[88]=0x0002C098
+
+Wed Jul 20 11:20:54 2022
+  DataU32[92]=0x00000000
+
+Wed Jul 20 11:20:54 2022
+  DataU32[96]=0x00000001
+
+Wed Jul 20 11:20:54 2022
+  DataU32[100]=0x00000000
+
+Wed Jul 20 11:20:55 2022
+  CDataStream::Close
+
+Wed Jul 20 11:20:55 2022
+  CDataStream::StopCapture
+
+Wed Jul 20 11:20:55 2022
+  Enter CDevice::Close()
+
+Wed Jul 20 11:20:55 2022
+  CDataStream::Close
+
+Wed Jul 20 11:20:55 2022
+  Leave CDevice::Close()
+
+Wed Jul 20 11:20:55 2022
+GCCloseLib: Enter
+Wed Jul 20 11:20:59 2022
+DLL_PROCESS_DETACH
+
+Wed Jul 20 11:20:59 2022
+Force Cleanup if not already done=> GCCloseLib()
+
+Wed Jul 20 11:20:59 2022
+GCCloseLib: Enter

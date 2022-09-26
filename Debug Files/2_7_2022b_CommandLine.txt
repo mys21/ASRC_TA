@@ -1,0 +1,116 @@
+NOTES:
+
+The C code was written so that stop acquisition and flush buffers were placed inside the acquisition loop, after requeue buffer. 
+This method caused a memory error in running the C code and the code ran noticeably slower.
+It appears that this method produces a "Valid lines from frame" of 358 with no lines lost. Not sure why this is. 
+
+Num of Cameras 0000000000000001
+Camera Info 323132354137343432
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 1
+Lines lost: 14
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 1
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 1
+Lines lost: 14
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 1
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 358
+
+Images Acquired: 1
+Lines lost: 13
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 1
+Lines lost: 13
+Missed triggers: 0
+Valid lines from frame: 987
+
+Images Acquired: 1
+Lines lost: 15
+Missed triggers: 0
+Valid lines from frame: 985
+
+Images Acquired: 1
+Lines lost: 0
+Missed triggers: 0
+Valid lines from frame: 0
+
+Images Acquired: 1
+Lines lost: 14
+Missed triggers: 0
+Valid lines from frame: 986
+
+Images Acquired: 1
+Lines lost: 14
+Missed triggers: 0
+Valid lines from frame: 986
+C:\Users\mysfe\OneDrive\Desktop\CameraSoftware\x64\Debug\ConsoleMonoThread.exe (process 29852) exited with code -1.
+To automatically close the console when debugging stops, enable Tools->Options->Debugging->Automatically close the console when debugging stops.
+Press any key to close this window . . .
