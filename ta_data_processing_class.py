@@ -59,10 +59,10 @@ class ta_data_processing:
 #            self.probe2_on_array = self.probe_array[4::6,:]
 
 			# Burst Method - 2 shots on, 2 shots off
-            self.probe1_on_array = self.probe_array[1::4,:]
-            self.probe1_off_array = self.probe_array[::4,:]
-            self.probe2_off_array = self.probe_array[3::4,:]
-            self.probe2_on_array = self.probe_array[2::4,:]
+            self.probe1_on_array = self.probe_array[::4,:]
+            self.probe1_off_array = self.probe_array[1::4,:]
+            self.probe2_off_array = self.probe_array[2::4,:]
+            self.probe2_on_array = self.probe_array[3::4,:]
 
         else:
 			# shot-to-shot
@@ -76,10 +76,11 @@ class ta_data_processing:
 #            self.probe2_on_array = self.probe_array[3::6,:]
 
 			# Burst Method
-            self.probe1_on_array = self.probe_array[::4,:]
-            self.probe1_off_array = self.probe_array[1::4,:]
-            self.probe2_off_array = self.probe_array[2::4,:]
-            self.probe2_on_array = self.probe_array[3::4,:]
+            self.probe1_on_array = self.probe_array[1::4,:]
+            self.probe1_off_array = self.probe_array[::4,:]
+            self.probe2_off_array = self.probe_array[3::4,:]
+            self.probe2_on_array = self.probe_array[2::4,:]
+
 
         return
         
