@@ -863,7 +863,7 @@ class Editor(QtWidgets.QMainWindow):
         self.camera.moveToThread(self.acquire_thread)
         self.camera.start_acquire.connect(self.camera.Acquire)
 
-        self.tau_flip_request = False
+        self.tau_flip_request = True
 
         self.run()
         return
@@ -1058,7 +1058,7 @@ class Editor(QtWidgets.QMainWindow):
         self.camera.moveToThread(self.acquire_thread)
         self.camera.start_acquire.connect(self.camera.Acquire)
 
-        self.tau_flip_request = True
+        #self.tau_flip_request = True
 
         self.d_run()
 

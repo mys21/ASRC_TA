@@ -12,16 +12,20 @@ class Tombak_control:
         self.line_voltage = 0.5 # units of V
         self.line_pulse_width = 260 # units of ns
         self.frame_pulse_width = 800 # units of ns
-        self.line_pulse_delay = 97500 # units of 100 ps
-        self.frame_pulse_delay = 111100 # units of 100 ps
+        self.line_pulse_delay =	97500         # units of 100 ps (default for 90kHz)
+        self.frame_pulse_delay = 111100 #1000000 # units of 100 ps
+        self.nDivTom = 4		# division from tombak 1
         self.division = 1
-        
+        self.switch = False
+ 
+
   
     def line_parameters(self):
         tombak = Tombak(self.line_port)
         #tombak.set_status_instruction(tombak.INSTRUCT_FUNCTIONING_MODE, 0) # does this work??
         tombak.set_voltage_instruction(tombak.INSTRUCT_PULSE_IN_THRESHOLD, self.line_voltage) # units V
         self.line_freq = tombak.measure_pulse_in_frequency()
+        self.line_pulse_delay = int((1/self.line_freq - 1.6e-6)/1e-10)
         tombak.set_integer_instruction(tombak.INSTRUCT_PULSE_IN_FREQUENCY_DIV, 1)
         tombak.set_time_instruction(tombak.INSTRUCT_PULSE_OUT_WIDTH, self.line_pulse_width) # units ns
         tombak.set_time_instruction(tombak.INSTRUCT_PULSE_OUT_DELAY, self.line_pulse_delay) # units 100ps
@@ -37,7 +41,7 @@ class Tombak_control:
         tombak.set_voltage_instruction(tombak.INSTRUCT_PULSE_IN_THRESHOLD, self.frame_voltage) # units V
         self.frame_freq = tombak.measure_pulse_in_frequency()
         #self.division = ceil(self.frame_freq / (self.line_freq / num_shots))
-        self.division = ceil(1/4*num_shots) # div by 3 method use: ceil(1/3*num_shots) # should have the same division as the pump pulse for the laser
+        self.division = ceil(num_shots/self.nDivTom) # div by 3 method use: ceil(1/3*num_shots) # should have the same division as the pump pulse for the laser
         tombak.set_integer_instruction(tombak.INSTRUCT_PULSE_IN_FREQUENCY_DIV, int(self.division))	# num_shots/4
         tombak.set_time_instruction(tombak.INSTRUCT_PULSE_OUT_WIDTH, self.frame_pulse_width) # units ns
         tombak.set_time_instruction(tombak.INSTRUCT_PULSE_OUT_DELAY, self.frame_pulse_delay) # units 100ps
@@ -52,3 +56,8 @@ class Tombak_control:
         self.line_parameters()
         self.frame_parameters(num_shots)
         return
+
+    def Rep_rate_check(self):
+        if Tombak(self.line_port).measure_pulse_in_frequency() < 90000:
+            self.switch = True
+        return self.switch

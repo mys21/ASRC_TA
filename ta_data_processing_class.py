@@ -2,6 +2,7 @@
    are acquired. this class is instantiated withing TA1.py'''
 import datetime
 import numpy as np
+from Tombak_control import Tombak_control
 
 class ta_data_processing:
     '''class for processing ta data'''
@@ -14,6 +15,7 @@ class ta_data_processing:
         self.raw_probe_array = np.array(probe_array,dtype=float)[:,first_pixel:num_pixels+first_pixel]
         self.first_pixel = first_pixel
         self.num_pixels = num_pixels
+        self.tau_flip_request = Tombak_control().Rep_rate_check()
         
     def update(self,probe_array,first_pixel,num_pixels):
         '''select parts of array which contain the camera data and thus ignoring 
@@ -41,12 +43,16 @@ class ta_data_processing:
         self.reference_array = self.reference_array/linear_corr[1]
         return
         
-    def separate_on_off(self, tau_flip_request = False):
+    def separate_on_off(self, tau_flip_request = True):
         '''separates on and off shots in the probe and reference arrays, note that
            when the tau flip is passed as true (long time shots where the delay was 
            offset by 1ms) the trigger is rolled over by one value to compensate. 
            Should get rid of tau flip'''
-        if tau_flip_request is True:
+
+        tau_flip_request = self.tau_flip_request
+        print("Switch: ",tau_flip_request)
+
+        if tau_flip_request is False:
 			# shot-to-shot
             self.probe_on_array = self.probe_array[::2,:]
             self.probe_off_array = self.probe_array[1::2,:]
@@ -58,29 +64,48 @@ class ta_data_processing:
 #            self.probe2_off_array = self.probe_array[3::6,:]
 #            self.probe2_on_array = self.probe_array[4::6,:]
 
-			# Burst Method - 2 shots on, 2 shots off
+			# new delay (minimum delay tombak 2 - < 90kHz)         
+            '''
+            self.probe1_on_array = self.probe_array[::4,:]
+            self.probe1_off_array = self.probe_array[2::4,:]
+            self.probe2_off_array = self.probe_array[3::4,:]
+            self.probe2_on_array = self.probe_array[1::4,:]'''
+            '''
             self.probe1_on_array = self.probe_array[::4,:]
             self.probe1_off_array = self.probe_array[1::4,:]
             self.probe2_off_array = self.probe_array[2::4,:]
-            self.probe2_on_array = self.probe_array[3::4,:]
+            self.probe2_on_array = self.probe_array[3::4,:]'''
+
+			# Burst Method - 2 shots on, 2 shots off (11.1 us delay on tombak2 - 90kHz)
+
+            self.probe1_on_array = self.probe_array[2::4,:]
+            self.probe1_off_array = self.probe_array[::4,:]
+            self.probe2_off_array = self.probe_array[1::4,:]
+            self.probe2_on_array = self.probe_array[3::4,:]        
 
         else:
 			# shot-to-shot
             self.probe_on_array = self.probe_array[1::2,:]
             self.probe_off_array = self.probe_array[::2,:]
 
-            # Using "divide by 3" method
+            # Using "divide by 3" method	# 10/3/22 - signal is positive
 #            self.probe1_on_array = self.probe_array[2::6,:]
 #            self.probe1_off_array = self.probe_array[1::6,:]
 #            self.probe2_off_array = self.probe_array[4::6,:]
 #            self.probe2_on_array = self.probe_array[3::6,:]
 
-			# Burst Method
+			# new delay (minimum delay tombak 2 - < 90kHz)      
+            self.probe1_on_array = self.probe_array[::4,:]
+            self.probe1_off_array = self.probe_array[1::4,:]
+            self.probe2_off_array = self.probe_array[2::4,:]
+            self.probe2_on_array = self.probe_array[3::4,:]
+    
+			# Burst Method	(11.1 us delay on tombak2 - 90kHz)    
+            '''
             self.probe1_on_array = self.probe_array[1::4,:]
             self.probe1_off_array = self.probe_array[::4,:]
             self.probe2_off_array = self.probe_array[3::4,:]
-            self.probe2_on_array = self.probe_array[2::4,:]
-
+            self.probe2_on_array = self.probe_array[2::4,:]'''
 
         return
         

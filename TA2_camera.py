@@ -49,18 +49,18 @@ class octoplus(QObject):
         super(QObject,self).__init__()   																	
         libname= os.path.abspath('CamCmosOctUsb3.dll')
         self.dll = WinDLL(libname)
-        self.pixels = 2048 # including dummy pixels
+        self.pixels = 2048					# including dummy pixels
         self.num_pixels = 2048
         self.first_pixel = 0
         self.enable_contextual_data = 0
         self.circular_buffer = 0
         self.trigger_mode = 4				# IMPORTANT: trigger_mode is set to 4 during experiments | trigger_mode is set to 1 when testing code (due to limited access to laser)
-        self.exposure_time = 132 # units of 10 ns
+        self.exposure_time = 132			# units of 10 ns
         self.max_bulk_queue_number = 16
-        self.bit_length = 4		# 4 = 12bits|3 = 11bits
-        self.line_period = 1101 # units of 10 ns	# line_period = (line period * 100) - 10, to avoid losing "valid lines per frame" | period doubled from 1101 b/c frequency was halved
-        self.pulse_width = 70  # units of 10 ns
-        self.timeout = c_ulong(60000)	# 60 s
+        self.bit_length = 4					# 4 = 12bits | 3 = 11bits
+        self.line_period = 1101				# units of 10 ns	# line_period = (line period * 100) - 10, to avoid losing "valid lines per frame" | period doubled from 1101 b/c frequency was halved
+        self.pulse_width = 70				# units of 10 ns
+        self.timeout = c_ulong(120000)		# 60 s
         self.iNbOfBuffer = c_size_t(10)
         self.ulNbCameras = c_ulong()
         self.ulIndex = c_ulong(0)
@@ -75,6 +75,8 @@ class octoplus(QObject):
         self.current_day_time = self.now.strftime("%m/%d/%Y %H:%M:%S")
         self.current_time = self.now.strftime("%H:%M:%S:%f")
         self.timestamp = self.now.strftime("%m/%d/%y %H%M%S")
+        self.jitter = 10
+        self.switch = False
         
     # Combined methods to call camera
     def Initialize(self, lines_per_frame = 1000):	# Input can be given by the user in terms of time instead of number of shots	
@@ -94,12 +96,23 @@ class octoplus(QObject):
             self.lines_per_frame = 4 * floor(self.lines_per_frame / 4)
 
         # Set TOMBAK - 'COM3' is frame trigger port
-        self.num_shots = self.lines_per_frame + 2	# To prevent lost lines, 2 extra lines are desired for frame trigger
+        self.num_shots = self.lines_per_frame + 4	# To prevent lost lines, 2 extra lines are desired for frame trigger (in div3 mode)
         print('\nTombak lines: ', self.num_shots)
         tk = Tombak_control()
         tk.Initialize_tombak(self.num_shots)	
+        print("tombak line frequency:", tk.line_freq)
+        print("line pulse delay:", tk.line_pulse_delay)
+
+		# set line Period
+        self.switch = tk.Rep_rate_check()	# boolean value to case switch an offset of the pulse phase
+        #print("switch: ",self.switch)
+        self.out = 1/tk.line_freq - 1e-7
+        self.line_period = floor(self.out/1e-8)
+		
+        #self.line_period = 10000		#self.line_period = int((1/tk.line_freq)*1e8 - 11)
+        print("Line Period for camera: ", self.line_period)
         print("Tombak division: ", tk.division)
-        sleep(5)
+        sleep(5)		# have the script pause to allow tombaks to change parameters
         out_freq = tk.frame_freq/tk.division
         print("Tombak output freq: " + str(out_freq) + " Hz")
 
@@ -122,6 +135,7 @@ class octoplus(QObject):
         self.WriteRegister(0x12128, self.lines_per_frame)
         self.WriteRegister(0x12100, self.line_period)
         self.WriteRegister(0x1211C, self.pulse_width)
+        self.WriteRegister(0x12184, self.jitter)
 
 		#Reading registers for debugging
         #print ("trigger mode: ")
@@ -334,8 +348,12 @@ class UTC_IR_Camera(QObject):
             self.lines_per_frame = ceil(lines_per_frame/self.num_frames)
 	
 		# DIV3 method requires that every 6th shot is matched
-        if self.lines_per_frame % 6 != 0:
-            self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
+        #if self.lines_per_frame % 6 != 0:
+        #    self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
+            
+		# Burst method requires that every 4th shot is matched
+        if self.lines_per_frame % 4 != 0:
+            self.lines_per_frame = 4 * floor(self.lines_per_frame / 4)
 
         self.img1.set_grabber_attribute_value('IMG_ATTR_ACQWINDOW_HEIGHT',self.lines_per_frame,'auto')
 
