@@ -1110,7 +1110,7 @@ class Editor(QtWidgets.QMainWindow):
         
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    last_instance_filename = r'C:\Users\mysfe\OneDrive\Desktop\ASRC_TA\last_instance_values.txt'
+    last_instance_filename = r'D:\ASRC_TA\last_instance_values.txt'
     try:
         last_instance_values = np.genfromtxt(last_instance_filename)
         ex = Editor(last_instance_filename,pl=last_instance_values,preloaded=True)
