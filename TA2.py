@@ -767,7 +767,7 @@ class Editor(QtWidgets.QMainWindow):
 #                     self.current_sweep.add_current_data_disco(self.current_data.staged_dtt,self.current_data.staged_weight)
 #             else:
 # =============================================================================
-            self.current_sweep.add_current_data(self.current_data.dtt,time_point=self.timestep)
+            self.current_sweep.add_current_data(self.current_data.dtt,self.current_data.probe_on,self.current_data.probe_off,time_point=self.timestep)
             self.append_history('Last point added')
         else:
             self.append_history('Did not add last point')

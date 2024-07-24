@@ -50,9 +50,9 @@ class ta_data_processing:
            Should get rid of tau flip'''
 
         tau_flip_request = self.tau_flip_request
-        print("Switch: ",tau_flip_request)
+        print("Switch: ",tau_flip_request)		
 
-        if tau_flip_request is False:
+        if tau_flip_request is True:
 			# shot-to-shot
             self.probe_on_array = self.probe_array[::2,:]
             self.probe_off_array = self.probe_array[1::2,:]
@@ -63,18 +63,6 @@ class ta_data_processing:
 #            self.probe1_off_array = self.probe_array[2::6,:]
 #            self.probe2_off_array = self.probe_array[3::6,:]
 #            self.probe2_on_array = self.probe_array[4::6,:]
-
-			# new delay (minimum delay tombak 2 - < 90kHz)         
-            '''
-            self.probe1_on_array = self.probe_array[::4,:]
-            self.probe1_off_array = self.probe_array[2::4,:]
-            self.probe2_off_array = self.probe_array[3::4,:]
-            self.probe2_on_array = self.probe_array[1::4,:]'''
-            '''
-            self.probe1_on_array = self.probe_array[::4,:]
-            self.probe1_off_array = self.probe_array[1::4,:]
-            self.probe2_off_array = self.probe_array[2::4,:]
-            self.probe2_on_array = self.probe_array[3::4,:]'''
 
 			# Burst Method - 2 shots on, 2 shots off (11.1 us delay on tombak2 - 90kHz)
 
@@ -94,18 +82,12 @@ class ta_data_processing:
 #            self.probe2_off_array = self.probe_array[4::6,:]
 #            self.probe2_on_array = self.probe_array[3::6,:]
 
-			# new delay (minimum delay tombak 2 - < 90kHz)      
+			# Burst Method - 2 shots on, 2 shots off (11.1 us delay on tombak2 - 90kHz)
+
             self.probe1_on_array = self.probe_array[::4,:]
-            self.probe1_off_array = self.probe_array[1::4,:]
-            self.probe2_off_array = self.probe_array[2::4,:]
-            self.probe2_on_array = self.probe_array[3::4,:]
-    
-			# Burst Method	(11.1 us delay on tombak2 - 90kHz)    
-            '''
-            self.probe1_on_array = self.probe_array[1::4,:]
-            self.probe1_off_array = self.probe_array[::4,:]
+            self.probe1_off_array = self.probe_array[2::4,:]
             self.probe2_off_array = self.probe_array[3::4,:]
-            self.probe2_on_array = self.probe_array[2::4,:]'''
+            self.probe2_on_array = self.probe_array[1::4,:]   
 
         return
         
@@ -174,10 +156,10 @@ class ta_data_processing:
         if use_avg_off_shots is True:
             #self.dtt_array = (self.probe_on_array-self.probe_off_array)/(self.probe_off + 10)
             np.seterr(invalid='ignore')
-            self.dtt_array = np.divide(((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array)), (self.divide_by))
+            self.dtt_array = (-1)*np.divide(((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array)), (self.divide_by))
         if use_avg_off_shots is False:
             np.seterr(invalid='ignore')
-            self.dtt_array = np.divide(((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array)), (self.divide_by))
+            self.dtt_array = (-1)*np.divide(((self.probe1_on_array + self.probe2_on_array) - (self.probe1_off_array + self.probe2_off_array)), (self.divide_by))
         self.dtt = self.dtt_array.mean(axis=0)
         fin_dtt = self.dtt[np.isfinite(self.dtt)]
         #if np.abs(fin_dtt[cutoff[0]:cutoff[1]]).max() > max_dtt:
