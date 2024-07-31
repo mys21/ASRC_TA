@@ -66,10 +66,17 @@ class ta_data_processing:
 
 			# Burst Method - 2 shots on, 2 shots off (11.1 us delay on tombak2 - 90kHz)
 
-            self.probe1_on_array = self.probe_array[2::4,:]
+            ''''self.probe1_on_array = self.probe_array[2::4,:]
             self.probe1_off_array = self.probe_array[::4,:]
             self.probe2_off_array = self.probe_array[1::4,:]
-            self.probe2_on_array = self.probe_array[3::4,:]        
+            self.probe2_on_array = self.probe_array[3::4,:]'''        
+			
+
+            self.probe1_on_array = self.probe_array[1::4,:]
+            self.probe1_off_array = self.probe_array[::4,:]
+            self.probe2_off_array = self.probe_array[3::4,:]
+            self.probe2_on_array = self.probe_array[2::4,:]
+
 
         else:
 			# shot-to-shot

@@ -14,7 +14,7 @@ class Tombak_control:
         self.frame_pulse_width = 800 # units of ns
         self.line_pulse_delay =	97500         # units of 100 ps (default for 90kHz)
         self.frame_pulse_delay = 111100 #1000000 # units of 100 ps
-        self.nDivTom = 4		# division from tombak 1
+        self.nDivTom = 90		# division from tombak 1
         self.division = 1
         self.switch = False
  
@@ -43,7 +43,7 @@ class Tombak_control:
         self.frame_freq = tombak.measure_pulse_in_frequency()
         #self.division = ceil(self.frame_freq / (self.line_freq / num_shots))
         self.division = ceil(num_shots/self.nDivTom) # div by 3 method use: ceil(1/3*num_shots) # should have the same division as the pump pulse for the laser
-        tombak.set_integer_instruction(tombak.INSTRUCT_PULSE_IN_FREQUENCY_DIV, int(self.division))	# num_shots/4
+        tombak.set_integer_instruction(tombak.INSTRUCT_PULSE_IN_FREQUENCY_DIV,1)	# num_shots/4
         tombak.set_time_instruction(tombak.INSTRUCT_PULSE_OUT_WIDTH, self.frame_pulse_width) # units ns
         tombak.set_time_instruction(tombak.INSTRUCT_PULSE_OUT_DELAY, self.frame_pulse_delay) # units 100ps
         tombak.set_status_instruction(tombak.INSTRUCT_SYNC_OUT_2_SOURCE, 1)	#IR camera - "source synchro 2: output"
