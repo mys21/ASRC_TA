@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Users\mysfe\OneDrive\Desktop\ASRC_TA\TA_GUI\ta_gui.ui'
+# Form implementation generated from reading ui file 'D:\ASRC_TA\TA_GUI\ta_gui.ui'
 #
 # Created by: PyQt5 UI code generator 5.14.2
 #
@@ -861,8 +861,8 @@ class Ui_TA_GUI(object):
         self.d_calib_box.setTitle(_translate("TA_GUI", "Calibration"))
         self.label_23.setText(_translate("TA_GUI", "A"))
         self.label_24.setText(_translate("TA_GUI", "B"))
-        self.label_31.setText(_translate("TA_GUI", "C * 10^5"))
-        self.label_32.setText(_translate("TA_GUI", "D * 10^9"))
+        self.label_31.setText(_translate("TA_GUI", "C * 10^-5"))
+        self.label_32.setText(_translate("TA_GUI", "D * 10^-9"))
         self.d_use_calib.setText(_translate("TA_GUI", "Use Calibration"))
         self.label_42.setText(_translate("TA_GUI", "y = A + Bx +"))
         self.label_43.setText(_translate("TA_GUI", "Cx^2 + Dx^3"))

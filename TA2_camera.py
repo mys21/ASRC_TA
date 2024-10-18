@@ -338,7 +338,7 @@ class UTC_IR_Camera(QObject):
     def Initialize(self, lines_per_frame = 1000):	# Input can be given by the user in terms of time instead of number of shots	
 		# Frames and number of lines needed
 
-        self.img1 = IMAQ.IMAQ.IMAQCamera(name='img0')
+        self.img1 = IMAQ.IMAQ.IMAQCamera(name='img1')
         self.img1.open()
         if lines_per_frame < 3000:
             self.num_frames = 1

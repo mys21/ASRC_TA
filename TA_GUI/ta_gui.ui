@@ -1983,7 +1983,7 @@ Run</string>
         </rect>
        </property>
        <property name="text">
-        <string>C * 10^5</string>
+        <string>C * 10^-5</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_32">
@@ -1996,7 +1996,7 @@ Run</string>
         </rect>
        </property>
        <property name="text">
-        <string>D * 10^9</string>
+        <string>D * 10^-9</string>
        </property>
       </widget>
       <widget class="QCheckBox" name="d_use_calib">

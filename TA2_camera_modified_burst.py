@@ -77,6 +77,7 @@ class octoplus(QObject):
         self.timestamp = self.now.strftime("%m/%d/%y %H%M%S")
         self.jitter = 10
         self.switch = False
+        self.tombakDivide = 900
         
     # Combined methods to call camera
     def Initialize(self, lines_per_frame = 1000):	# Input can be given by the user in terms of time instead of number of shots	
@@ -92,8 +93,8 @@ class octoplus(QObject):
 #            self.lines_per_frame = 6 * floor(self.lines_per_frame / 6)
 
 		# Burst method requires that every 4th shot is matched
-        if self.lines_per_frame % 90 != 0:
-            self.lines_per_frame = 90 * floor(self.lines_per_frame / 90)
+        if self.lines_per_frame % self.tombakDivide != 0:
+            self.lines_per_frame = self.tombakDivide * floor(self.lines_per_frame / self.tombakDivide)
 
         # Set TOMBAK - 'COM3' is frame trigger port
         self.num_shots = self.lines_per_frame + 4	# To prevent lost lines, 2 extra lines are desired for frame trigger (in div3 mode)

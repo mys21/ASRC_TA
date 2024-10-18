@@ -14,7 +14,7 @@ class Tombak_control:
         self.frame_pulse_width = 800 # units of ns
         self.line_pulse_delay =	97500         # units of 100 ps (default for 90kHz)
         self.frame_pulse_delay = 111100 #1000000 # units of 100 ps
-        self.nDivTom = 90		# division from tombak 1
+        self.nDivTom = 900		# division from tombak 1
         self.division = 1
         self.switch = False
  

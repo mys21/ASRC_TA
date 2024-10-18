@@ -546,10 +546,10 @@ class Editor(QtWidgets.QMainWindow):
         #return np.linspace(0,self.num_pixels-1,self.num_pixels)*slope+y_int
         pixels = np.linspace(0,self.num_pixels-1,self.num_pixels) 
         waves = np.zeros(len(pixels))
-        #A = 1.03797499e+03
-        #B = -3.05144425e-01
-        #C = 1.13099072e-05
-        #D = -2.97101736e-09
+        #A = 881.7615362e+02 
+        #B = 7.80559056e-01
+        #C = 2.95767e-05
+        #D = -7.54878e-08
         A = self.calib[0]
         B = self.calib[1]
         C = self.calib[2]*1e-5
@@ -557,7 +557,7 @@ class Editor(QtWidgets.QMainWindow):
         for i,p in enumerate(pixels):
             waves[i] = A + B*p + C*p*p + D*p*p*p
         return waves
-		
+
                 
     def ls_plot(self):
         '''last shot plot on acquire tab'''
@@ -1110,7 +1110,7 @@ class Editor(QtWidgets.QMainWindow):
         
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    last_instance_filename = r'C:\Users\mysfe\OneDrive\Desktop\ASRC_TA\last_instance_values_IR.txt'
+    last_instance_filename = r'D:\ASRC_TA\last_instance_values_IR.txt'
     try:
         last_instance_values = np.genfromtxt(last_instance_filename)
         ex = Editor(last_instance_filename,pl=last_instance_values,preloaded=True)
